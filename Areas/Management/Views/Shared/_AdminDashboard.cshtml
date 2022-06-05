@@ -1,0 +1,724 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] -Codesweaver</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/assets/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link href="~/assets/dist/css/adminlte.css" rel="stylesheet" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/assets/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/assets/plugins/summernote/summernote-bs4.min.css">
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="~/assets/dist/img/download.jpg" alt="AdminLTELogo" height="60" width="60">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                 @*Navbar Search*@ 
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="navbar-search-block">
+                        <form class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                 @*Messages Dropdown Menu*@ 
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                             @*Message Start*@ 
+                            <div class="media">
+                                <img src="~/assets/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Brad Diesel
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                             @*Message End*@ 
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                             @*Message Start*@ 
+                            <div class="media">
+                                <img src="~/assets/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        John Pierce
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                             @*Message End*@ 
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                             @*Message Start*@ 
+                            <div class="media">
+                                <img src="~/assets/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Nora Silvester
+                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                             @*Message End*@ 
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+                 @*Notifications Dropdown Menu*@ 
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+                @*<li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" asp-area="Accounting" asp-controller="Home" asp-action="Logout" role="button">
+                        <i class="fas fa-unlock-alt"></i>
+                    </a>
+                </li>*@
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="../Home/Index" class="brand-link">
+                <img src="https://scontent.fdac8-1.fna.fbcdn.net/v/t39.30808-6/261770839_621274942630924_2550490191846627397_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFWrI5FAX5vYWYXCrMDvCfur0mqU7BOaCyvSapTsE5oLF_zK-g3GZH-rR89rn_hzQcoURzRh-rF6_RoA8z1iHiY&_nc_ohc=zComXtrAh-kAX_zIOBs&_nc_ht=scontent.fdac8-1.fna&oh=00_AT8or4JZlmymF60Y-vN1qsefcq_ERPeJtGcZ5KjhrdAP0A&oe=62A11DC7" alt="CodesWeaver Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Purity</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Admin</a>
+                    </div>
+                </div>
+
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Admin's Dashboard
+                                </p>
+                            </a>
+
+                        </li>
+
+                        @*Create Features*@
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-plus-circle"></i>
+
+                                <p>
+                                    Create Features
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-area="Employees" asp-controller="ModuleSetUp" asp-action="Index" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Pre Module SetUp
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Employees" asp-controller="Employee" asp-action="CreateNew" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Employee
+                                        </p>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item">
+            <a asp-area="Employees" asp-controller="Companies" asp-action="Index" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Company
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Employees" asp-controller="Departments" asp-action="Index" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Department
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Employees" asp-controller="Sections" asp-action="Index" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Section
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Floor
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Designation
+                </p>
+            </a>
+        </li>*@
+
+                                @*<li class="nav-item">
+            <a class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Shift
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Leave
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Loan
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Adjust
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Holiday
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>
+                    Salary
+                </p>
+            </a>
+        </li>*@
+
+                            </ul>
+                        </li>
+
+
+
+
+                        @*Employee Information*@
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-info-circle"></i>
+
+                                <p>
+                                    Employee Information
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a asp-area="Employees" asp-controller="Employee" asp-action="AllEmployee" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Information
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Employees" asp-controller="Attendance" asp-action="File" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Attendance
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Staff Information
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Resigned
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Promotion
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Increment
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Staff Increment Proposal
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Migrate
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Transfer
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        <p>
+                                            Lefty Letter Issue
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        @*Leave And Loan*@
+                        <!--<li class="nav-item menu-items">
+                            <a class="nav-link" data-toggle="collapse" href="#LeaveAndLoan" aria-expanded="false" aria-controls="LeaveAndLoan">
+                                <span class="menu-icon">
+                                    <i class="mdi mdi-alpha-l-box" aria-hidden="true"></i>
+                                </span>
+                                <span class="menu-title">Leave And Loan</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="LeaveAndLoan">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a asp-controller="LeaveAndLoan" asp-action="Type" class="nav-link">Leave Type Setup</a></li>
+                                    <li class="nav-item"> <a asp-controller="LeaveAndLoan" asp-action="LeaveInfo" class="nav-link">Leave Information</a></li>
+                                    <li class="nav-item"> <a asp-controller="LeaveAndLoan" asp-action="Short" class="nav-link">Short Leave</a></li>
+                                    <li class="nav-item"> <a asp-controller="LeaveAndLoan" asp-action="CLSL" class="nav-link">CL SL Leave Payment</a></li>
+                                    <li class="nav-item"> <a asp-controller="LeaveAndLoan" asp-action="Earn" class="nav-link">Earn Leave Payment</a></li>
+                                    <li class="nav-item"> <a asp-controller="LeaveAndLoan" asp-action="LanoInfo" class="nav-link">Loan Information</a></li>
+                                    <li class="nav-item"> <a asp-controller="LeaveAndLoan" asp-action="Process" class="nav-link">Loan Process</a></li>
+                                </ul>
+                            </div>
+                        </li>-->
+
+
+
+                        @*Shift Information*@
+                        <!--<li class="nav-item menu-items">
+                            <a class="nav-link" data-toggle="collapse" href="#shift" aria-expanded="false" aria-controls="shift">
+                                <span class="menu-icon">
+                                    <i class="mdi mdi-watch"></i>
+                                </span>
+                                <span class="menu-title">Shift Information</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="shift">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a asp-controller="Shift" asp-action="ShiftSetUp" class="nav-link">Shift SetUp</a></li>
+                                    <li class="nav-item"> <a asp-controller="Shift" asp-action="Initialize" class="nav-link">Shift Initialize</a></li>
+                                    <li class="nav-item"> <a asp-controller="Shift" asp-action="Duty" class="nav-link">Special Duty Schedule</a></li>
+                                    <li class="nav-item"> <a asp-controller="Shift" asp-action="Roster" class="nav-link">Roster</a></li>
+                                    <li class="nav-item"> <a asp-controller="Shift" asp-action="Entry" class="nav-link">Roster Entry</a></li>
+                                    <li class="nav-item"> <a asp-controller="Shift" asp-action="AnyDayWeekDay" class="nav-link">Any Day Week Day Setup</a></li>
+                                </ul>
+                            </div>
+                        </li>-->
+
+
+                        @*Salary*@
+                        <!--<li class="nav-item menu-items">
+                            <a class="nav-link" data-toggle="collapse" href="#Salary" aria-expanded="false" aria-controls="Salary">
+                                <span class="menu-icon">
+                                    <i class="mdi mdi-currency-bdt"></i>
+                                </span>
+                                <span class="menu-title">Salary</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="Salary">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="Calculation" class="nav-link">Salary Calculation</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="StaffSalary" class="nav-link">Staff Salary Calculation</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="Supplemantary" class="nav-link">Supplemantary Salary</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="Distribution" class="nav-link">Salary Distribution List</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="AdvanceList" class="nav-link">Advance Salary List</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="PartProcess" class="nav-link">Part Salary Process SG</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="AdvanceSalaryProcess" class="nav-link">Advance Salary Process</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="Import" class="nav-link">Import Advance Salary</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="AdvanceSalaryStaff" class="nav-link">Advance Salary Staff</a></li>
+                                    <li class="nav-item"> <a asp-controller="Salary" asp-action="Adjustments" class="nav-link">Salary Adjustments</a></li>
+                                </ul>
+                            </div>
+                        </li>-->
+
+                        @*Bonus*@
+                        <!--<li class="nav-item menu-items">
+                            <a class="nav-link" data-toggle="collapse" href="#Bonus" aria-expanded="false" aria-controls="Bonus">
+                                <span class="menu-icon">
+                                    <i class="mdi mdi-plus-box"></i>
+                                </span>
+                                <span class="menu-title">Bonus</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="Bonus">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a asp-controller="Bonus" asp-action="BonusSetUp" class="nav-link">Bonus Setup</a></li>
+                                    <li class="nav-item"> <a asp-controller="Bonus" asp-action="BonusProcess" class="nav-link">Bonus Process</a></li>
+                                    <li class="nav-item"> <a asp-controller="Bonus" asp-action="Correction" class="nav-link">Bonus Correction</a></li>
+                                    <li class="nav-item"> <a asp-controller="Bonus" asp-action="BonusReport" class="nav-link">Bonus Report</a></li>
+                                    <li class="nav-item"> <a asp-controller="Bonus" asp-action="BonusCalculation" class="nav-link">Bonus Calculation</a></li>
+                                </ul>
+                            </div>
+                        </li>-->
+
+                        @*Admin*@
+                        <!--<li class="nav-item menu-items">
+                            <a class="nav-link" data-toggle="collapse" href="#Admin" aria-expanded="false" aria-controls="Admin">
+                                <span class="menu-icon">
+                                    <i class="mdi mdi-face"></i>
+                                </span>
+                                <span class="menu-title">Admin</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="Admin">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a asp-controller="Administration" asp-action="SystemAdministration" class="nav-link">System Administration</a></li>
+                                    <li class="nav-item"> <a asp-controller="Administration" asp-action="Attendance" class="nav-link">Attendance</a></li>
+                                    <li class="nav-item"> <a asp-controller="Administration" asp-action="AdministrationEmployee" class="nav-link">Employee</a></li>
+                                    <li class="nav-item"> <a asp-controller="Administration" asp-action="AdministrationSalary" class="nav-link">Salary</a></li>
+                                    <li class="nav-item"> <a asp-controller="Administration" asp-action="Bill" class="nav-link">Bill</a></li>
+                                </ul>
+                            </div>
+
+                        </li>-->
+
+                        @*Reports*@
+                        <!--<li class="nav-item menu-items">
+                            <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="report">
+                                <span class="menu-icon">
+                                    <i class="mdi mdi-file-document-box"></i>
+                                </span>
+                                <span class="menu-title">Reports</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="report">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a asp-controller="Report" asp-action="DailyManPower" class="nav-link">Daily ManPower</a></li>
+                                    <li class="nav-item"> <a asp-controller="Report" asp-action="DailyAbsent" class="nav-link">Daily Absent</a></li>
+                                    <li class="nav-item"> <a asp-controller="Report" asp-action="DailyInOut" class="nav-link">Daily In Out</a></li>
+                                </ul>
+                            </div>
+                        </li>-->
+
+
+
+
+
+
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Logout" class="nav-link" onclick="logoutbutton()">
+                                <i class="fas fa-unlock-alt"></i>
+                                <p>
+                                    Logout
+                                </p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper iframe-mode" data-widget="iframe" data-loading-screen="750"  id="reloadm">
+            <div class="nav navbar navbar-expand navbar-white navbar-light border-bottom p-0">
+                <div class="nav-item dropdown">
+                    <a class="nav-link bg-danger dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Close</a>
+                    <div class="dropdown-menu mt-0">
+                        <a class="dropdown-item" href="#" data-widget="iframe-close" data-type="all">Close All</a>
+                        <a class="dropdown-item" href="#" data-widget="iframe-close" data-type="all-other">Close All Other</a>
+                    </div>
+                </div>
+                <a class="nav-link bg-light" href="#" data-widget="iframe-scrollleft"><i class="fas fa-angle-double-left"></i></a>
+
+                <ul class="navbar-nav overflow-hidden" role="tablist"></ul>
+                
+                <a class="nav-link bg-light" href="#" onclick="myfunction2()"><i class="fas fa-redo-alt" ></i></a>
+                <a class="nav-link bg-light" href="#" data-widget="iframe-scrollright"><i class="fas fa-angle-double-right"></i></a>
+                <a class="nav-link bg-light" href="#" data-widget="iframe-fullscreen"><i class="fas fa-expand"></i></a>
+
+            </div>
+            <div class="tab-content">
+                <div class="tab-empty">
+                    @RenderBody()
+                </div>
+                <div class="tab-loading">
+                    <div>
+                        <h2 class="display-4">loading <i class="fa fa-sync fa-spin"></i></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+    <footer class="main-footer">
+        <strong>Copyright &copy; @DateTime.Now.Year - <a href="https://facebook.com/snpsuj0n" target="_blank">CodesWeavers</a> - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 1.0.0
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/assets/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/assets/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/assets/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/assets/plugins/moment/moment.min.js"></script>
+    <script src="~/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/assets/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/assets/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="~/assets/dist/js/demo.js"></script>*@
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @*<script src="~/assets/dist/js/pages/dashboard.js"></script>*@
+
+
+
+    <script>
+        function logoutbutton() {
+            window.location.href = window.location.protocol + "//" + document.location.host + "/Admin/Home/Index";
+        }
+
+        function myfunction2() {
+            //document.getElementById('reloadm').src = document.getElementById('reloadm').src;
+
+            //window.frames['reloadm'].location.href.reload()
+            //document.getElementById('reloadm').contentWindow.location.reload();
+             
+            document.getElementById('reloadm').src.window.location.reload(reload);
+        }
+    </script>
+
+
+
+    @RenderSection("Scripts", required: false)
+
+
+
+
+
+
+</body>
+</html>
