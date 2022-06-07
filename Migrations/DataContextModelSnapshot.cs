@@ -18,6 +18,42 @@ namespace PurityERP.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.Costtype", b =>
+                {
+                    b.Property<int>("CostId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Costtittle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CostId");
+
+                    b.ToTable("Costtypes");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.Suppliers", b =>
+                {
+                    b.Property<int>("SupplierId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("SupplierAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierPhno")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SupplierId");
+
+                    b.ToTable("Suppliers");
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Units", b =>
                 {
                     b.Property<int>("UnitID")
@@ -52,6 +88,27 @@ namespace PurityERP.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.Worker", b =>
+                {
+                    b.Property<int>("WorkerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("WorkerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkerNid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WorkerPhno")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("WorkerId");
+
+                    b.ToTable("Workers");
                 });
 #pragma warning restore 612, 618
         }

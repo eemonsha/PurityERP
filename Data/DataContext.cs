@@ -9,10 +9,16 @@ namespace PurityERP.Data
 {
     public class DataContext : DbContext
     {
+        internal object suppliers;
+
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
         public DbSet<Units> units { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Suppliers> Suppliers { get; set; }
+        public DbSet<Costtype> Costtypes { get; set; }
+        public DbSet<Worker> Workers { get; set; }
+        
     }
 }

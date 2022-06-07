@@ -225,7 +225,7 @@
                                 <i class="nav-icon fas fa-plus-circle"></i>
 
                                 <p>
-                                    Create Features
+                                    Management
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -238,106 +238,125 @@
                                         </p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a asp-area="Employees" asp-controller="Employee" asp-action="CreateNew" class="nav-link">
-                                        <i class="fas fa-angle-double-right"></i>
-                                        <p>
-                                            Employee
-                                        </p>
-                                    </a>
-                                </li>
-                                @*<li class="nav-item">
-            <a asp-area="Employees" asp-controller="Companies" asp-action="Index" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Company
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Employees" asp-controller="Departments" asp-action="Index" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Department
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Employees" asp-controller="Sections" asp-action="Index" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Section
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Floor
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Designation
-                </p>
-            </a>
-        </li>*@
+                                
+                                    <li class="nav-item">
+                                        <a asp-area="Management" asp-controller="Premodule" asp-action="UnitIndex" class="nav-link">
+                                            <i class="fas fa-angle-double-right"></i>
+                                            <p>
+                                                Units
+                                            </p>
+                                        </a>
+                                    </li>
+                                    
+                                        <li class="nav-item">
+                                            <a asp-area="Management" asp-controller="Premodule" asp-action="SupplierCreate" class="nav-link">
+                                                <i class="fas fa-angle-double-right"></i>
+                                                <p>
+                                                    Supplier
+                                                </p>
+                                            </a>
+                                        </li>
+                                        
+                                            <li class="nav-item">
+                                                <a asp-area="" asp-controller="" asp-action="" class="nav-link">
+                                                    <i class="fas fa-angle-double-right"></i>
+                                                    <p>
+                                                        Product
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            @*<li class="nav-item">
+                <a asp-area="Employees" asp-controller="Companies" asp-action="Index" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Company
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Employees" asp-controller="Departments" asp-action="Index" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Department
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Employees" asp-controller="Sections" asp-action="Index" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Section
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Floor
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Designation
+                    </p>
+                </a>
+            </li>*@
 
-                                @*<li class="nav-item">
-            <a class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Shift
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Leave
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Loan
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Adjust
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Holiday
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                <i class="fas fa-angle-double-right"></i>
-                <p>
-                    Salary
-                </p>
-            </a>
-        </li>*@
+                                            @*<li class="nav-item">
+                <a class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Shift
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Leave
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Loan
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Adjust
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Holiday
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
+                    <i class="fas fa-angle-double-right"></i>
+                    <p>
+                        Salary
+                    </p>
+                </a>
+            </li>*@
 
-                            </ul>
-                        </li>
+                                        </ul>
+</li>
 
 
 

@@ -9,8 +9,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220605104737_init05062022-1")]
-    partial class init050620221
+    [Migration("20220607061506_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,27 @@ namespace PurityERP.Migrations
                     b.HasKey("UnitID");
 
                     b.ToTable("units");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.Users", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("PassWord")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserID");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }
