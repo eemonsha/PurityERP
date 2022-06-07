@@ -1,0 +1,47 @@
+﻿@*@model PurityERP.Areas.Management.Controllers.PreModuleController*@
+
+@{
+    ViewData["Title"] = "Preselect";
+}
+
+<hr />
+
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Units</h5>
+                <a class="btn btn-primary" asp-area="Management" asp-controller="PreModule" asp-action="UnitIndex">Go</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Suppliers</h5>
+                    <a class="btn btn-primary" asp-area="Management" asp-controller="PreModule" asp-action="SupplierIndex">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Cost-type</h5>
+                        <a class="btn btn-primary" asp-area="Management" asp-controller="PreModule" asp-action="CosttypeIndex">Go</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <br />
+            <br />
+            <br />
+
+            <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Return Home Screen</a>
+
