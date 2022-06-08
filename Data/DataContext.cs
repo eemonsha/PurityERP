@@ -19,6 +19,9 @@ namespace PurityERP.Data
         public DbSet<Suppliers> Suppliers { get; set; }
         public DbSet<Costtype> Costtypes { get; set; }
         public DbSet<Worker> Workers { get; set; }
+        public DbSet<Inventory> Inventories {get; set;}
+        public DbSet<InventoryOut> InventoryOuts { get; set; }
+        public DbSet<Product> Products { get; set; }
         
     }
 }

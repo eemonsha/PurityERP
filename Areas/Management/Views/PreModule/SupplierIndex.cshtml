@@ -20,7 +20,7 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
+
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Address</th>
@@ -30,21 +30,34 @@
                 <tbody>
                     @foreach (var items in Model)
                     {
-                        <tr>
+                    <tr>
 
 
-                            <td>@items.SupplierId</td>
-                            <td>@items.SupplierName</td>
-                            <td>@items.SupplierPhno</td>
-                            <td>@items.SupplierAddress</td>
 
-                        </tr>
+                        <td>@items.SupplierName</td>
+                        <td>@items.SupplierPhno</td>
+                        <td>@items.SupplierAddress</td>
+
+
+                        <td>
+                            <a asp-action="EditSupplier" asp-route-id="@items.SupplierId">Edit</a>
+                        </td>
+
+                        <td>
+                            <button class="btn btn-link stitchdetails" type="button"
+                                    data-assigned-id="@items.SupplierId" data-text="@items.SupplierName">
+
+                                Delete
+                            </button>
+                        </td>
+
+                    </tr>
                     }
 
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Id</th>
+
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Address</th>
@@ -78,22 +91,45 @@
     <script src="~/assets/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!-- Page specific script -->
+
     <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
+        $(function () {
+            $('.stitchdetails').click(function () {
+                var Styleid = $(this).data('assigned-id');
+                var Stylename = $(this).data('text');
+                if (confirm("Are you Sure to Delete " + Stylename +" ?")) {
+                    $(this).closest("tr").remove();
+                    $.getJSON('@Url.Action("DeleteSupplier")', { id: Styleid }, function (subheads) {
+                        if (subheads == 1 ) {
+                            alert("Successfull");
+                        };
+                    });
+                } else {
+
+
+                }
+                //alert("Are you Sure to Delete " + Stylename + Styleid +" ?")
+                console.log("sss", Styleid);
+            });
+
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
     </script>
 </body>
 </html>

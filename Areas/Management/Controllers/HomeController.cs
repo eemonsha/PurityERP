@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PurityERP.Data;
 using System;
 using System.Collections.Generic;
@@ -32,10 +33,12 @@ namespace PurityERP.Areas.Management.Controllers
             {
                 if(user.UserType == "Admin")
                 {
+                    HttpContext.Session.SetString("Id", user.UserID.ToString());
                     return RedirectToAction("Index");
                 }
                 else
                 {
+                    HttpContext.Session.SetString("Id", user.UserID.ToString());
                     return RedirectToAction("Index");
                 }
             }

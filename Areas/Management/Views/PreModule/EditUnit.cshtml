@@ -1,0 +1,31 @@
+﻿
+@model PurityERP.Areas.Management.Models.Units
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Unit Edit</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="EditUnit">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Unit Name</label>
+                    <input type="hidden" asp-for="UnitID"  />
+                    <input type="text" class="form-control" id="exampleInputPassword1"  asp-for="UnitName">
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

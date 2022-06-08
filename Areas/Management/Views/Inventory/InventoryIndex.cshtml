@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PurityERP.Areas.Management.Models.Inventory>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="~/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+</head>
+<body>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Exitst Inventory</h3>
+        </div>
+        <a asp-action="InventoryCreate" class=" btn btn-primary float-right">Create New</a>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+
+                        <th>Code</th>
+                        <th>Tittle</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var items in Model)
+                    {
+                    <tr>
+
+                        <td>@items.Code</td>
+                        <td>@items.Tittle</td>
+                        <td>
+                            <a asp-action="EditInventory" asp-route-id="@items.Id">Edit</a>
+                        </td>
+
+                    </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+
+                        <th>Code</th>
+                        <th>Tittle</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    </body>
+</html>

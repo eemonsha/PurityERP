@@ -482,3 +482,10 @@ D:\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.genruntimeconfig.cache
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\PreSelect.cshtml.g.cs
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CostType.cshtml.g.cs
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CosttypeIndex.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\Worker.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\WorkerIndex.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\EditUnit.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\InventoryCreate.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\InventoryIndex.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\EditInventory.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\EditSupplier.cshtml.g.cs
