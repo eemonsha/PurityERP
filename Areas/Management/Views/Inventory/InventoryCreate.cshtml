@@ -17,14 +17,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Inventory Code</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Inventory Code" asp-for="Code" value="@ViewBag.code">
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Inventory Code" required asp-for="Code" value="@ViewBag.code">
                         </div>
+                        <span asp-validation-for="Code" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Inventory Tittle</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Inventory Tittle" asp-for="Tittle">
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Inventory Tittle" required asp-for="Tittle">
                         </div>
+                        <span asp-validation-for="Tittle" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -33,6 +35,7 @@
                             <label for="exampleInputPassword1">Purchase Date</label>
                             <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Purchase Date" asp-for="PurchaseDate">
                         </div>
+                        <span asp-validation-for="PurchaseDate" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="UnidId" class="control-label">Unit</label>
@@ -59,28 +62,39 @@
                             <label for="exampleInputPassword1">Purchase Quantity</label>
                             <input type="text" class="form-control" id="purchaseqty" onkeyup="purchase()" placeholder="Purchase Quantity" asp-for="PurchaseQuantity">
                         </div>
+                        <span asp-validation-for="PurchaseQuantity" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Unit Price</label>
                             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="UnitPrice" asp-for="UnitPrice">
                         </div>
+                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Supplier</label>
-                            <select class="form-control select2" style="width: 100%;" data-native-menu="false" id="MaterialCatagory" asp-for="SupplierId" asp-items="@(new SelectList(ViewBag.supplier, "SupplierId","SupplierName"))">
+                        <label asp-for="SupplierId" class="control-label">Supplier</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" data-native-menu="false" id="supplier" asp-for="SupplierId" asp-items="@(new SelectList(ViewBag.supplier, "SupplierId","SupplierName"))">
                                 <option disabled selected="selected">Select One</option>
                             </select>
+                            @**@
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#suppliercreate">  <i class="fas fa-plus-circle"></i></a>
+                                </span>
+                            </div>
                         </div>
+                        <span asp-validation-for="SupplierId" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Remaining Quantity</label>
                             <input type="text" class="form-control" id="remainqty" readonly placeholder="Remaining Quantity" asp-for="RemainingQty">
                         </div>
+                        <span asp-validation-for="RemainingQty" class="text-danger"></span>
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -119,6 +133,38 @@
             </div>
         </div>
     </div>
+    @*Supplier Create Modal*@
+    <div class="modal fade" id="suppliercreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Unit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Supplier Name</label>
+                        <input type="text" class="form-control" id="supname" placeholder="Supplier Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Supplier Phone Number</label>
+                        <input type="text" class="form-control" id="supphone" placeholder="Supplier Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Supplier Address</label>
+                        <input type="text" class="form-control" id="supaddress" placeholder="Supplier Address">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="supplierclose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="suppliersubmit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -153,6 +199,28 @@
                         
                     });
                 }
+            });
+            $("#suppliersubmit").click(function () {
+                var mydata = {};
+                mydata.supplierName = $("#supname").val();
+                mydata.supplierPhno = $("#supphone").val();
+                mydata.supplierAddress = $("#supaddress").val();
+                console.log(mydata);
+                
+                        $.getJSON('@Url.Action("SupplierCreate")', { data: mydata }, function (subheads) {
+                            $('#units').find("option:not(:first)").remove();
+                            console.log(subheads);
+                                $.each(subheads, function (index, subhead) {
+
+                                    $('#supplier').append(`<option value = "` + subhead.supplierId + `">` + subhead.supplierName + `</option>`);
+                                });
+                            $('#units option:eq(1)').prop('selected', true);
+
+                            $('#suppliercreate').modal('toggle');
+                            $('#supplierclose').click();
+                        
+                        });
+                    
             });
 
         </script>

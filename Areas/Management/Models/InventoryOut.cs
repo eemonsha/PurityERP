@@ -10,9 +10,9 @@ namespace PurityERP.Areas.Management.Models
     {
         [Key]
         public int Id { get; set; }
-        public string InventoryItem { get; set; }
+        public int InventoryItem { get; set; }
         public DateTime SystemDate { get; set; }
-        public string ProductTittle { get; set; }
+        public int ProductTittle { get; set; }
         public int ProductQuantity { get; set; }
         public int InventoryQuantity { get; set; }
         public string Worker { get; set; }

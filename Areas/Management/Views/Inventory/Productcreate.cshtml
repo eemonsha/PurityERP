@@ -1,0 +1,56 @@
+﻿@model PurityERP.Areas.Management.Models.Product
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Unit Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="Productcreate">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Product Tittle</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Product Tittle" asp-for="ProductTittle">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Costing price</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Costing price" asp-for="CostingPrice">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Sales price</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Sales price" asp-for="SalesPrice">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Discount Rate</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Discount Rate" asp-for="DiscountRate">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Initial Product Stock Quantity</label>
+                    <input type="text" class="form-control" id="initqty" onkeyup="initqty()" placeholder="Stock Quantity" asp-for="InitialProductStockQty">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Remain Quantity</label>
+                    <input type="text" class="form-control" id="remainqty" readonly placeholder="Remain Quantity" asp-for="RemainingQty">
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function initqty() {
+            var qty = document.getElementById('initqty').value;
+            document.getElementById('remainqty').value = qty;
+        }
+
+    </script>
+</body>
+</html>
+

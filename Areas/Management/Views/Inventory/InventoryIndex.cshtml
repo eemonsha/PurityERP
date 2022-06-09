@@ -22,6 +22,7 @@
 
                         <th>Code</th>
                         <th>Tittle</th>
+                        <th>Action</th>
 
 
                     </tr>
@@ -33,9 +34,17 @@
 
                         <td>@items.Code</td>
                         <td>@items.Tittle</td>
-                        <td>
-                            <a asp-action="EditInventory" asp-route-id="@items.Id">Edit</a>
+                        <td class="float-right">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a asp-action="EditInventory" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
+                                <a asp-action="DetailsInventory" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
+                                
+                            </div>
+
+
                         </td>
+
+
 
                     </tr>
                     }
@@ -46,11 +55,67 @@
 
                         <th>Code</th>
                         <th>Tittle</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
         <!-- /.card-body -->
     </div>
-    </body>
+
+
+    @section Scripts {
+        <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- DataTables  & Plugins -->
+        <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/assets/plugins/jszip/jszip.min.js"></script>
+        <script src="~/assets/plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="~/assets/plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/assets/dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <!-- Page specific script -->
+
+        <script>
+        $(function () {
+            $('.stitchdetails').click(function () {
+                var Styleid = $(this).data('assigned-id');
+                var Stylename = $(this).data('text');
+                if (confirm("Are you Sure to Delete " + Stylename +" ?")) {
+                    $(this).closest("tr").remove();
+                    $.getJSON('@Url.Action("DeleteCost")', { id: Styleid }, function (subheads) {
+                        if (subheads == 1 ) {
+                            alert("Successfull");
+                        };
+                    });
+                } else {
+
+
+                }
+                //alert("Are you Sure to Delete " + Stylename + Styleid +" ?")
+                console.log("sss", Styleid);
+            });
+
+        });
+        </script>
+        <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            });
+        </script>
+    }
+</body>
 </html>

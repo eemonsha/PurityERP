@@ -1,0 +1,121 @@
+﻿@model PurityERP.Areas.Management.Models.InventoryOut
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Inventory Out Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="InventoryOutCreate">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label asp-for="InventoryItem" class="control-label">Inventory item</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" data-native-menu="false" id="inventory" asp-for="InventoryItem" asp-items="@(new SelectList(ViewBag.inventories, "Id","Tittle"))">
+                                <option disabled selected="selected">Select One</option>
+                            </select>
+                            @**@
+                        </div>
+                        <span asp-validation-for="InventoryItem" class="text-danger"></span>
+                        <span>Remain QTY: <span id="remainingqty">0</span> </span>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="ProductTittle" class="control-label">Product Tittle</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" data-native-menu="false" id="units" asp-for="ProductTittle" asp-items="@(new SelectList(ViewBag.product, "Id","ProductTittle"))">
+                                <option disabled selected="selected">Select One</option>
+                            </select>
+                            @**@
+                        </div>
+                        <span asp-validation-for="ProductTittle" class="text-danger"></span>
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Product Quantity</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="UnitPrice" asp-for="ProductQuantity">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Worker</label>
+                            <select class="form-control select2" style="width: 100%;" data-native-menu="false" id="MaterialCatagory" asp-for="Worker"
+                                    asp-items="@(new SelectList(ViewBag.worker, "WorkerId","WorkerName"))">
+                                <option disabled selected="selected">Select One</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Inventory Quantity</label>
+                            <input type="number" class="form-control" id="invqty" placeholder="inventoryQuantity" asp-for="InventoryQuantity">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary" id="submitbtn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+
+
+    
+
+
+
+@section Scripts {
+
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#inventory').change(function () {
+                    var invenid = $('#inventory').val();
+                    console.log("inid - ", invenid);
+
+                    $.getJSON('@Url.Action("inventoryqty")', { invenid: invenid }, function (remainqty) {
+                        
+                        $('#remainingqty').text(remainqty);
+                        
+                    })
+                });
+                $("#invqty").keyup(function () {
+                    var remain = $('#remainingqty').text();
+                    var invenneed = $('#invqty').val();
+                    if (parseInt(remain) < parseInt(invenneed)) {
+                        alert("Bigger");
+                        $('#submitbtn').attr("disabled", true);
+                    }
+                    else {
+                        $('#submitbtn').attr("disabled", false);
+                    }
+                });
+            });
+        </script>
+}
+</body>
+</html>

@@ -21,6 +21,7 @@
                         <tr>
 
                             <th>Unit Name</th>
+                            <th>Action</th>
 
                         </tr>
                     </thead>
@@ -33,17 +34,19 @@
                                     @items.UnitName
                                 </td>
 
-                                <td>
-                                    <a asp-action="EditUnit" asp-route-id="@items.UnitID">Edit</a>
+                                <td class="float-right">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a asp-action="EditUnit" asp-route-id="@items.UnitID" type="button" class="btn btn-warning">Edit</a>
+                                        <button class="btn btn-danger stitchdetails" type="button" 
+                                                data-assigned-id="@items.UnitID" data-text="@items.UnitName">
+                                            Delete
+                                        </button>
+                                    </div>
+
+                                    
                                 </td>
 
-                                <td>
-                                    <button class="btn btn-link stitchdetails" type="button"
-                                            data-assigned-id="@items.UnitID" data-text="@items.UnitName">
-                                        Delete
-                                    </button>
-                                </td>
-
+                                
 
                             </tr>
                         }
@@ -53,6 +56,7 @@
                         <tr>
 
                             <th>Unit Name</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>

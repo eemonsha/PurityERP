@@ -1,5 +1,4 @@
-﻿@model IEnumerable<PurityERP.Areas.Management.Models.Suppliers>
-
+﻿@model IEnumerable<PurityERP.Areas.Management.ViewModel.ManagementVm>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,59 +11,55 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Exitst Suppliers</h3>
+            <h3 class="card-title">Exitst InventoryOut </h3>
         </div>
-        <a asp-action="SupplierCreate" class=" btn btn-primary float-right">Create New</a>
+        <a asp-action="InventoryOutCreate" class=" btn btn-primary float-right">Create New</a>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        <th>Date</th>
+                        <th>Inventory item</th>
+                        <th>Product Tittle</th>
+                        <th>Product QTY</th>
+                        <th>Inven QTY</th>
+                        <th>Worker</th>
 
-                        <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>Action</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var items in Model)
                     {
-                    <tr>
+                        <tr>
 
+                            <td>@items.SystemDate.ToShortDateString()</td>
+                            <td>@items.Tittle</td>
+                            <td>@items.ProductTittle</td>
+                            <td>@items.ProductQuantity</td>
+                            <td>@items.InventoryQuantity</td>
+                            <td>@items.Worker</td>
+                            @*<td>
+                                    <a asp-action="EditInventory" asp-route-id="@items.Id">Edit</a>
+                                </td>
+                                <td>
+                                    <a asp-action="DetailsInventory" asp-route-id="@items.Id">Details</a>
+                                </td>*@
 
-
-                        <td>@items.SupplierName</td>
-                        <td>@items.SupplierPhno</td>
-                        <td>@items.SupplierAddress</td>
-
-
-                        <td class="float-right">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a asp-action="EditSupplier" asp-route-id="@items.SupplierId" type="button" class="btn btn-warning">Edit</a>
-                                <button class="btn btn-danger stitchdetails" type="button"
-                                        data-assigned-id="@items.SupplierId" data-text="@items.SupplierName">
-                                    Delete
-                                </button>
-                            </div>
-
-
-                        </td>
-
-                        
-
-                    </tr>
+                        </tr>
                     }
 
                 </tbody>
                 <tfoot>
                     <tr>
 
-                        <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>Action</th>
+                        <th>Date</th>
+                        <th>Inventory item</th>
+                        <th>Product Tittle</th>
+                        <th>Product QTY</th>
+                        <th>Inven QTY</th>
+                        <th>Worker</th>
                     </tr>
                 </tfoot>
             </table>
@@ -96,45 +91,16 @@
         <!-- AdminLTE for demo purposes -->
         <!-- Page specific script -->
 
-        <script>
-        $(function () {
-            $('.stitchdetails').click(function () {
-                var Styleid = $(this).data('assigned-id');
-                var Stylename = $(this).data('text');
-                if (confirm("Are you Sure to Delete " + Stylename +" ?")) {
-                    $(this).closest("tr").remove();
-                    $.getJSON('@Url.Action("DeleteSupplier")', { id: Styleid }, function (subheads) {
-                        if (subheads == 1 ) {
-                            alert("Successfull");
-                        };
-                    });
-                } else {
-
-
-                }
-                //alert("Are you Sure to Delete " + Stylename + Styleid +" ?")
-                console.log("sss", Styleid);
-            });
-
-        });
-        </script>
+        
         <script>
             $(function () {
                 $("#example1").DataTable({
                     "responsive": true, "lengthChange": false, "autoWidth": false,
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true,
-                });
             });
         </script>
     }
-    </body>
+
+</body>
 </html>

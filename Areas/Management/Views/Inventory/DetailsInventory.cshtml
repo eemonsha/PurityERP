@@ -1,0 +1,64 @@
+﻿@model PurityERP.Areas.Management.ViewModel.ManagementVm
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Inventory</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tittle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tittle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchaseQuantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PurchaseQuantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SupplierName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemainingQty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemainingQty)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditInventory" asp-route-id="@Model.InventoryId">Edit</a> |
+    <a asp-action="InventoryIndex">Back to List</a>
+</div>
+

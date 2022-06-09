@@ -489,3 +489,8 @@ D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\Inve
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\InventoryIndex.cshtml.g.cs
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\EditInventory.cshtml.g.cs
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\EditSupplier.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\DetailsInventory.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\InventoryOutCreate.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\InventoryOutIndex.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\Productcreate.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\ProductIndex.cshtml.g.cs
