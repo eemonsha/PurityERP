@@ -1,0 +1,55 @@
+﻿@model PurityERP.Areas.Management.ViewModel.ManagementVm
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductTittle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductTittle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CostingPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CostingPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SalesPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SalesPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiscountRate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiscountRate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.InitialProductStockQty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.InitialProductStockQty)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemainingQty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemainingQty)
+        </dd>
+      
+    </dl>
+</div>
+<div>
+    <a asp-action="EditProduct" asp-route-id="@Model.pId">Edit</a> |
+    <a asp-action="ProductIndex">Back to List</a>
+</div>
+
+
+

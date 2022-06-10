@@ -22,8 +22,6 @@
                         <th>Date</th>
                         <th>Inventory item</th>
                         <th>Product Tittle</th>
-                        <th>Product QTY</th>
-                        <th>Inven QTY</th>
                         <th>Worker</th>
 
 
@@ -32,22 +30,21 @@
                 <tbody>
                     @foreach (var items in Model)
                     {
-                        <tr>
+                    <tr>
 
-                            <td>@items.SystemDate.ToShortDateString()</td>
-                            <td>@items.Tittle</td>
-                            <td>@items.ProductTittle</td>
-                            <td>@items.ProductQuantity</td>
-                            <td>@items.InventoryQuantity</td>
-                            <td>@items.Worker</td>
-                            @*<td>
-                                    <a asp-action="EditInventory" asp-route-id="@items.Id">Edit</a>
-                                </td>
-                                <td>
-                                    <a asp-action="DetailsInventory" asp-route-id="@items.Id">Details</a>
-                                </td>*@
+                        <td>@items.SystemDate.ToShortDateString()</td>
+                        <td>@items.Tittle</td>
+                        <td>@items.ProductTittle</td>
+                        <td>@items.Worker</td>
+                        <td class="float-right">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a asp-action="" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
+                                <a asp-action="" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
+                            </div>
+                        </td>
 
-                        </tr>
+
+                    </tr>
                     }
 
                 </tbody>
@@ -57,8 +54,6 @@
                         <th>Date</th>
                         <th>Inventory item</th>
                         <th>Product Tittle</th>
-                        <th>Product QTY</th>
-                        <th>Inven QTY</th>
                         <th>Worker</th>
                     </tr>
                 </tfoot>

@@ -193,7 +193,7 @@
                                 $('#units').append(`<option value = "` + subhead.unitID + `">` + subhead.unitName + `</option>`);
                             });
                         $('#units option:eq(1)').prop('selected', true);
-
+                        $("#unitname").val(null);
                         $('#unitcreate').modal('toggle');
                         $('#unitclose').click();
                         
@@ -202,24 +202,37 @@
             });
             $("#suppliersubmit").click(function () {
                 var mydata = {};
-                mydata.supplierName = $("#supname").val();
-                mydata.supplierPhno = $("#supphone").val();
-                mydata.supplierAddress = $("#supaddress").val();
+                mydata.SupplierName = $("#supname").val();
+                mydata.SupplierPhno = $("#supphone").val();
+                mydata.SupplierAddress = $("#supaddress").val();
                 console.log(mydata);
-                
-                        $.getJSON('@Url.Action("SupplierCreate")', { data: mydata }, function (subheads) {
-                            $('#units').find("option:not(:first)").remove();
-                            console.log(subheads);
-                                $.each(subheads, function (index, subhead) {
 
-                                    $('#supplier').append(`<option value = "` + subhead.supplierId + `">` + subhead.supplierName + `</option>`);
-                                });
-                            $('#units option:eq(1)').prop('selected', true);
+                $.ajax({
+                    url: "/Management/Inventory/SupplierCreate",
+                    type: "POST",
+                    data: { data: mydata },
+                    success: function (subheads) {
+                        $('#supplier').find("option:not(:first)").remove();
+                        console.log(subheads);
+                        $.each(subheads, function (index, subhead) {
 
-                            $('#suppliercreate').modal('toggle');
-                            $('#supplierclose').click();
-                        
+                            $('#supplier').append(`<option value = "` + subhead.supplierId + `">` + subhead.supplierName + `</option>`);
                         });
+                        $('#supplier option:eq(1)').prop('selected', true);
+                        $("#supname").val(null);
+                        $("#supphone").val(null);
+                        $("#supaddress").val(null);
+                        $('#suppliercreate').modal('toggle');
+                        $('#supplierclose').click();
+                    },
+                    error: function (error) {
+                        alert('failed');
+                        alert(error);
+                    }
+
+                });
+                
+                
                     
             });
 

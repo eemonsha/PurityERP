@@ -29,18 +29,20 @@
                 <tbody>
                     @foreach (var items in Model)
                     {
-                        <tr>
+                    <tr>
 
-                            <td>@items.ProductTittle</td>
-                            <td>@items.SalesPrice</td>
-                            @*<td>
-                                <a asp-action="EditInventory" asp-route-id="@items.Id">Edit</a>
-                            </td>
-                            <td>
-                                <a asp-action="DetailsInventory" asp-route-id="@items.Id">Details</a>
-                            </td>*@
+                        <td>@items.ProductTittle</td>
+                        <td>@items.SalesPrice</td>
+                        <td class="float-right">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
+                                <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
 
-                        </tr>
+                            </div>
+
+
+                        </td>
+                    </tr>
                     }
 
                 </tbody>

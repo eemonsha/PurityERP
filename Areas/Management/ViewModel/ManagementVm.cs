@@ -30,6 +30,15 @@ namespace PurityERP.Areas.Management.ViewModel
         public int ProductQuantity { get; set; }
         public int InventoryQuantity { get; set; }
         public string Worker { get; set; }
+
+        
+        public int CostingPrice { get; set; }
+        public int SalesPrice { get; set; }
+        public int DiscountRate { get; set; }
+        public int InitialProductStockQty { get; set; }
+
+        public int pId { get; set; }
+
     }
 }
 
