@@ -1,0 +1,30 @@
+﻿@model PurityERP.Areas.Management.Models.CostMap
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">CostMap Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="CostMap">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Operation Type</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Operation Type" asp-for="OperationType">
+                </div>
+                
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

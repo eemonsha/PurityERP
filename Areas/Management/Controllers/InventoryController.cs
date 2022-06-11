@@ -158,45 +158,9 @@ namespace PurityERP.Areas.Management.Controllers
             return RedirectToAction("InventoryOutIndex");
         }
 
-        //public IActionResult InventoryOutDetails(int id)
-        //{
-        //    var iout = (from InventoryOut in _context.InventoryOuts.Where(x => x.Id == id)
-        //                join Inventory in _context.Inventories
-        //                on InventoryOut.InventoryItem equals Inventory.Id
-        //                join Product in _context.Products
-        //                on InventoryOut.ProductTittle equals Product.Id
-        //                join Worker in _context.Workers
-        //                on InventoryOut.Worker equals Worker.WorkerId
-        //                select new ManagementVm
-        //                { 
-        //                 })
 
-        //    return View();
-        //    //var inven = (from inventory in _context.Inventories.Where(x => x.Id == id)
-        //    //             join Supplier in _context.Suppliers
-        //    //             on inventory.SupplierId equals Supplier.SupplierId
-        //    //             join Unit in _context.units
-        //    //             on inventory.UnidId equals Unit.UnitID
-        //    //             select new ManagementVm
-        //    //             {
-        //    //                 ////InventoryId = inventory.Id,
-        //    //                 ////SupplierName = Supplier.SupplierName,
-        //    //                 ////Code = inventory.Code,
-        //    //                 ////Tittle = inventory.Tittle,
-        //    //                 ////PurchaseDate = inventory.PurchaseDate,
-        //    //                 ////UnitID = Unit.UnitID,
-        //    //                 ////UnitName = Unit.UnitName,
-        //    //                 ////PurchaseQuantity = inventory.PurchaseQuantity,
-        //    //                 ////UnitPrice = inventory.UnitPrice,
-        //    //                 ////SupplierId = Supplier.SupplierId,
-        //    //                 ////RemainingQty = inventory.RemainingQty
 
-        //    //             }).FirstOrDefault();
-
-        //    //return View(inven);
-        //}
-
-        public IActionResult ProductIndex()
+    public IActionResult ProductIndex()
         {
             var pro = _context.Products.ToList();
             return View(pro);

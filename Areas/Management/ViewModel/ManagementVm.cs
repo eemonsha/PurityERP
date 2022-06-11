@@ -39,6 +39,8 @@ namespace PurityERP.Areas.Management.ViewModel
 
         public int pId { get; set; }
 
+        public int InventorOutId { get; set; }
+
     }
 }
 

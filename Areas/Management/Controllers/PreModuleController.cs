@@ -115,13 +115,22 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult CosttypeIndex()
         {
-            var costtype = _context.Costtypes.ToList();
+            var costtype = from cst in _context.Costtypes
+                           join csm in _context.CostMaps
+                           on cst.CostMapId equals csm.CostMapId
+                           select new Costtype
+                           {
+                               Costtittle = cst.Costtittle,
+                               OperationType = csm.OperationType
+                           };
+
 
             return View(costtype);
         }
         public IActionResult CostType()
         {
-         
+            ViewBag.costmape = _context.CostMaps.ToList();
+
             return View();
         }
 
@@ -132,6 +141,24 @@ namespace PurityERP.Areas.Management.Controllers
             _context.SaveChanges();
             return RedirectToAction("CosttypeIndex");
         }
+
+
+        public IActionResult EditCostType(int id)
+        {
+            ViewBag.costmape = _context.CostMaps.ToList();
+            var edit = _context.Costtypes.Where(x => x.CostId == id).FirstOrDefault();
+            return View(edit);
+        }
+
+        [HttpPost]
+        public IActionResult EditCostType(Costtype costtype)
+        {
+            _context.Update(costtype);
+            _context.SaveChanges();
+            return RedirectToAction("CosttypeIndex");
+        }
+
+
 
         public IActionResult DeleteCost(int id)
         {
@@ -172,7 +199,16 @@ namespace PurityERP.Areas.Management.Controllers
             _context.SaveChanges();
             return RedirectToAction("WorkerIndex");
         }
- 
+
+
+        public IActionResult CostMap()
+        {
+            ViewBag.costmape = _context.CostMaps.ToList();
+            return View();
+
+        }
+
+
 
 
 

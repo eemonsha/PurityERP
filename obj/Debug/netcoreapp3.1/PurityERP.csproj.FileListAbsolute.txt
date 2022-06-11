@@ -496,3 +496,6 @@ D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\Prod
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\ProductIndex.cshtml.g.cs
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\EditProduct.cshtml.g.cs
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\ProductDetails.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CostMap.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CostMapIndex.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\EditCostType.cshtml.g.cs

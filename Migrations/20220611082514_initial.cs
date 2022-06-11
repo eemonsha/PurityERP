@@ -3,16 +3,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class emn : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "CostMaps",
+                columns: table => new
+                {
+                    CostMapId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OperationType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CostMaps", x => x.CostMapId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Costtypes",
                 columns: table => new
                 {
                     CostId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CostMapId = table.Column<int>(type: "int", nullable: false),
                     Costtittle = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -133,10 +147,28 @@ namespace PurityERP.Migrations
                 {
                     table.PrimaryKey("PK_Workers", x => x.WorkerId);
                 });
+
+            migrationBuilder.InsertData(
+                table: "CostMaps",
+                columns: new[] { "CostMapId", "OperationType" },
+                values: new object[] { 1, "Raw Material" });
+
+            migrationBuilder.InsertData(
+                table: "CostMaps",
+                columns: new[] { "CostMapId", "OperationType" },
+                values: new object[] { 2, "Karchupi Work" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserID", "PassWord", "UserName", "UserType" },
+                values: new object[] { 1, "123", "Admin", "Admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CostMaps");
+
             migrationBuilder.DropTable(
                 name: "Costtypes");
 

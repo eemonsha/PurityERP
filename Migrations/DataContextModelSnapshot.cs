@@ -19,12 +19,42 @@ namespace PurityERP.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.CostMap", b =>
+                {
+                    b.Property<int>("CostMapId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("OperationType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CostMapId");
+
+                    b.ToTable("CostMaps");
+
+                    b.HasData(
+                        new
+                        {
+                            CostMapId = 1,
+                            OperationType = "Raw Material"
+                        },
+                        new
+                        {
+                            CostMapId = 2,
+                            OperationType = "Karchupi Work"
+                        });
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Costtype", b =>
                 {
                     b.Property<int>("CostId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<int>("CostMapId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Costtittle")
                         .HasColumnType("nvarchar(max)");
@@ -185,6 +215,15 @@ namespace PurityERP.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserID = 1,
+                            PassWord = "123",
+                            UserName = "Admin",
+                            UserType = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Worker", b =>

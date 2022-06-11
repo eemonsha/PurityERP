@@ -22,6 +22,22 @@ namespace PurityERP.Data
         public DbSet<Inventory> Inventories {get; set;}
         public DbSet<InventoryOut> InventoryOuts { get; set; }
         public DbSet<Product> Products { get; set; }
-        
+        public DbSet<CostMap> CostMaps { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CostMap>().HasData(
+
+                new CostMap { CostMapId = 1, OperationType = "Raw Material" },
+                new CostMap { CostMapId = 2, OperationType = "Karchupi Work" }
+                );
+           modelBuilder.Entity<Users>().HasData(
+
+                new Users { UserID = 1, UserName = "Admin",PassWord = "123",UserType ="Admin" }
+                
+                );
+           
+        }
+
     }
 }
