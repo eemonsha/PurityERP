@@ -30,8 +30,10 @@ namespace PurityERP.Areas.Management.ViewModel
         public int ProductQuantity { get; set; }
         public int InventoryQuantity { get; set; }
         public string Worker { get; set; }
+        public string ProductCode { get; set; }
+        public float PerProductInventoryQuantity { get; set; }
 
-        
+
         public int CostingPrice { get; set; }
         public int SalesPrice { get; set; }
         public int DiscountRate { get; set; }
@@ -40,6 +42,9 @@ namespace PurityERP.Areas.Management.ViewModel
         public int pId { get; set; }
 
         public int InventorOutId { get; set; }
+
+        public int CostMapId { get; set; }
+        public string OperationType { get; set; }
 
     }
 }

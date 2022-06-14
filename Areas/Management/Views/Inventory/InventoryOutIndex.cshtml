@@ -14,7 +14,7 @@
             <h3 class="card-title">Exitst InventoryOut </h3>
         </div>
         <a asp-action="InventoryOutCreate" class=" btn btn-primary float-right">Create New</a>
-         /.card-header 
+
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -22,6 +22,7 @@
                         <th>Date</th>
                         <th>Inventory item</th>
                         <th>Product Tittle</th>
+                        <th>Per Product Inventory Quantity</th>
                         <th>Worker</th>
 
 
@@ -35,6 +36,7 @@
                         <td>@items.SystemDate.ToShortDateString()</td>
                         <td>@items.Tittle</td>
                         <td>@items.ProductTittle</td>
+                        <td>@items.PerProductInventoryQuantity</td>
                         <td>@items.Worker</td>
                         @*<td class="float-right">
                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -54,21 +56,22 @@
                         <th>Date</th>
                         <th>Inventory item</th>
                         <th>Product Tittle</th>
+                        <th>Per Product Inventory Quantity</th>
                         <th>Worker</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
-         /.card-body 
+
     </div>
 
 
 
     @section Scripts {
         <script src="~/assets/plugins/jquery/jquery.min.js"></script>
-         Bootstrap 4 
+
         <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-         DataTables  & Plugins 
+
         <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="~/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
         <script src="~/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -81,10 +84,9 @@
         <script src="~/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
         <script src="~/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
         <script src="~/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-         AdminLTE App 
+
         <script src="~/assets/dist/js/adminlte.min.js"></script>
-         AdminLTE for demo purposes 
-         Page specific script 
+     
 
         
         <script>

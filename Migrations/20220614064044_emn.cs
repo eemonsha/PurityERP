@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class initial : Migration
+    public partial class emn : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -79,6 +79,7 @@ namespace PurityERP.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductTittle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CostingPrice = table.Column<int>(type: "int", nullable: false),
                     SalesPrice = table.Column<int>(type: "int", nullable: false),
                     DiscountRate = table.Column<int>(type: "int", nullable: false),

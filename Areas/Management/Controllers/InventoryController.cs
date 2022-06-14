@@ -124,6 +124,7 @@ namespace PurityERP.Areas.Management.Controllers
                                 ProductTittle = product.ProductTittle,
                                 ProductQuantity = inveout.ProductQuantity,
                                 InventoryQuantity = inveout.InventoryQuantity,
+                                PerProductInventoryQuantity= inveout.PerProductInventoryQuantity,
                                 Worker = worer.WorkerName
                                 
                             };
@@ -140,6 +141,7 @@ namespace PurityERP.Areas.Management.Controllers
         [HttpPost]
         public IActionResult InventoryOutCreate(InventoryOut inventoryout )
         {
+            var perqty = (inventoryout.InventoryQuantity / inventoryout.ProductQuantity);
             var invenout = new InventoryOut
             {
                 InventoryItem = inventoryout.InventoryItem,
@@ -147,7 +149,8 @@ namespace PurityERP.Areas.Management.Controllers
                 ProductTittle = inventoryout.ProductTittle,
                 ProductQuantity = inventoryout.ProductQuantity,
                 InventoryQuantity = inventoryout.InventoryQuantity,
-                Worker = inventoryout.Worker
+                Worker = inventoryout.Worker,
+                PerProductInventoryQuantity= perqty
             };
             Inventory inventory = _context.Inventories.Where(x=>x.Id == inventoryout.InventoryItem).FirstOrDefault();
             var finalremain = inventory.RemainingQty - inventoryout.InventoryQuantity;
@@ -174,9 +177,19 @@ namespace PurityERP.Areas.Management.Controllers
         [HttpPost]
         public IActionResult Productcreate(Product product)
         {
-            _context.Products.Add(product);
-            _context.SaveChanges();
-            return RedirectToAction("ProductIndex");
+            var procoe = _context.Products.Where(x => x.ProductCode == product.ProductCode).FirstOrDefault();
+            if (procoe == null)
+            {
+                _context.Products.Add(product);
+                _context.SaveChanges();
+                return RedirectToAction("ProductIndex");
+            }
+            else
+            {
+                TempData["msg"] = "Product Code Already Exist";
+                return View();
+            }
+            return View();
         }
 
 
@@ -202,6 +215,7 @@ namespace PurityERP.Areas.Management.Controllers
                        select new ManagementVm
                        {
                            ProductTittle = product.ProductTittle,
+                           ProductCode =product.ProductCode,
                            CostingPrice = product.CostingPrice,
                            SalesPrice = product.SalesPrice,
                            DiscountRate = product.DiscountRate,

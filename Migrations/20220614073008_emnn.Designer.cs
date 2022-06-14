@@ -10,8 +10,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220611082514_initial")]
-    partial class initial
+    [Migration("20220614073008_emnn")]
+    partial class emnn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -115,6 +115,9 @@ namespace PurityERP.Migrations
                     b.Property<int>("InventoryQuantity")
                         .HasColumnType("int");
 
+                    b.Property<float>("PerProductInventoryQuantity")
+                        .HasColumnType("real");
+
                     b.Property<int>("ProductQuantity")
                         .HasColumnType("int");
 
@@ -147,6 +150,9 @@ namespace PurityERP.Migrations
 
                     b.Property<int>("InitialProductStockQty")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProductCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductTittle")
                         .HasColumnType("nvarchar(max)");

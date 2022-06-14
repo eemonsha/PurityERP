@@ -13,6 +13,7 @@
         <!-- form start -->
         <form asp-action="InventoryOutCreate">
             <div class="card-body">
+                <input type="hidden"  asp-for="Id">
                 <div class="row">
 
                     <div class="col-md-6">
@@ -46,7 +47,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Product Quantity</label>
-                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="UnitPrice" asp-for="ProductQuantity">
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="ProductQuantity" asp-for="ProductQuantity">
                         </div>
                     </div>
 
@@ -68,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- /.card-body -->
                 <div class="row">
                     <div class="col-md-12">

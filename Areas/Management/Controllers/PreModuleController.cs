@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PurityERP.Areas.Management.Models;
+using PurityERP.Areas.Management.ViewModel;
 using PurityERP.Data;
 using System;
 using System.Collections.Generic;
@@ -121,7 +122,8 @@ namespace PurityERP.Areas.Management.Controllers
                            select new Costtype
                            {
                                Costtittle = cst.Costtittle,
-                               OperationType = csm.OperationType
+                               OperationType = csm.OperationType,
+                               CostId = cst.CostId
                            };
 
 
@@ -151,9 +153,10 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditCostType(Costtype costtype)
+        public IActionResult EditCostType(Costtype costtype )
         {
-            _context.Update(costtype);
+      
+           _context.Update(costtype);
             _context.SaveChanges();
             return RedirectToAction("CosttypeIndex");
         }
