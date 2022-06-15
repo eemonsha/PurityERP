@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class emn : Migration
+    public partial class emn1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,11 +65,35 @@ namespace PurityERP.Migrations
                     ProductTittle = table.Column<int>(type: "int", nullable: false),
                     ProductQuantity = table.Column<int>(type: "int", nullable: false),
                     InventoryQuantity = table.Column<int>(type: "int", nullable: false),
+                    PerProductInventoryQuantity = table.Column<float>(type: "real", nullable: false),
                     Worker = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InventoryOuts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NewWorks",
+                columns: table => new
+                {
+                    WorkId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Wroker = table.Column<int>(type: "int", nullable: false),
+                    Product = table.Column<int>(type: "int", nullable: false),
+                    WorkAsignDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    WorkType = table.Column<int>(type: "int", nullable: false),
+                    PerUnitCost = table.Column<float>(type: "real", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    EDD = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ADD = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeliveryQty = table.Column<int>(type: "int", nullable: false),
+                    PaidAmount = table.Column<int>(type: "int", nullable: false),
+                    WorkStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewWorks", x => x.WorkId);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,6 +202,9 @@ namespace PurityERP.Migrations
 
             migrationBuilder.DropTable(
                 name: "InventoryOuts");
+
+            migrationBuilder.DropTable(
+                name: "NewWorks");
 
             migrationBuilder.DropTable(
                 name: "Products");

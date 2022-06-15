@@ -1,0 +1,81 @@
+﻿@model PurityERP.Areas.Management.ViewModel.ManagementVm
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Work Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Worker)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Worker)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Product)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkAsignDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkAsignDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PerUnitCost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PerUnitCost)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EDD)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EDD)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ADD)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ADD)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeliveryQty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeliveryQty)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PaidAmount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PaidAmount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkStatus)
+        </dd>
+    </dl>
+</div>
+<div>
+    @*<a asp-action="EditInventory" asp-route-id="@Model.InventoryId">Edit</a> |*@
+    <a asp-action="WorkIndex">Back to List</a>
+</div>

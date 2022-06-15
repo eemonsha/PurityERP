@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PurityERP.Areas.Management.ViewModel.ManagementVm>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="~/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+</head>
+<body>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Exitst Work</h3>
+        </div>
+        <a asp-action="WorkCreate" class=" btn btn-primary float-right">Create New</a>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+
+                        <th>Product</th>
+                        <th>Worker</th>
+                        <th>EDD</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var items in Model)
+                    {
+                        <tr>
+
+                            <td>@items.Product</td>
+                            <td>@items.Worker</td>
+                            <td>@items.EDD</td>
+                            <td class="float-right">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a asp-action="WorkDetails" asp-route-id="@items.WorkId" type="button" class="btn btn-warning">Details</a>
+                                    <a asp-action="WorkManage" asp-route-id="@items.WorkId" type="button" class="btn btn-info">Manage</a>
+
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+
+                        <th>Product</th>
+                        <th>Worker</th>
+                        <th>EDD</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</body>
+</html>
+

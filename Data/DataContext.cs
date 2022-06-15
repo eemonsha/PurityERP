@@ -22,6 +22,7 @@ namespace PurityERP.Data
         public DbSet<Inventory> Inventories {get; set;}
         public DbSet<InventoryOut> InventoryOuts { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<NewWork> NewWorks { get; set; }
         public DbSet<CostMap> CostMaps { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,0 +1,162 @@
+﻿@model PurityERP.Areas.Management.Models.NewWork
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Work Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="WorkCreate">
+            <div class="card-body">
+                <input type="hidden" asp-for="WorkId">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label asp-for="Wroker" class="control-label">Wroker</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" asp-for="Wroker" asp-items="@(new SelectList(ViewBag.worker, "WorkerId","WorkerName"))">
+                                <option selected="selected">Select One</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Product" class="control-label">Product</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" asp-for="Product" asp-items="@(new SelectList(ViewBag.product, "Id","ProductTittle"))">
+                                <option selected="selected">Select One</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="AsignDate">Asign Date</label>
+                            <input type="date" class="form-control" id="AsignDate" placeholder="Asign Date" asp-for="WorkAsignDate">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="WorkType">Worke Type</label>
+                            <select class="form-control select2" style="width: 100%;" data-native-menu="false" id="WorkType" asp-for="WorkType"
+                                    asp-items="@(new SelectList(ViewBag.worketype, "CostMapId","OperationType"))">
+                                <option selected="selected">Select One</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="invqty">Per Unit Cost</label>
+                            <input type="number" class="form-control" id="invqty" placeholder="PerUnitCost" asp-for="PerUnitCost">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Quantity">Quantity</label>
+                            <input type="number" class="form-control" id="Quantity" placeholder="Quantity" asp-for="Quantity">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Edd">Expected Delivery Date</label>
+                            <input type="date" class="form-control" id="Edd" placeholder="Edd" asp-for="EDD">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Add">Asign Delivery Date</label>
+                            <input type="date" class="form-control" id="Edd" placeholder="Add" asp-for="ADD">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Quantity">Delivery Quantity</label>
+                            <input type="number" class="form-control" id="Quantity" placeholder="Delivery Quantity" asp-for="DeliveryQty">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Amnt">Paid Amount</label>
+                            <input type="number" class="form-control" id="Amnt" placeholder="Amount" asp-for="PaidAmount">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Stst">Status</label>
+                            <input type="text" class="form-control" id="Stst" placeholder="Status" asp-for="WorkStatus">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- /.card-body -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary" id="submitbtn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+    @section Scripts {
+
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#inventory').change(function () {
+                    var invenid = $('#inventory').val();
+                    console.log("inid - ", invenid);
+
+                    $.getJSON('@Url.Action("inventoryqty")', { invenid: invenid }, function (remainqty) {
+
+                        $('#remainingqty').text(remainqty);
+
+                    })
+                });
+                $("#invqty").keyup(function () {
+                    var remain = $('#remainingqty').text();
+                    var invenneed = $('#invqty').val();
+                    if (parseInt(remain) < parseInt(invenneed)) {
+                        alert("Bigger");
+                        $('#submitbtn').attr("disabled", true);
+                    }
+                    else {
+                        $('#submitbtn').attr("disabled", false);
+                    }
+                });
+            });
+        </script>
+    }
+</body>
+</html>
+

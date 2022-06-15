@@ -133,6 +133,51 @@ namespace PurityERP.Migrations
                     b.ToTable("InventoryOuts");
                 });
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.NewWork", b =>
+                {
+                    b.Property<int>("WorkId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("ADD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeliveryQty")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EDD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PaidAmount")
+                        .HasColumnType("int");
+
+                    b.Property<float>("PerUnitCost")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Product")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("WorkAsignDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WorkStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wroker")
+                        .HasColumnType("int");
+
+                    b.HasKey("WorkId");
+
+                    b.ToTable("NewWorks");
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Product", b =>
                 {
                     b.Property<int>("Id")

@@ -10,8 +10,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220614073008_emnn")]
-    partial class emnn
+    [Migration("20220615113334_emn1")]
+    partial class emn1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -133,6 +133,51 @@ namespace PurityERP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("InventoryOuts");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.NewWork", b =>
+                {
+                    b.Property<int>("WorkId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("ADD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeliveryQty")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EDD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PaidAmount")
+                        .HasColumnType("int");
+
+                    b.Property<float>("PerUnitCost")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Product")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("WorkAsignDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WorkStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wroker")
+                        .HasColumnType("int");
+
+                    b.HasKey("WorkId");
+
+                    b.ToTable("NewWorks");
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Product", b =>

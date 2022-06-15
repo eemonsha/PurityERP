@@ -681,3 +681,7 @@ C:\Project\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.csproj.CopyComplete
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.dll
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.pdb
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.genruntimeconfig.cache
+C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\WorkCreate.cshtml.g.cs
+C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\WorkIndex.cshtml.g.cs
+C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\WorkDetails.cshtml.g.cs
+C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\WorkManage.cshtml.g.cs

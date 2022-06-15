@@ -46,6 +46,19 @@ namespace PurityERP.Areas.Management.ViewModel
         public int CostMapId { get; set; }
         public string OperationType { get; set; }
 
+        public int WorkId { get; set; }
+        public int Wroker { get; set; }
+        public string Product { get; set; }
+        public DateTime WorkAsignDate { get; set; }
+        public string WorkType { get; set; }
+        public float PerUnitCost { get; set; }
+        public int Quantity { get; set; }
+        public DateTime EDD { get; set; }
+        public DateTime ADD { get; set; }
+        public int DeliveryQty { get; set; }
+        public int PaidAmount { get; set; }
+        public string WorkStatus { get; set; }
+
     }
 }
 
