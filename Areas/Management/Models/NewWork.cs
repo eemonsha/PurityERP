@@ -19,6 +19,9 @@ namespace PurityERP.Areas.Management.Models
         public DateTime EDD { get; set; }
         public DateTime ADD { get; set; }
         public int DeliveryQty { get; set; }
+        public int WasteLostQty { get; set; }
+        public int Payment { get; set; }
+        public DateTime SystemDate { get; set; }
         public int PaidAmount { get; set; }
         public string WorkStatus { get; set; }
 

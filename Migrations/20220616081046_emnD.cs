@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class emn1 : Migration
+    public partial class emnD : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,12 +88,30 @@ namespace PurityERP.Migrations
                     EDD = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ADD = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeliveryQty = table.Column<int>(type: "int", nullable: false),
+                    WasteLostQty = table.Column<int>(type: "int", nullable: false),
+                    Payment = table.Column<int>(type: "int", nullable: false),
+                    SystemDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PaidAmount = table.Column<int>(type: "int", nullable: false),
                     WorkStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NewWorks", x => x.WorkId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    PaymentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentWorkID = table.Column<int>(type: "int", nullable: false),
+                    PaymentAmount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.PaymentID);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,6 +131,22 @@ namespace PurityERP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductWorkRegisters",
+                columns: table => new
+                {
+                    ProductWorkRegisterID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RegAsignDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegWorkID = table.Column<int>(type: "int", nullable: false),
+                    RegType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RegCategoryQty = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductWorkRegisters", x => x.ProductWorkRegisterID);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,7 +241,13 @@ namespace PurityERP.Migrations
                 name: "NewWorks");
 
             migrationBuilder.DropTable(
+                name: "Payments");
+
+            migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "ProductWorkRegisters");
 
             migrationBuilder.DropTable(
                 name: "Suppliers");

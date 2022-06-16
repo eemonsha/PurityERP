@@ -152,6 +152,9 @@ namespace PurityERP.Migrations
                     b.Property<int>("PaidAmount")
                         .HasColumnType("int");
 
+                    b.Property<int>("Payment")
+                        .HasColumnType("int");
+
                     b.Property<float>("PerUnitCost")
                         .HasColumnType("real");
 
@@ -159,6 +162,12 @@ namespace PurityERP.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SystemDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("WasteLostQty")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("WorkAsignDate")
@@ -176,6 +185,27 @@ namespace PurityERP.Migrations
                     b.HasKey("WorkId");
 
                     b.ToTable("NewWorks");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.Payment", b =>
+                {
+                    b.Property<int>("PaymentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("PaymentAmount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PaymentWorkID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PaymentID");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Product", b =>
@@ -209,6 +239,30 @@ namespace PurityERP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.ProductWorkRegister", b =>
+                {
+                    b.Property<int>("ProductWorkRegisterID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("RegAsignDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RegCategoryQty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RegType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RegWorkID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductWorkRegisterID");
+
+                    b.ToTable("ProductWorkRegisters");
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Suppliers", b =>

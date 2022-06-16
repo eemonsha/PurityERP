@@ -1,2 +1,93 @@
-﻿
+﻿@model PurityERP.Areas.Management.Models.NewWork
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Work Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="WorkManage">
+            <div class="card-body">
+                <input type="hidden" asp-for="WorkId">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="invqty">Delivery Quantity</label>
+                            <input type="number" class="form-control" id="invqty" placeholder="Delivery Qty" asp-for="DeliveryQty">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Quantity">Waste lost Quantity</label>
+                            <input type="number" class="form-control" id="Quantity" placeholder="W/L Quantity" asp-for="WasteLostQty">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="invqty">Payment</label>
+                            <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="Payment">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- /.card-body -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary" id="submitbtn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <p>@TempData["msg"]</p>
+    </div>
+
+
+
+
+
+
+
+
+    @section Scripts {
+
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#inventory').change(function () {
+                    var invenid = $('#inventory').val();
+                    console.log("inid - ", invenid);
+
+                    $.getJSON('@Url.Action("inventoryqty")', { invenid: invenid }, function (remainqty) {
+
+                        $('#remainingqty').text(remainqty);
+
+                    })
+                });
+                $("#invqty").keyup(function () {
+                    var remain = $('#remainingqty').text();
+                    var invenneed = $('#invqty').val();
+                    if (parseInt(remain) < parseInt(invenneed)) {
+                        alert("Bigger");
+                        $('#submitbtn').attr("disabled", true);
+                    }
+                    else {
+                        $('#submitbtn').attr("disabled", false);
+                    }
+                });
+            });
+        </script>
+    }
+</body>
+</html>
 

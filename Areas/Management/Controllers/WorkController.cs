@@ -59,8 +59,32 @@ namespace PurityERP.Areas.Management.Controllers
         [HttpPost]
         public IActionResult WorkCreate(NewWork newWork)
         {
+            var st = new NewWork
+            {
+                WorkId=0,
+                WorkStatus = "Pending",
+                ADD=newWork.ADD,
+                EDD=newWork.EDD,
+                PaidAmount=newWork.PaidAmount,
+                PerUnitCost=newWork.PerUnitCost,
+                WorkType=newWork.WorkType,
+               WorkAsignDate=newWork.WorkAsignDate,
+               Product=newWork.Product,
+               Wroker=newWork.Wroker,
+               Quantity=newWork.Quantity
 
-            _context.NewWorks.Add(newWork);
+            };
+            _context.NewWorks.Add(st);
+            _context.SaveChanges();
+            var nw = _context.NewWorks.Where(x=>x.WorkId == st.WorkId).FirstOrDefault();
+            var pwr = new ProductWorkRegister
+            {
+                RegAsignDate = nw.WorkAsignDate,
+                RegWorkID = nw.WorkId,
+                RegType = "Out",
+                RegCategoryQty = nw.Quantity
+            };
+            _context.Add(pwr);
             _context.SaveChanges();
             return RedirectToAction("WorkIndex");
         }
@@ -94,9 +118,55 @@ namespace PurityERP.Areas.Management.Controllers
             return View(workdetails);
         }
 
-        public IActionResult WorkManage()
+        public IActionResult WorkManage(int id)
         {
+            var mng = _context.NewWorks.Where(x => x.WorkId == id).FirstOrDefault();
+            return View(mng);
+        }
+
+        [HttpPost]
+        public IActionResult WorkManage(NewWork newWork)
+        {
+            var wrkmng = _context.NewWorks.Where(x => x.WorkId == newWork.WorkId).FirstOrDefault();
+
+            var sm = (newWork.DeliveryQty + newWork.WasteLostQty);
+            if (wrkmng.Quantity == sm)
+            {
+                wrkmng.SystemDate = DateTime.Now;
+                wrkmng.DeliveryQty = newWork.DeliveryQty;
+                wrkmng.WasteLostQty = newWork.WasteLostQty;
+                wrkmng.Payment = newWork.Payment;
+                _context.Update(wrkmng);
+                _context.SaveChanges();
+
+
+                var dte = _context.NewWorks.FirstOrDefault(); 
+                var pwr = new ProductWorkRegister
+                {
+                    RegAsignDate = dte.WorkAsignDate,
+                    RegWorkID = newWork.WorkId,
+                    RegType = "In",
+                    RegCategoryQty = dte.DeliveryQty
+                };
+                _context.Add(pwr);
+                _context.SaveChanges();
+                var payment = new Payment
+                {
+                    PaymentWorkID = newWork.WorkId,
+                    PaymentDate = dte.SystemDate,
+                    PaymentAmount = dte.Payment
+                };
+                _context.Add(payment);
+                _context.SaveChanges();
+                return RedirectToAction("WorkIndex");
+            }
+            else
+            {
+                TempData["msg"] = "Quantity Not Same";
+            }
             return View();
+            
+           
         }
 
 
