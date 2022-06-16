@@ -140,9 +140,6 @@ namespace PurityERP.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("ADD")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("DeliveryQty")
                         .HasColumnType("int");
 

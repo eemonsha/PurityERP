@@ -17,7 +17,6 @@ namespace PurityERP.Areas.Management.Models
         public float PerUnitCost { get; set; }
         public int Quantity { get; set; }
         public DateTime EDD { get; set; }
-        public DateTime ADD { get; set; }
         public int DeliveryQty { get; set; }
         public int WasteLostQty { get; set; }
         public int Payment { get; set; }

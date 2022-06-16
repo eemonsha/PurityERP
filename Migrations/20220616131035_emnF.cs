@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class emnD : Migration
+    public partial class emnF : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -86,7 +86,6 @@ namespace PurityERP.Migrations
                     PerUnitCost = table.Column<float>(type: "real", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     EDD = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ADD = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeliveryQty = table.Column<int>(type: "int", nullable: false),
                     WasteLostQty = table.Column<int>(type: "int", nullable: false),
                     Payment = table.Column<int>(type: "int", nullable: false),

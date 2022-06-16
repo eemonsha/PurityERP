@@ -10,8 +10,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220616081046_emnD")]
-    partial class emnD
+    [Migration("20220616131035_emnF")]
+    partial class emnF
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -141,9 +141,6 @@ namespace PurityERP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<DateTime>("ADD")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("DeliveryQty")
                         .HasColumnType("int");

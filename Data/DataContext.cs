@@ -34,12 +34,12 @@ namespace PurityERP.Data
                 new CostMap { CostMapId = 1, OperationType = "Raw Material" },
                 new CostMap { CostMapId = 2, OperationType = "Karchupi Work" }
                 );
-           modelBuilder.Entity<Users>().HasData(
+            modelBuilder.Entity<Users>().HasData(
 
-                new Users { UserID = 1, UserName = "Admin",PassWord = "123",UserType ="Admin" }
-                
-                );
-           
+                 new Users { UserID = 1, UserName = "Admin", PassWord = "123", UserType = "Admin" }
+
+                 );
+
         }
 
     }

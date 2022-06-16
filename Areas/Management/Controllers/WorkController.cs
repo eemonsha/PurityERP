@@ -37,7 +37,7 @@ namespace PurityERP.Areas.Management.Controllers
                           PerUnitCost = nwork.PerUnitCost,
                           Quantity = nwork.Quantity,
                           EDD = nwork.EDD,
-                          ADD= nwork.ADD,
+
                           DeliveryQty= nwork.DeliveryQty,
                           PaidAmount = nwork.PaidAmount,
                           WorkStatus = nwork.WorkStatus
@@ -63,7 +63,7 @@ namespace PurityERP.Areas.Management.Controllers
             {
                 WorkId=0,
                 WorkStatus = "Pending",
-                ADD=newWork.ADD,
+
                 EDD=newWork.EDD,
                 PaidAmount=newWork.PaidAmount,
                 PerUnitCost=newWork.PerUnitCost,
@@ -108,7 +108,6 @@ namespace PurityERP.Areas.Management.Controllers
                                    PerUnitCost = nwork.PerUnitCost,
                                    Quantity = nwork.Quantity,
                                    EDD = nwork.EDD,
-                                   ADD = nwork.ADD,
                                    DeliveryQty = nwork.DeliveryQty,
                                    PaidAmount = nwork.PaidAmount,
                                    WorkStatus = nwork.WorkStatus
