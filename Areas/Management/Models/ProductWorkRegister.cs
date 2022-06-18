@@ -13,6 +13,6 @@ namespace PurityERP.Areas.Management.Models
         public DateTime RegAsignDate { get; set; }
         public int RegWorkID { get; set; }
         public string RegType { get; set; }
-        public int RegCategoryQty { get; set; }
+        public decimal RegCategoryQty { get; set; }
     }
 }

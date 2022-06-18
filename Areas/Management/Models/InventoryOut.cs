@@ -13,9 +13,9 @@ namespace PurityERP.Areas.Management.Models
         public int InventoryItem { get; set; }
         public DateTime SystemDate { get; set; }
         public int ProductTittle { get; set; }
-        public int ProductQuantity { get; set; }
-        public int InventoryQuantity { get; set; }
-        public float PerProductInventoryQuantity { get; set; }
+        public decimal ProductQuantity { get; set; }
+        public decimal InventoryQuantity { get; set; }
+        public decimal PerProductInventoryQuantity { get; set; }
         public string Worker { get; set; }
     }
 }

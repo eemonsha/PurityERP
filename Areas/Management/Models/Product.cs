@@ -10,9 +10,9 @@ namespace PurityERP.Areas.Management.Models
         public int Id { get; set; }
         public string ProductTittle { get; set; }
         public string ProductCode { get; set; }
-        public int CostingPrice { get; set; }
-        public int SalesPrice { get; set; }
-        public int DiscountRate { get; set; }
+        public decimal CostingPrice { get; set; }
+        public decimal SalesPrice { get; set; }
+        public decimal DiscountRate { get; set; }
         public int InitialProductStockQty { get; set; }
         public int RemainingQty { get; set; }
 

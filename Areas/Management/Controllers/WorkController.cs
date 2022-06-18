@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using PurityERP.Areas.Management.Models;
 using PurityERP.Areas.Management.ViewModel;
 using PurityERP.Data;
@@ -13,9 +14,11 @@ namespace PurityERP.Areas.Management.Controllers
     public class WorkController : Controller
     {
         private readonly DataContext _context;
-        public WorkController(DataContext context)
+        private readonly IToastNotification _toastNotification;
+        public WorkController(DataContext context, IToastNotification toastNotification)
         {
             _context = context;
+            _toastNotification = toastNotification;
         }
 
         public IActionResult WorkIndex()
@@ -50,15 +53,33 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult WorkCreate()
         {
+            DefaultData();//loading default data
+             var DefWork = new NewWork();
+            DefWork.PaidAmount = 0;
+            DefWork.WorkAsignDate = System.DateTime.Now;
+            DefWork.EDD =  System.DateTime.Now.AddDays(10);
+            return View(DefWork);
+        }
+
+        private void DefaultData()
+        {
             ViewBag.worker = _context.Workers.ToList();
             ViewBag.worketype = _context.CostMaps.ToList();
             ViewBag.product = _context.Products.ToList();
-            return View();
         }
+
 
         [HttpPost]
         public IActionResult WorkCreate(NewWork newWork)
         {
+
+            if (newWork.Quantity < 1)
+            {
+                _toastNotification.AddErrorToastMessage("Please specify work quanity to proceed");
+                DefaultData();//loading default data
+                return View(newWork);
+            }
+
             var st = new NewWork
             {
                 WorkId=0,

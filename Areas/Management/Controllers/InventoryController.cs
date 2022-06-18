@@ -48,7 +48,7 @@ namespace PurityERP.Areas.Management.Controllers
         [HttpPost]
         public IActionResult InventoryCreate(Inventory inventory)
         {
-            
+            inventory.RemainingQty = inventory.PurchaseQuantity;
             _context.Inventories.Add(inventory);
             _context.SaveChanges();
             return RedirectToAction("InventoryIndex");
@@ -171,7 +171,11 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult Productcreate()
         {
-            return View();
+            var NewProduct = new Product();
+            NewProduct.CostingPrice = 0;
+            NewProduct.SalesPrice = 0;
+            NewProduct.DiscountRate = 0;
+            return View(NewProduct);
         }
 
         [HttpPost]

@@ -80,8 +80,8 @@ namespace PurityERP.Migrations
                     b.Property<int>("PurchaseQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("RemainingQty")
-                        .HasColumnType("int");
+                    b.Property<decimal>("RemainingQty")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
@@ -92,8 +92,8 @@ namespace PurityERP.Migrations
                     b.Property<int>("UnidId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -110,14 +110,14 @@ namespace PurityERP.Migrations
                     b.Property<int>("InventoryItem")
                         .HasColumnType("int");
 
-                    b.Property<int>("InventoryQuantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("InventoryQuantity")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<float>("PerProductInventoryQuantity")
-                        .HasColumnType("real");
+                    b.Property<decimal>("PerProductInventoryQuantity")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductQuantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("ProductQuantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductTittle")
                         .HasColumnType("int");
@@ -146,11 +146,11 @@ namespace PurityERP.Migrations
                     b.Property<DateTime>("EDD")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaidAmount")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PaidAmount")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Payment")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Payment")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<float>("PerUnitCost")
                         .HasColumnType("real");
@@ -158,8 +158,8 @@ namespace PurityERP.Migrations
                     b.Property<int>("Product")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("SystemDate")
                         .HasColumnType("datetime2");
@@ -191,8 +191,8 @@ namespace PurityERP.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("PaymentAmount")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PaymentAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
@@ -212,11 +212,11 @@ namespace PurityERP.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("CostingPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("CostingPrice")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("DiscountRate")
-                        .HasColumnType("int");
+                    b.Property<decimal>("DiscountRate")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("InitialProductStockQty")
                         .HasColumnType("int");
@@ -230,8 +230,8 @@ namespace PurityERP.Migrations
                     b.Property<int>("RemainingQty")
                         .HasColumnType("int");
 
-                    b.Property<int>("SalesPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("SalesPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -248,8 +248,8 @@ namespace PurityERP.Migrations
                     b.Property<DateTime>("RegAsignDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RegCategoryQty")
-                        .HasColumnType("int");
+                    b.Property<decimal>("RegCategoryQty")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("RegType")
                         .HasColumnType("nvarchar(max)");

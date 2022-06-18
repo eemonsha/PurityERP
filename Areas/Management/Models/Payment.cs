@@ -12,6 +12,6 @@ namespace PurityERP.Areas.Management.Models
         public int PaymentID { get; set; }
         public DateTime PaymentDate { get; set; }
         public int PaymentWorkID { get; set; }
-        public int PaymentAmount { get; set; }
+        public decimal PaymentAmount { get; set; }
     }
 }

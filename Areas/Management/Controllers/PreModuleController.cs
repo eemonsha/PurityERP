@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using PurityERP.Areas.Management.Models;
 using PurityERP.Areas.Management.ViewModel;
 using PurityERP.Data;
@@ -16,9 +17,14 @@ namespace PurityERP.Areas.Management.Controllers
 
 
         private readonly DataContext _context;
-        public PreModuleController(DataContext context)
+        private readonly IToastNotification _toastNotification;
+
+
+        public PreModuleController(DataContext context, IToastNotification toastNotification)
         {
             _context = context;
+            _toastNotification = toastNotification;
+
         }
 
         public IActionResult PreSelect()
@@ -46,8 +52,19 @@ namespace PurityERP.Areas.Management.Controllers
         [HttpPost]
         public IActionResult UnitCreate(Units units)
         {
+
+            //validation to check redundent input
+            var SelUnit = _context.units.Where(x => x.UnitName == units.UnitName).FirstOrDefault();
+            if (SelUnit != null)
+            {
+                _toastNotification.AddErrorToastMessage("An existing unit exists in the same name");
+                return View(units);
+                
+            }
+
             _context.units.Add(units);
             _context.SaveChanges();
+            _toastNotification.AddSuccessToastMessage("Unit added successfully");
             return RedirectToAction("UnitIndex"); 
         }
         public IActionResult EditUnit(int id)
@@ -177,13 +194,16 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult WorkerIndex()
         {
+            
             var worker = _context.Workers.ToList();
             return View(worker);
         }
 
         public IActionResult Worker()
         {
-            return View();
+            var NewWorker = new Worker();
+            NewWorker.WorkerNid = 0;
+            return View(NewWorker);
         }
 
         [HttpPost]

@@ -15,13 +15,13 @@ namespace PurityERP.Areas.Management.Models
         public DateTime WorkAsignDate { get; set; }
         public int WorkType { get; set; }
         public float PerUnitCost { get; set; }
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public DateTime EDD { get; set; }
         public int DeliveryQty { get; set; }
         public int WasteLostQty { get; set; }
-        public int Payment { get; set; }
+        public decimal Payment { get; set; }
         public DateTime SystemDate { get; set; }
-        public int PaidAmount { get; set; }
+        public decimal PaidAmount { get; set; }
         public string WorkStatus { get; set; }
 
 
