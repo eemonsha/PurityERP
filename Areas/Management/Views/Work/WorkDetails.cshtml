@@ -1,79 +1,100 @@
 ﻿@model PurityERP.Areas.Management.ViewModel.ManagementVm
 
+@{
+    IEnumerable<PurityERP.Areas.Management.Models.Payment> PayList
+        = ViewData["PayList"] as IEnumerable<PurityERP.Areas.Management.Models.Payment>;
 
-<h1>Details</h1>
+    IEnumerable<PurityERP.Areas.Management.Models.ProductWorkRegister> ProdReg
+        = ViewData["ProdReg"] as IEnumerable<PurityERP.Areas.Management.Models.ProductWorkRegister>;
+}
+
+
+
+<h1>Work Details</h1>
 
 <div>
-    <h4>Work Details</h4>
+    <h4>for @Model.Product (@Model.ProductCode)</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Worker)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Worker)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WorkAsignDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkAsignDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WorkType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PerUnitCost)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PerUnitCost)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EDD)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EDD)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ADD)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ADD)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeliveryQty)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeliveryQty)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PaidAmount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PaidAmount)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WorkStatus)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkStatus)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <h6>Worker: <strong>@Model.Worker</strong></h6>
+                <h6>Nature of work <strong>@Model.WorkType</strong></h6>
+                <h6>Work Quanity: <strong>@Model.Quantity</strong> cost per unit:  @Model.PerUnitCost per item</h6>
+                <h6>Work date: <strong>@Model.WorkAsignDate</strong></h6>
+                <h6>Expected delivery date <strong>@Model.EDD</strong></h6>
+                <h6>Delivered qty: <strong>@Model.DeliveryQty</strong></h6>
+                <h6>Damaged qty: <strong>@Model.WasteQty</strong></h6>
+                <h6>Paid amount <strong>@Model.PaidAmount</strong></h6>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-info h5">Payment history</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PurityERP.Areas.Management.Models.Payment cstl in PayList)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => cstl.PaymentDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => cstl.PaymentAmount)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <hr />
+            <div class="card">
+                <div class="card-header text-info h5">Product register</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>In/out</th>
+                                <th>Quanity</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PurityERP.Areas.Management.Models.ProductWorkRegister cstl in ProdReg)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cstl.RegAsignDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cstl.RegType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cstl.RegCategoryQty)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cstl.MoveStatus)
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <div>
     @*<a asp-action="EditInventory" asp-route-id="@Model.InventoryId">Edit</a> |*@

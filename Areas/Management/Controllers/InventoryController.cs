@@ -92,7 +92,20 @@ namespace PurityERP.Areas.Management.Controllers
                              RemainingQty = inventory.RemainingQty
 
                          }).FirstOrDefault();
-            
+
+            //loading inventory consumption information
+            var InvTxn = (from TxnInv in _context.InventoryOuts.Where(x => x.InventoryItem == id).ToList()
+                          join ProdInfo in _context.Products on TxnInv.ProductTittle equals ProdInfo.Id
+                          select new InventoryVM
+                          {
+                              ProductTitle = ProdInfo.ProductTittle,
+                              InvOutDate= TxnInv.SystemDate,
+                              InvOutQty= TxnInv.InventoryQuantity,
+                              ProdQty= TxnInv.ProductQuantity
+                          });
+
+            ViewData["InvTxnInfo"] = InvTxn;
+
             return View(inven);
         }
 
@@ -133,14 +146,37 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult InventoryOutCreate()
         {
+            DefaultData();
+
+            return View();
+        }
+
+        private void DefaultData()
+        {
             ViewBag.inventories = _context.Inventories.ToList();
             ViewBag.product = _context.Products.ToList();
             ViewBag.worker = _context.Workers.ToList();
-            return View();
         }
+
         [HttpPost]
         public IActionResult InventoryOutCreate(InventoryOut inventoryout )
         {
+            //validation
+            if (inventoryout.InventoryQuantity < 0)
+            {
+
+                return View(inventoryout);
+            }
+
+            //checking if cost type has been added for raw material
+            var SelCostType = _context.Costtypes.Where(x => x.CostMapId == 1).FirstOrDefault();
+            if (SelCostType == null)
+            {
+                return View(inventoryout);
+            }
+            //end of validation
+
+
             var perqty = (inventoryout.InventoryQuantity / inventoryout.ProductQuantity);
             var invenout = new InventoryOut
             {
@@ -158,6 +194,26 @@ namespace PurityERP.Areas.Management.Controllers
             _context.Inventories.Update(inventory);
             _context.InventoryOuts.Add(invenout);
             _context.SaveChanges();
+
+            //add data to cost table
+            if (inventoryout.InventoryQuantity > 0)// indicates there is cost involved in the work
+            {
+                decimal SelPerUnitCost = _context.Inventories.Where(x => x.Id == inventoryout.InventoryItem).FirstOrDefault().UnitPrice;
+
+                decimal PerUnitCost = inventoryout.InventoryQuantity*SelPerUnitCost;
+                var NewCost = new CostRegister()
+                {
+                    ProdID = inventoryout.ProductTittle,
+                    CostID = SelCostType.CostId,
+                    DateofCalculate = System.DateTime.Now,
+                    PerUnitCost = PerUnitCost,
+                    CostRegID = invenout.Id,
+                    CostStatus = "Active"
+                };
+                _context.Add(NewCost);
+                _context.SaveChanges();
+            }
+
             return RedirectToAction("InventoryOutIndex");
         }
 
@@ -238,6 +294,16 @@ namespace PurityERP.Areas.Management.Controllers
             var remainqty = _context.Inventories.FirstOrDefault(x => x.Id == invenid).RemainingQty; 
             return Json(remainqty);
         }
+
+        public JsonResult GetInvUnit(int invenid)
+        {
+            int SelUnitId = _context.Inventories.FirstOrDefault(x => x.Id == invenid).UnidId;
+            var SelUnitName = _context.units.Where(x => x.UnitID == SelUnitId).FirstOrDefault().UnitName;
+
+            return Json(SelUnitName);
+        }
+
+
         public JsonResult SupplierCreate(Suppliers data)
         {
             _context.Suppliers.Add(data);

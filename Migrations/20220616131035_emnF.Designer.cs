@@ -44,7 +44,7 @@ namespace PurityERP.Migrations
                         new
                         {
                             CostMapId = 2,
-                            OperationType = "Karchupi Work"
+                            OperationType = "Production cost"
                         });
                 });
 

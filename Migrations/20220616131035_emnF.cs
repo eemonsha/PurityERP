@@ -214,7 +214,7 @@ namespace PurityERP.Migrations
             migrationBuilder.InsertData(
                 table: "CostMaps",
                 columns: new[] { "CostMapId", "OperationType" },
-                values: new object[] { 2, "Karchupi Work" });
+                values: new object[] { 2, "Production" });
 
             migrationBuilder.InsertData(
                 table: "Users",

@@ -23,7 +23,7 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult WorkIndex()
         {
-            var Wrk =( from nwork in _context.NewWorks
+            var Wrk =( from nwork in _context.NewWorks.Where(x=>x.WorkStatus=="Pending")
                       join worker in _context.Workers
                       on nwork.Wroker equals worker.WorkerId
                       join costmape in _context.CostMaps
@@ -64,7 +64,7 @@ namespace PurityERP.Areas.Management.Controllers
         private void DefaultData()
         {
             ViewBag.worker = _context.Workers.ToList();
-            ViewBag.worketype = _context.CostMaps.ToList();
+            ViewBag.worketype = _context.Costtypes.ToList();
             ViewBag.product = _context.Products.ToList();
         }
 
@@ -92,8 +92,8 @@ namespace PurityERP.Areas.Management.Controllers
                WorkAsignDate=newWork.WorkAsignDate,
                Product=newWork.Product,
                Wroker=newWork.Wroker,
-               Quantity=newWork.Quantity
-
+               Quantity=newWork.Quantity,
+               Payment=newWork.Quantity*newWork.PerUnitCost
             };
             _context.NewWorks.Add(st);
             _context.SaveChanges();
@@ -107,6 +107,25 @@ namespace PurityERP.Areas.Management.Controllers
             };
             _context.Add(pwr);
             _context.SaveChanges();
+
+            //add data to cost table
+            if (newWork.PerUnitCost > 0)// indicates there is cost involved in the work
+            {
+                var NewCost = new CostRegister()
+                {
+                    ProdID=newWork.Product,
+                    CostID=newWork.WorkType,
+                    DateofCalculate=System.DateTime.Now,
+                    PerUnitCost= newWork.PerUnitCost,
+                    CostRegID=pwr.RegWorkID,
+                    CostStatus="Active"
+                };
+                _context.Add(NewCost);
+                _context.SaveChanges();
+            }
+           
+
+            
             return RedirectToAction("WorkIndex");
         }
 
@@ -123,6 +142,7 @@ namespace PurityERP.Areas.Management.Controllers
                                {
                                    WorkId = nwork.WorkId,
                                    Worker = worker.WorkerName,
+                                   ProductCode=product.ProductCode,
                                    Product = product.ProductTittle,
                                    WorkAsignDate = nwork.WorkAsignDate,
                                    WorkType = costmape.OperationType,
@@ -130,18 +150,32 @@ namespace PurityERP.Areas.Management.Controllers
                                    Quantity = nwork.Quantity,
                                    EDD = nwork.EDD,
                                    DeliveryQty = nwork.DeliveryQty,
+                                   WasteQty=nwork.WasteLostQty,
                                    PaidAmount = nwork.PaidAmount,
                                    WorkStatus = nwork.WorkStatus
 
                                }).FirstOrDefault();
 
+            //Gathering payment info
+            var SelPayInfo = _context.Payments.Where(x => x.PaymentWorkID == id).ToList();
+            var SelWorkTxninfo = _context.ProductWorkRegisters.Where(x => x.RegWorkID == id).ToList();
+
+            ViewData["PayList"] = SelPayInfo;
+            ViewData["ProdReg"] = SelWorkTxninfo;
             return View(workdetails);
         }
 
         public IActionResult WorkManage(int id)
         {
-            var mng = _context.NewWorks.Where(x => x.WorkId == id).FirstOrDefault();
-            return View(mng);
+            var SelWork = _context.NewWorks.Where(x => x.WorkId == id).FirstOrDefault();
+            SelWork.WorkTypeTitle = _context.CostMaps.Where(x => x.CostMapId == SelWork.WorkType).FirstOrDefault().OperationType;
+            SelWork.WrokerName = _context.Workers.Where(x => x.WorkerId == SelWork.Wroker).FirstOrDefault().WorkerName;
+            SelWork.ProductName = _context.Products.Where(x => x.Id == SelWork.Product).FirstOrDefault().ProductTittle;
+            SelWork.NewDeliveryQty = 0;
+            SelWork.NewWasterQty = 0;
+            SelWork.NewPayment = 0;
+            SelWork.TxnDate = System.DateTime.Now;
+            return View(SelWork);
         }
 
         [HttpPost]
@@ -149,46 +183,81 @@ namespace PurityERP.Areas.Management.Controllers
         {
             var wrkmng = _context.NewWorks.Where(x => x.WorkId == newWork.WorkId).FirstOrDefault();
 
-            var sm = (newWork.DeliveryQty + newWork.WasteLostQty);
-            if (wrkmng.Quantity == sm)
+            //validation
+            if(newWork.NewDeliveryQty<1 && newWork.NewWasterQty < 1)
             {
-                wrkmng.SystemDate = DateTime.Now;
-                wrkmng.DeliveryQty = newWork.DeliveryQty;
-                wrkmng.WasteLostQty = newWork.WasteLostQty;
-                wrkmng.Payment = newWork.Payment;
-                _context.Update(wrkmng);
-                _context.SaveChanges();
+                _toastNotification.AddErrorToastMessage("Invalid quanity specified");
+                return View(newWork);
+            }
+                       
+            
+            decimal FinalQty = wrkmng.DeliveryQty + wrkmng.WasteLostQty + newWork.NewDeliveryQty + newWork.NewWasterQty;
+            if (FinalQty > wrkmng.Quantity)
+            {
+                _toastNotification.AddErrorToastMessage("Invalid quanity specified");
+                return View(newWork);
+            }
+            //end of validation
 
 
-                var dte = _context.NewWorks.FirstOrDefault(); 
+            //update in work table
+            wrkmng.DeliveryQty = wrkmng.DeliveryQty + newWork.NewDeliveryQty;
+            wrkmng.WasteLostQty = wrkmng.WasteLostQty + newWork.NewWasterQty;
+            wrkmng.PaidAmount = wrkmng.PaidAmount + newWork.NewPayment;
+            _context.Update(wrkmng);
+            _context.SaveChanges();
+
+
+            //add row in product register-- New delivery qty
+            if (newWork.NewDeliveryQty > 0)
+            {
                 var pwr = new ProductWorkRegister
                 {
-                    RegAsignDate = dte.WorkAsignDate,
+                    RegAsignDate = newWork.TxnDate,
                     RegWorkID = newWork.WorkId,
                     RegType = "In",
-                    RegCategoryQty = dte.DeliveryQty
+                    RegCategoryQty = newWork.NewDeliveryQty,
+                    MoveStatus = "Receipt"
                 };
                 _context.Add(pwr);
                 _context.SaveChanges();
+
+                //incase of receipt of product
+
+            }
+            //add row in product register-- New delivery qty
+
+
+            //add row in product register-- New waste qty
+            if (newWork.NewWasterQty > 0)
+            {
+                var pwr = new ProductWorkRegister
+                {
+                    RegAsignDate = newWork.TxnDate,
+                    RegWorkID = newWork.WorkId,
+                    RegType = "In",
+                    RegCategoryQty = newWork.NewWasterQty,
+                    MoveStatus = "Damaged"
+                };
+                _context.Add(pwr);
+                _context.SaveChanges();
+            }
+            //add row in product register-- New waste qty
+
+            if (newWork.NewPayment > 0)
+            {
                 var payment = new Payment
                 {
                     PaymentWorkID = newWork.WorkId,
-                    PaymentDate = dte.SystemDate,
-                    PaymentAmount = dte.Payment
+                    PaymentDate = newWork.TxnDate,
+                    PaymentAmount = newWork.NewPayment
                 };
                 _context.Add(payment);
                 _context.SaveChanges();
-                return RedirectToAction("WorkIndex");
             }
-            else
-            {
-                TempData["msg"] = "Quantity Not Same";
-            }
-            return View();
-            
-           
+
+            _toastNotification.AddSuccessToastMessage("Work management data stored");
+            return RedirectToAction("WorkIndex");
         }
-
-
     }
 }

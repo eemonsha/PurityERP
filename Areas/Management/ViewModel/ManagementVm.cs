@@ -51,11 +51,12 @@ namespace PurityERP.Areas.Management.ViewModel
         public string Product { get; set; }
         public DateTime WorkAsignDate { get; set; }
         public string WorkType { get; set; }
-        public float PerUnitCost { get; set; }
+        public decimal PerUnitCost { get; set; }
         public decimal Quantity { get; set; }
         public DateTime EDD { get; set; }
         public DateTime ADD { get; set; }
         public int DeliveryQty { get; set; }
+        public int WasteQty { get; set; }
         public decimal PaidAmount { get; set; }
         public string WorkStatus { get; set; }
 

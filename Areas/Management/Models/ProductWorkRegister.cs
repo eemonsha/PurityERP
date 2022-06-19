@@ -14,5 +14,6 @@ namespace PurityERP.Areas.Management.Models
         public int RegWorkID { get; set; }
         public string RegType { get; set; }
         public decimal RegCategoryQty { get; set; }
+        public string MoveStatus { get; set; }// status of data movement i.e. delivery  or waste/lost
     }
 }

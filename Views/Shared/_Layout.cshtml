@@ -35,6 +35,8 @@
 
 </head>
 <body>
+    @await Component.InvokeAsync("NToastNotify")
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

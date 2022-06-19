@@ -7,32 +7,121 @@
 <body>
     <div class="card card-primary mt-5">
         <div class="card-header">
-            <h3 class="card-title">Work Create</h3>
+            <h3 class="card-title">Task Management</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
+
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="WorkId" class="control-label">Worker ID</label>
+                        <input readonly asp-for="WorkId" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="WorkAsignDate" class="control-label">Work Date</label>
+                        <input type="date" readonly asp-for="WorkAsignDate" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="WorkTypeTitle" class="control-label">Category</label>
+                        <input readonly asp-for="WorkTypeTitle" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="WrokerName" class="control-label">Worker</label>
+                        <input readonly asp-for="WrokerName" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="ProductName" class="control-label">Product</label>
+                        <input readonly asp-for="ProductName" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label">Asign. Qty</label>
+                        <input readonly asp-for="Quantity" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="PerUnitCost" class="control-label">Cost(per pcs.)</label>
+                        <input readonly asp-for="PerUnitCost" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="DeliveryQty" class="control-label">Del. Qty.</label>
+                        <input readonly asp-for="DeliveryQty" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="WasteLostQty" class="control-label">Waste. Qty.</label>
+                        <input readonly asp-for="WasteLostQty" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="PaidAmount" class="control-label">Paid</label>
+                        <input readonly asp-for="PaidAmount" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <hr />
+
+        <h4 class="card-title"><strong>Delivery/payment</strong></h4>
+
         <form asp-action="WorkManage">
             <div class="card-body">
                 <input type="hidden" asp-for="WorkId">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="invqty">Date</label>
+                            <input type="date" class="form-control" id="invqty" placeholder="Delivery Qty" asp-for="TxnDate">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="invqty">Delivery Quantity</label>
-                            <input type="number" class="form-control" id="invqty" placeholder="Delivery Qty" asp-for="DeliveryQty">
+                            <input type="number" class="form-control" id="invqty" placeholder="Delivery Qty" asp-for="NewDeliveryQty">
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="Quantity">Waste lost Quantity</label>
-                            <input type="number" class="form-control" id="Quantity" placeholder="W/L Quantity" asp-for="WasteLostQty">
+                            <input type="number" class="form-control" id="Quantity" placeholder="W/L Quantity" asp-for="NewWasterQty">
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="invqty">Payment</label>
-                            <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="Payment">
+                            <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="NewPayment">
                         </div>
                     </div>
                 </div>
@@ -59,10 +148,10 @@
 
 
 
-    @section Scripts {
+        @section Scripts {
 
-        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-        <script>
+            <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+            <script>
             $(document).ready(function () {
                 $('#inventory').change(function () {
                     var invenid = $('#inventory').val();
@@ -86,8 +175,8 @@
                     }
                 });
             });
-        </script>
-    }
+            </script>
+        }
 </body>
 </html>
 

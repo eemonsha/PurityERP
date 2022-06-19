@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PurityERP.Data;
 
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220619113029_modWorkorder")]
+    partial class modWorkorder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,39 +46,6 @@ namespace PurityERP.Migrations
                             CostMapId = 2,
                             OperationType = "Karchupi Work"
                         });
-                });
-
-            modelBuilder.Entity("PurityERP.Areas.Management.Models.CostRegister", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CostID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CostRegID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CostStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateofCalculate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("PerUnitCost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProdID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("CostRegisters");
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Costtype", b =>

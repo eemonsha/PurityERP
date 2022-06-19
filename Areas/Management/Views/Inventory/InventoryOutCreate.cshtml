@@ -66,6 +66,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Inventory Quantity</label>
                             <input type="number" class="form-control" id="invqty" placeholder="inventoryQuantity" asp-for="InventoryQuantity">
+                            <span>Base unit: <span id="unitTitle">0</span> </span>
                         </div>
                     </div>
                 </div>
@@ -100,10 +101,19 @@
                     console.log("inid - ", invenid);
 
                     $.getJSON('@Url.Action("inventoryqty")', { invenid: invenid }, function (remainqty) {
-                        
+
                         $('#remainingqty').text(remainqty);
-                        
+
                     })
+
+                    $.getJSON('@Url.Action("GetInvUnit")', { invenid: invenid }, function (remainqty) {
+
+                        $('#unitTitle').text(remainqty);
+
+                    })
+
+
+
                 });
                 $("#invqty").keyup(function () {
                     var remain = $('#remainingqty').text();

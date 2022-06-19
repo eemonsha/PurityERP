@@ -27,6 +27,8 @@ namespace PurityERP.Data
         public DbSet<ProductWorkRegister> ProductWorkRegisters { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
+        public DbSet<CostRegister> CostRegisters { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CostMap>().HasData(
