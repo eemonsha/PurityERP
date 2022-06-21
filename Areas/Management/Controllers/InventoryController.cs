@@ -236,6 +236,7 @@ namespace PurityERP.Areas.Management.Controllers
                                    ProductTittle = product.ProductTittle,
                                    ProductQuantity = inoutd.ProductQuantity,
                                    InventoryQuantity = inoutd.InventoryQuantity,
+                                   PerProductInventoryQuantity = inoutd.PerProductInventoryQuantity,
                                    Worker = worker.WorkerName,
 
                                }).FirstOrDefault();

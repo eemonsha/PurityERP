@@ -13,7 +13,7 @@
 <h1>InventoryOut Details </h1>
 
 <div>
-    <h4>for @Model.InventoryItem (@Model.ProductTittle)</h4>
+    <h3> @Model.ProductTittle for  @Model.InventoryItem  </h3>
     <h4>Details</h4>
     <hr />
     <div class="row">
@@ -24,6 +24,7 @@
                 <h6>Product Tittle: <strong>@Model.ProductTittle</strong> </h6>
                 <h6>Product Quantity: <strong>@Model.ProductQuantity</strong></h6>
                 <h6>Inventory Quantity<strong>@Model.InventoryQuantity</strong></h6>
+                <h6>Per Product Inventory Quantity<strong>@Model.PerProductInventoryQuantity</strong></h6>
                 <h6>Worker: <strong>@Model.Worker</strong></h6>
             </div>
         </div>
