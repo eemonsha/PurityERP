@@ -21,8 +21,8 @@
                 <h6>Worker: <strong>@Model.Worker</strong></h6>
                 <h6>Nature of work <strong>@Model.WorkType</strong></h6>
                 <h6>Work Quanity: <strong>@Model.Quantity</strong> cost per unit:  @Model.PerUnitCost per item</h6>
-                <h6>Work date: <strong>@Model.WorkAsignDate</strong></h6>
-                <h6>Expected delivery date <strong>@Model.EDD</strong></h6>
+                <h6>Work date: <strong>@Model.WorkAsignDate.ToShortDateString()</strong></h6>
+                <h6>Expected delivery date <strong>@Model.EDD.ToShortDateString()</strong></h6>
                 <h6>Delivered qty: <strong>@Model.DeliveryQty</strong></h6>
                 <h6>Damaged qty: <strong>@Model.WasteQty</strong></h6>
                 <h6>Paid amount <strong>@Model.PaidAmount</strong></h6>

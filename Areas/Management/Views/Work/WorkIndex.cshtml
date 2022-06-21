@@ -36,11 +36,11 @@
                     @foreach (var items in Model)
                     {
                         <tr>
-                            <td>@items.WorkAsignDate</td>
+                            <td>@items.WorkAsignDate.ToShortDateString()</td>
                             <td>@items.WorkType</td>
                             <td>@items.Product</td>
                             <td>@items.Worker</td>
-                            <td>@items.EDD</td>
+                            <td>@items.EDD.ToShortDateString()</td>
                             <td>@items.Quantity</td>
                             <td class="float-right">
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -48,8 +48,6 @@
                                     <a asp-action="WorkManage" asp-route-id="@items.WorkId" type="button" class="btn btn-info">Manage</a>
 
                                 </div>
-
-
                             </td>
                         </tr>
                     }

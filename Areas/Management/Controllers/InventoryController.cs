@@ -132,6 +132,7 @@ namespace PurityERP.Areas.Management.Controllers
 
                             select new ManagementVm
                             {
+                                InventorOutId = inven.Id,
                                 Tittle = inven.Tittle,
                                 SystemDate = inveout.SystemDate,
                                 ProductTittle = product.ProductTittle,
@@ -215,6 +216,32 @@ namespace PurityERP.Areas.Management.Controllers
             }
 
             return RedirectToAction("InventoryOutIndex");
+        }
+
+        public IActionResult InventoryOutDetails(int id)
+        {
+            var Invnoutdtls = (from inoutd in _context.InventoryOuts.Where(x => x.Id == id)
+                               join inventory in _context.Inventories
+                               on inoutd.InventoryItem equals inventory.Id
+                               join product in _context.Products
+                               on inoutd.ProductTittle equals product.Id
+                               join worker in _context.Workers
+                               on Convert.ToInt32(inoutd.Worker) equals worker.WorkerId  
+                               select new ManagementVm
+                               {
+                                   
+                                   InventorOutId= inoutd.Id,
+                                   InventoryItem = inventory.Tittle,
+                                   SystemDate = inoutd.SystemDate,
+                                   ProductTittle = product.ProductTittle,
+                                   ProductQuantity = inoutd.ProductQuantity,
+                                   InventoryQuantity = inoutd.InventoryQuantity,
+                                   Worker = worker.WorkerName,
+
+                               }).FirstOrDefault();
+
+
+            return View(Invnoutdtls);
         }
 
 

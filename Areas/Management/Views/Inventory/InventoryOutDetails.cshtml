@@ -1,0 +1,39 @@
+﻿@model PurityERP.Areas.Management.ViewModel.ManagementVm
+
+@*@{
+    IEnumerable<PurityERP.Areas.Management.Models.Payment> PayList
+        = ViewData["PayList"] as IEnumerable<PurityERP.Areas.Management.Models.Payment>;
+
+    IEnumerable<PurityERP.Areas.Management.Models.ProductWorkRegister> ProdReg
+        = ViewData["ProdReg"] as IEnumerable<PurityERP.Areas.Management.Models.ProductWorkRegister>;
+}*@
+
+
+
+<h1>InventoryOut Details </h1>
+
+<div>
+    <h4>for @Model.InventoryItem (@Model.ProductTittle)</h4>
+    <h4>Details</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <h6>Inventory Item: <strong>@Model.InventoryItem</strong></h6>
+                <h6>Date: <strong>@Model.SystemDate</strong></h6>
+                <h6>Product Tittle: <strong>@Model.ProductTittle</strong> </h6>
+                <h6>Product Quantity: <strong>@Model.ProductQuantity</strong></h6>
+                <h6>Inventory Quantity<strong>@Model.InventoryQuantity</strong></h6>
+                <h6>Worker: <strong>@Model.Worker</strong></h6>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div>
+    @*<a asp-action="EditInventory" asp-route-id="@Model.InventoryId">Edit</a> |*@
+    <a asp-action="InventoryOutIndex">Back to List</a>
+</div>
+
+

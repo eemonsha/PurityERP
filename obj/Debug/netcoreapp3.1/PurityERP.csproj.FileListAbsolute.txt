@@ -1430,3 +1430,4 @@ C:\Project\PurityERP\bin\Debug\netcoreapp3.1\NToastNotify.dll
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.MvcApplicationPartsAssemblyInfo.cs
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\ManageProduct.cshtml.g.cs
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\CompleteWorkIndex.cshtml.g.cs
+C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\InventoryOutDetails.cshtml.g.cs

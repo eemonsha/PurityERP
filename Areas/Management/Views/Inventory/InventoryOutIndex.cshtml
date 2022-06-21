@@ -38,12 +38,12 @@
                         <td>@items.ProductTittle</td>
                         <td>@items.PerProductInventoryQuantity</td>
                         <td>@items.Worker</td>
-                        @*<td class="float-right">
+                        <td class="float-right">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a asp-action="" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
-                                <a asp-action="" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
+                                @*<a asp-action="" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>*@
+                                <a asp-action="InventoryOutDetails" asp-route-id="@items.InventorOutId" type="button" class="btn btn-info">Details</a>
                             </div>
-                        </td>*@
+                        </td>
 
 
                     </tr>

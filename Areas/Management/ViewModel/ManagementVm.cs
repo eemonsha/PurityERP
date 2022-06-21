@@ -24,7 +24,7 @@ namespace PurityERP.Areas.Management.ViewModel
         public decimal UnitPrice { get; set; }
 
         public decimal RemainingQty { get; set; }
-        public int InventoryItem { get; set; }
+        public string InventoryItem { get; set; }
         public DateTime SystemDate { get; set; }
         public string ProductTittle { get; set; }
         public decimal ProductQuantity { get; set; }
