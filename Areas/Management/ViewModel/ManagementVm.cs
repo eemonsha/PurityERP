@@ -39,7 +39,7 @@ namespace PurityERP.Areas.Management.ViewModel
         public decimal DiscountRate { get; set; }
         public int InitialProductStockQty { get; set; }
 
-        public int pId { get; set; }
+        public int pId { get; set; }//product ID
 
         public int InventorOutId { get; set; }
 
@@ -51,7 +51,7 @@ namespace PurityERP.Areas.Management.ViewModel
         public string Product { get; set; }
         public DateTime WorkAsignDate { get; set; }
         public string WorkType { get; set; }
-        public decimal PerUnitCost { get; set; }
+        public decimal PerUnitCost { get; set; }//per unit cost of work
         public decimal Quantity { get; set; }
         public DateTime EDD { get; set; }
         public DateTime ADD { get; set; }
@@ -59,6 +59,10 @@ namespace PurityERP.Areas.Management.ViewModel
         public int WasteQty { get; set; }
         public decimal PaidAmount { get; set; }
         public string WorkStatus { get; set; }
+
+
+
+
 
     }
 }

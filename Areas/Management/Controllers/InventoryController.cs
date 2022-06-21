@@ -253,6 +253,13 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
 
+        public IActionResult ProductManage(int Id)
+        {
+
+            return View();
+        }
+
+
         public IActionResult EditProduct(int id)
         {
 
