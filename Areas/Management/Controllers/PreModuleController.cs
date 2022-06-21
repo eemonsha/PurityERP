@@ -102,8 +102,16 @@ namespace PurityERP.Areas.Management.Controllers
         [HttpPost]
         public IActionResult SupplierCreate(Suppliers suppliers)
         {
+            var SelSup = _context.Suppliers.Where(x => x.SupplierName == suppliers.SupplierName).FirstOrDefault();
+            if (SelSup != null)
+            {
+                _toastNotification.AddErrorToastMessage("An existing Supplier exists in the same name");
+               return View(suppliers);
+            }
+
             _context.Add(suppliers);
             _context.SaveChanges();
+            _toastNotification.AddSuccessToastMessage("Supplier added successfully");
             return RedirectToAction("SupplierIndex");
         }
 
@@ -155,9 +163,18 @@ namespace PurityERP.Areas.Management.Controllers
 
         [HttpPost]
         public IActionResult CostType(Costtype costtype)
+           {
+            ViewBag.costmape = _context.CostMaps.ToList();
+            var CostSup = _context.Costtypes.Where(x => x.Costtittle == costtype.Costtittle).FirstOrDefault();
+            if(CostSup != null)
             {
+                _toastNotification.AddErrorToastMessage("An existing Coset exists in the same name");
+                return View(costtype);
+            }
+
             _context.Add(costtype);
             _context.SaveChanges();
+            _toastNotification.AddSuccessToastMessage("CostType added successfully");
             return RedirectToAction("CosttypeIndex");
         }
 
@@ -209,8 +226,17 @@ namespace PurityERP.Areas.Management.Controllers
         [HttpPost]
         public IActionResult Worker(Worker worker)
         {
+            var WorkrSup = _context.Workers.Where(x => x.WorkerName == worker.WorkerName).FirstOrDefault();
+            if (WorkrSup != null)
+            {
+                _toastNotification.AddErrorToastMessage("An existing Woker exists in the same name");
+                return View(worker);
+            }
+
+
             _context.Add(worker);
             _context.SaveChanges();
+            _toastNotification.AddSuccessToastMessage("Worker added successfully");
             return RedirectToAction("WorkerIndex");
 
         }

@@ -18,8 +18,8 @@
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Cost Tittle" asp-for="Costtittle">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Operation Type</label>
-                    <select class="form-control select2" data-native-menu="false" id="units" asp-for="CostMapId" asp-items="@(new SelectList(ViewBag.costmape,"CostMapId","OperationType"))">
+                    <label for="costs">Operation Type</label>
+                    <select class="form-control select2" data-native-menu="false" id="costs" asp-for="CostMapId" asp-items="@(new SelectList(ViewBag.costmape,"CostMapId","OperationType"))">
                         <option disabled selected="selected">Select One</option>
                     </select>
                 </div>

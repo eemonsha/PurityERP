@@ -51,6 +51,36 @@ namespace PurityERP.Areas.Management.Controllers
             return View(Wrk);
         }
 
+        public IActionResult CompleteWorkIndex()
+        {
+            var Wrk = (from nwork in _context.NewWorks.Where(x => x.WorkStatus == "Delivered")
+                       join worker in _context.Workers
+                       on nwork.Wroker equals worker.WorkerId
+                       join costmape in _context.CostMaps
+                       on nwork.WorkType equals costmape.CostMapId
+                       join product in _context.Products
+                       on nwork.Product equals product.Id
+                       select new ManagementVm
+                       {
+                           WorkId = nwork.WorkId,
+                           Worker = worker.WorkerName,
+                           Product = product.ProductTittle,
+                           WorkAsignDate = nwork.WorkAsignDate,
+                           WorkType = costmape.OperationType,
+                           PerUnitCost = nwork.PerUnitCost,
+                           Quantity = nwork.Quantity,
+                           EDD = nwork.EDD,
+
+                           DeliveryQty = nwork.DeliveryQty,
+                           PaidAmount = nwork.PaidAmount,
+                           WorkStatus = nwork.WorkStatus
+
+                       });
+
+
+            return View(Wrk);
+        }
+
         public IActionResult WorkCreate()
         {
             DefaultData();//loading default data
@@ -120,7 +150,19 @@ namespace PurityERP.Areas.Management.Controllers
                     CostRegID=pwr.RegWorkID,
                     CostStatus="Active"
                 };
+                
                 _context.Add(NewCost);
+                _context.SaveChanges();
+            }
+            if(newWork.PaidAmount != 0)
+            {
+                var payment = new Payment
+                {
+                    PaymentDate = newWork.WorkAsignDate,
+                    PaymentWorkID = st.WorkId,
+                    PaymentAmount = newWork.PaidAmount
+                };
+                _context.Add(payment);
                 _context.SaveChanges();
             }
            
@@ -204,6 +246,10 @@ namespace PurityERP.Areas.Management.Controllers
             wrkmng.DeliveryQty = wrkmng.DeliveryQty + newWork.NewDeliveryQty;
             wrkmng.WasteLostQty = wrkmng.WasteLostQty + newWork.NewWasterQty;
             wrkmng.PaidAmount = wrkmng.PaidAmount + newWork.NewPayment;
+            if(wrkmng.Quantity == FinalQty)
+            {
+                wrkmng.WorkStatus = "Delivered";
+            }
             _context.Update(wrkmng);
             _context.SaveChanges();
 
