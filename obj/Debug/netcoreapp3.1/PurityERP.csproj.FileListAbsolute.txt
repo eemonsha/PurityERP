@@ -1431,3 +1431,6 @@ C:\Project\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.MvcApplicationPartsAssemb
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\ManageProduct.cshtml.g.cs
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\CompleteWorkIndex.cshtml.g.cs
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\InventoryOutDetails.cshtml.g.cs
+D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\InventoryOutDetails.cshtml.g.cs
+D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\ManageProduct.cshtml.g.cs
+D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\CompleteWorkIndex.cshtml.g.cs

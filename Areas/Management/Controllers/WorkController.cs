@@ -226,13 +226,12 @@ namespace PurityERP.Areas.Management.Controllers
             var wrkmng = _context.NewWorks.Where(x => x.WorkId == newWork.WorkId).FirstOrDefault();
 
             //validation
-            if(newWork.NewDeliveryQty<1 && newWork.NewWasterQty < 1)
+            if(newWork.NewDeliveryQty<1 && newWork.NewWasterQty < 1 && newWork.NewPayment<1)
             {
-                _toastNotification.AddErrorToastMessage("Invalid quanity specified");
+                _toastNotification.AddErrorToastMessage("Please specify delivery/waste quantity or payment to proceed");
                 return View(newWork);
             }
                        
-            
             decimal FinalQty = wrkmng.DeliveryQty + wrkmng.WasteLostQty + newWork.NewDeliveryQty + newWork.NewWasterQty;
             if (FinalQty > wrkmng.Quantity)
             {
