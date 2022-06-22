@@ -1,4 +1,10 @@
-﻿@model IEnumerable<PurityERP.Areas.Management.Models.Product>
+﻿@*@model*@  
+@using Microsoft.AspNetCore.Http
+@{
+
+    IEnumerable<PurityERP.Areas.Management.Models.Product> products = ViewData["products"] as IEnumerable<PurityERP.Areas.Management.Models.Product>;
+
+}
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -14,6 +20,7 @@
             <h3 class="card-title">Exitst Product</h3>
         </div>
         <a asp-action="Productcreate" class=" btn btn-primary float-right">Create New</a>
+        @*<a asp-action="ProductQrCode" class=" btn btn-primary float-right">QRCode</a>*@
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -22,28 +29,30 @@
 
                         <th>Product Tittle</th>
                         <th>Sales price</th>
+                        <th>Action</th>
 
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var items in Model)
+                    @foreach (var items in products)
                     {
-                    <tr>
+                        <tr>
 
-                        <td>@items.ProductTittle</td>
-                        <td>@items.SalesPrice</td>
-                        <td class="float-right">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
-                                <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
-                                <a asp-action="ProductManage" asp-route-id="@items.Id" type="button" class="btn btn-info">Manage</a>
+                            <td>@items.ProductTittle</td>
+                            <td>@items.SalesPrice</td>
+                            <td class="float-right">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
+                                    <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
+                                    <a asp-action="ProductManage" asp-route-id="@items.Id" type="button" class="btn btn-info">Manage</a>
+                                    <a asp-action="ProductQrCode" asp-route-id="@items.Id" type="button" class="btn btn-info">Genarete QR</a>
 
-                            </div>
+                                </div>
 
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     }
 
                 </tbody>
@@ -52,11 +61,25 @@
 
                         <th>Product Tittle</th>
                         <th>Sales price</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
         <!-- /.card-body -->
+        @if (Context.Session.GetString("image") != null)
+        {
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9">
+                        <a href="@Context.Session.GetString("image")" download="img.jpg"><img src="@Context.Session.GetString("image")" height="300" width="300" /></a>
+                        
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </body>
 </html>

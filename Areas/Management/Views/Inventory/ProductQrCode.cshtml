@@ -1,0 +1,27 @@
+﻿@model PurityERP.Areas.Management.Models.Product
+@{
+    ViewData["Title"] = "ProductQrCode";
+}
+
+
+<div>
+    <h1 class="display-4">ProductQrCode</h1>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <img src="@Url.Action("ProductQrCode")" alt="QRCode" />
+    </div>
+
+    <div class="col-12">
+        @using (Html.BeginForm("ProductQrCode", "Inventory"))
+        {
+            <div class="col-md-6">
+                ID: <input name="Code" class="form-control" type="text" />
+                <button type="submit" class="btn btn-primary">ORCode</button>
+            </div>
+        }
+    </div>
+</div>
+
+

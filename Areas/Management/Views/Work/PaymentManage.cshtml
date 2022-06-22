@@ -93,11 +93,11 @@
 
         <h4 class="card-title"><strong>Delivery/payment</strong></h4>
 
-        <form asp-action="WorkManage">
+        <form asp-action="PaymentManage">
             <div class="card-body">
                 <input type="hidden" asp-for="WorkId">
                 <div class="row">
-                    <div class="col-md-2">
+                    @*<div class="col-md-2">
                         <div class="form-group">
                             <label for="invqty">Date</label>
                             <input type="date" class="form-control" id="invqty" placeholder="Delivery Qty" asp-for="TxnDate">
@@ -116,7 +116,7 @@
                             <label for="Quantity">Waste lost Quantity</label>
                             <input type="number" class="form-control" id="Quantity" placeholder="W/L Quantity" asp-for="NewWasterQty">
                         </div>
-                    </div>
+                    </div>*@
 
                     <div class="col-md-2">
 
@@ -125,20 +125,20 @@
                             <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="NewPayment">
                         </div>
                         @*@if (Model.PaidAmount >= Model.Payment)
-        {
-            <div class="form-group">
-                <label for="invqty">Payment</label>
-                <input type="number" class="form-control" readonly id="invqty" placeholder="Payment" asp-for="NewPayment">
-            </div>
+                            {
+                                <div class="form-group">
+                                    <label for="invqty">Payment</label>
+                                    <input type="number" class="form-control" readonly id="invqty" placeholder="Payment" asp-for="NewPayment">
+                                </div>
 
-        }
-        else
-        {
-            <div class="form-group">
-                <label for="invqty">Payment</label>
-                <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="NewPayment">
-            </div>
-        }*@
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <label for="invqty">Payment</label>
+                                    <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="NewPayment">
+                                </div>
+                            }*@
 
                     </div>
                 </div>
@@ -165,10 +165,10 @@
 
 
 
-        @section Scripts {
+    @section Scripts {
 
-            <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-            <script>
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
             $(document).ready(function () {
                 $('#inventory').change(function () {
                     var invenid = $('#inventory').val();
@@ -192,8 +192,8 @@
                     }
                 });
             });
-            </script>
-        }
+        </script>
+    }
 </body>
 </html>
 

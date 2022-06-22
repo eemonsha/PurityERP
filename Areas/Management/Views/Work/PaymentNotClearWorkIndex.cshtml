@@ -10,9 +10,9 @@
 <body>
 
     <div class="card">
-       
+
         <div class="card-header">
-            <h2 class=" text-center">Completed Work</h2>
+            <h2 class=" text-center">Completed Work but Payment Not Clear</h2>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -41,6 +41,7 @@
                             <td class="float-right">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a asp-action="WorkDetails" asp-route-id="@items.WorkId" type="button" class="btn btn-warning">Details</a>
+                                    <a asp-action="PaymentManage" asp-route-id="@items.WorkId" type="button" class="btn btn-info">Payment</a>
                                 </div>
 
 
