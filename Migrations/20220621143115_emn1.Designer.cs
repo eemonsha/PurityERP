@@ -10,8 +10,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220621054222_emn2")]
-    partial class emn2
+    [Migration("20220621143115_emn1")]
+    partial class emn1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
