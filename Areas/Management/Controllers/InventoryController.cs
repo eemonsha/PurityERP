@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using PurityERP.Areas.Management.Models;
 using PurityERP.Areas.Management.ViewModel;
 using PurityERP.Data;
+using QRCoder;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,6 +17,8 @@ namespace PurityERP.Areas.Management.Controllers
     public class InventoryController : Controller
     {
         private readonly DataContext _context;
+        private string code;
+
         public InventoryController(DataContext context)
         {
             _context = context;
@@ -248,10 +253,13 @@ namespace PurityERP.Areas.Management.Controllers
 
 
     public IActionResult ProductIndex()
-        {
+    {
             var pro = _context.Products.ToList();
-            return View(pro);
-        }
+            ViewData["products"] = pro;
+            return View();
+     }
+
+
 
         public IActionResult Productcreate()
         {
@@ -322,6 +330,49 @@ namespace PurityERP.Areas.Management.Controllers
             return View(sql);
             
         }
+
+        public IActionResult ProductQrCode(int id)
+        {
+            var product = _context.Products.Find(id);
+            var data = "Product Name - "+product.ProductTittle+"-"+product.ProductCode;
+            QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
+            QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+            QRCode qRCode = new QRCode(qRCodeData);
+            Bitmap bitmap = qRCode.GetGraphic(15);
+
+            var bitmapBytes = ConvertBitmapToBytes(bitmap);
+
+            var img = "data:image/png;base64," + Convert.ToBase64String(bitmapBytes);
+            HttpContext.Session.SetString("image", img);
+            var file = File(bitmapBytes, "image/jpeg");
+            //TempData["qr"] = bitmapBytes;
+            return RedirectToAction("ProductIndex");
+            
+            
+        }
+        //[HttpPost]
+        ////QR
+        //public IActionResult ProductQrCode(string Code)
+        //{
+        //    QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
+        //    QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
+        //    QRCode qRCode = new QRCode(qRCodeData);
+        //    Bitmap bitmap = qRCode.GetGraphic(15);
+        //    var bitmapBytes = ConvertBitmapToBytes(bitmap);
+        //    return File(bitmapBytes,"image/jpeg"); 
+        //}
+
+        private byte[] ConvertBitmapToBytes(Bitmap bitmap)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+
+                // bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
 
 
         public JsonResult inventoryqty(int invenid)

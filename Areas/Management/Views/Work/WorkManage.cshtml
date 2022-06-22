@@ -119,10 +119,27 @@
                     </div>
 
                     <div class="col-md-2">
+
                         <div class="form-group">
                             <label for="invqty">Payment</label>
                             <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="NewPayment">
                         </div>
+                        @*@if (Model.PaidAmount >= Model.Payment)
+        {
+            <div class="form-group">
+                <label for="invqty">Payment</label>
+                <input type="number" class="form-control" readonly id="invqty" placeholder="Payment" asp-for="NewPayment">
+            </div>
+
+        }
+        else
+        {
+            <div class="form-group">
+                <label for="invqty">Payment</label>
+                <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="NewPayment">
+            </div>
+        }*@
+
                     </div>
                 </div>
 

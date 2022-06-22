@@ -1,0 +1,199 @@
+﻿@model PurityERP.Areas.Management.Models.NewWork
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Task Management</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="WorkId" class="control-label">Worker ID</label>
+                        <input readonly asp-for="WorkId" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="WorkAsignDate" class="control-label">Work Date</label>
+                        <input type="date" readonly asp-for="WorkAsignDate" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="WorkTypeTitle" class="control-label">Category</label>
+                        <input readonly asp-for="WorkTypeTitle" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="WrokerName" class="control-label">Worker</label>
+                        <input readonly asp-for="WrokerName" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="ProductName" class="control-label">Product</label>
+                        <input readonly asp-for="ProductName" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label">Asign. Qty</label>
+                        <input readonly asp-for="Quantity" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="PerUnitCost" class="control-label">Cost(per pcs.)</label>
+                        <input readonly asp-for="PerUnitCost" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="DeliveryQty" class="control-label">Del. Qty.</label>
+                        <input readonly asp-for="DeliveryQty" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="WasteLostQty" class="control-label">Waste. Qty.</label>
+                        <input readonly asp-for="WasteLostQty" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="PaidAmount" class="control-label">Paid</label>
+                        <input readonly asp-for="PaidAmount" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <hr />
+
+        <h4 class="card-title"><strong>Delivery/payment</strong></h4>
+
+        <form asp-action="PaymentManage">
+            <div class="card-body">
+                <input type="hidden" asp-for="WorkId">
+                <div class="row">
+                    @*<div class="col-md-2">
+                        <div class="form-group">
+                            <label for="invqty">Date</label>
+                            <input type="date" class="form-control" id="invqty" placeholder="Delivery Qty" asp-for="TxnDate">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="invqty">Delivery Quantity</label>
+                            <input type="number" class="form-control" id="invqty" placeholder="Delivery Qty" asp-for="NewDeliveryQty">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="Quantity">Waste lost Quantity</label>
+                            <input type="number" class="form-control" id="Quantity" placeholder="W/L Quantity" asp-for="NewWasterQty">
+                        </div>
+                    </div>*@
+
+                    <div class="col-md-2">
+
+                        <div class="form-group">
+                            <label for="invqty">Payment</label>
+                            <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="NewPayment">
+                        </div>
+                        @*@if (Model.PaidAmount >= Model.Payment)
+                            {
+                                <div class="form-group">
+                                    <label for="invqty">Payment</label>
+                                    <input type="number" class="form-control" readonly id="invqty" placeholder="Payment" asp-for="NewPayment">
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <label for="invqty">Payment</label>
+                                    <input type="number" class="form-control" id="invqty" placeholder="Payment" asp-for="NewPayment">
+                                </div>
+                            }*@
+
+                    </div>
+                </div>
+
+
+                <!-- /.card-body -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary" id="submitbtn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <p>@TempData["msg"]</p>
+    </div>
+
+
+
+
+
+
+
+
+    @section Scripts {
+
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#inventory').change(function () {
+                    var invenid = $('#inventory').val();
+                    console.log("inid - ", invenid);
+
+                    $.getJSON('@Url.Action("inventoryqty")', { invenid: invenid }, function (remainqty) {
+
+                        $('#remainingqty').text(remainqty);
+
+                    })
+                });
+                $("#invqty").keyup(function () {
+                    var remain = $('#remainingqty').text();
+                    var invenneed = $('#invqty').val();
+                    if (parseInt(remain) < parseInt(invenneed)) {
+                        alert("Bigger");
+                        $('#submitbtn').attr("disabled", true);
+                    }
+                    else {
+                        $('#submitbtn').attr("disabled", false);
+                    }
+                });
+            });
+        </script>
+    }
+</body>
+</html>
+

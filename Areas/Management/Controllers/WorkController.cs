@@ -81,6 +81,37 @@ namespace PurityERP.Areas.Management.Controllers
             return View(Wrk);
         }
 
+        public IActionResult PaymentNotClearWorkIndex()
+        {
+            var Wrk = (from nwork in _context.NewWorks.Where(x => x.WorkStatus == "DeliveredWithDuepayment")
+                       join worker in _context.Workers
+                       on nwork.Wroker equals worker.WorkerId
+                       join costmape in _context.CostMaps
+                       on nwork.WorkType equals costmape.CostMapId
+                       join product in _context.Products
+                       on nwork.Product equals product.Id
+                       select new ManagementVm
+                       {
+                           WorkId = nwork.WorkId,
+                           Worker = worker.WorkerName,
+                           Product = product.ProductTittle,
+                           WorkAsignDate = nwork.WorkAsignDate,
+                           WorkType = costmape.OperationType,
+                           PerUnitCost = nwork.PerUnitCost,
+                           Quantity = nwork.Quantity,
+                           EDD = nwork.EDD,
+
+                           DeliveryQty = nwork.DeliveryQty,
+                           PaidAmount = nwork.PaidAmount,
+                           WorkStatus = nwork.WorkStatus
+
+                       });
+
+
+            return View(Wrk);
+        }
+
+
         public IActionResult WorkCreate()
         {
             DefaultData();//loading default data
@@ -245,9 +276,13 @@ namespace PurityERP.Areas.Management.Controllers
             wrkmng.DeliveryQty = wrkmng.DeliveryQty + newWork.NewDeliveryQty;
             wrkmng.WasteLostQty = wrkmng.WasteLostQty + newWork.NewWasterQty;
             wrkmng.PaidAmount = wrkmng.PaidAmount + newWork.NewPayment;
-            if(wrkmng.Quantity == FinalQty)
+            if(wrkmng.Quantity == FinalQty && wrkmng.Payment <= wrkmng.PaidAmount)
             {
                 wrkmng.WorkStatus = "Delivered";
+            }
+            else if (wrkmng.Quantity == FinalQty )
+            {
+                wrkmng.WorkStatus = "DeliveredWithDuePayment";
             }
             _context.Update(wrkmng);
             _context.SaveChanges();
@@ -303,6 +338,111 @@ namespace PurityERP.Areas.Management.Controllers
 
             _toastNotification.AddSuccessToastMessage("Work management data stored");
             return RedirectToAction("WorkIndex");
+        }
+
+
+
+        //only payment
+        public IActionResult PaymentManage(int id)
+        {
+            var SelWork = _context.NewWorks.Where(x => x.WorkId == id).FirstOrDefault();
+            SelWork.WorkTypeTitle = _context.CostMaps.Where(x => x.CostMapId == SelWork.WorkType).FirstOrDefault().OperationType;
+            SelWork.WrokerName = _context.Workers.Where(x => x.WorkerId == SelWork.Wroker).FirstOrDefault().WorkerName;
+            SelWork.ProductName = _context.Products.Where(x => x.Id == SelWork.Product).FirstOrDefault().ProductTittle;
+            SelWork.NewDeliveryQty = 0;
+            SelWork.NewWasterQty = 0;
+            SelWork.NewPayment = 0;
+            SelWork.TxnDate = System.DateTime.Now;
+            return View(SelWork);
+        }
+
+        [HttpPost]
+        public IActionResult PaymentManage(NewWork newWork)
+        {
+            var wrkmng = _context.NewWorks.Where(x => x.WorkId == newWork.WorkId).FirstOrDefault();
+
+            //validation
+            if (newWork.NewDeliveryQty < 1 && newWork.NewWasterQty < 1 && newWork.NewPayment < 1)
+            {
+                _toastNotification.AddErrorToastMessage("Please specify delivery/waste quantity or payment to proceed");
+                return View(newWork);
+            }
+
+            decimal FinalQty = wrkmng.DeliveryQty + wrkmng.WasteLostQty + newWork.NewDeliveryQty + newWork.NewWasterQty;
+            if (FinalQty > wrkmng.Quantity)
+            {
+                _toastNotification.AddErrorToastMessage("Invalid quanity specified");
+                return View(newWork);
+            }
+            //end of validation
+
+
+            //update in work table
+            wrkmng.DeliveryQty = wrkmng.DeliveryQty + newWork.NewDeliveryQty;
+            wrkmng.WasteLostQty = wrkmng.WasteLostQty + newWork.NewWasterQty;
+            wrkmng.PaidAmount = wrkmng.PaidAmount + newWork.NewPayment;
+            if (wrkmng.Quantity == FinalQty && wrkmng.Payment <= wrkmng.PaidAmount)
+            {
+                wrkmng.WorkStatus = "Delivered";
+            }
+            else if (wrkmng.Quantity == FinalQty)
+            {
+                wrkmng.WorkStatus = "DeliveredWithDuePayment";
+            }
+            _context.Update(wrkmng);
+            _context.SaveChanges();
+
+
+            //add row in product register-- New delivery qty
+            if (newWork.NewDeliveryQty > 0)
+            {
+                var pwr = new ProductWorkRegister
+                {
+                    RegAsignDate = newWork.TxnDate,
+                    RegWorkID = newWork.WorkId,
+                    RegType = "In",
+                    RegCategoryQty = newWork.NewDeliveryQty,
+                    MoveStatus = "Receipt"
+                };
+                _context.Add(pwr);
+                _context.SaveChanges();
+
+                //incase of receipt of product
+
+            }
+            //add row in product register-- New delivery qty
+
+
+            //add row in product register-- New waste qty
+            if (newWork.NewWasterQty > 0)
+            {
+                var pwr = new ProductWorkRegister
+                {
+                    RegAsignDate = newWork.TxnDate,
+                    RegWorkID = newWork.WorkId,
+                    RegType = "In",
+                    RegCategoryQty = newWork.NewWasterQty,
+                    MoveStatus = "Damaged"
+                };
+                _context.Add(pwr);
+                _context.SaveChanges();
+            }
+            //add row in product register-- New waste qty
+
+            if (newWork.NewPayment > 0)
+            {
+                var payment = new Payment
+                {
+                    PaymentWorkID = newWork.WorkId,
+                    PaymentDate = newWork.TxnDate,
+                    PaymentAmount = newWork.NewPayment
+                };
+                _context.Add(payment);
+                _context.SaveChanges();
+            }
+
+            _toastNotification.AddSuccessToastMessage("Payment data stored");
+            return RedirectToAction("PaymentNotClearWorkIndex");
         }
     }
 }
