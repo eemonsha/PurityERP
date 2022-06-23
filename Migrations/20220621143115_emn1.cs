@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class emn2 : Migration
+    public partial class emn1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

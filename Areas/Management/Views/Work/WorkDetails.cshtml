@@ -18,50 +18,51 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <h6>Worker: <strong>@Model.Worker</strong></h6>
-                <h6>Nature of work <strong>@Model.WorkType</strong></h6>
-                <h6>Work Quanity: <strong>@Model.Quantity</strong> cost per unit:  @Model.PerUnitCost per item</h6>
-                <h6>Work date: <strong>@Model.WorkAsignDate.ToShortDateString()</strong></h6>
-                <h6>Expected delivery date <strong>@Model.EDD.ToShortDateString()</strong></h6>
-                <h6>Delivered qty: <strong>@Model.DeliveryQty</strong></h6>
-                <h6>Damaged qty: <strong>@Model.WasteQty</strong></h6>
-                <h6>Paid amount <strong>@Model.PaidAmount</strong></h6>
+                <h6 >Worker: <strong>@Model.Worker</strong></h6>
+                <h6 >Nature of work <strong>@Model.WorkType</strong></h6>
+                <h6 >Work Quanity: <strong>@Model.Quantity</strong> cost per unit:  @Model.PerUnitCost per item</h6>
+                <h6 >Work date: <strong>@Model.WorkAsignDate.ToShortDateString()</strong></h6>
+                <h6 >Expected delivery date <strong>@Model.EDD.ToShortDateString()</strong></h6>
+                <h6 >Delivered qty: <strong>@Model.DeliveryQty</strong></h6>
+                <h6 >Damaged qty: <strong>@Model.WasteQty</strong></h6>
+                <h6 >Paid amount <strong>@Model.PaidAmount</strong></h6>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header text-info h5">Payment history</div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (PurityERP.Areas.Management.Models.Payment cstl in PayList)
-                            {
+                <div class="card-header bg-info text-info h5">Payment history</div>
+                    <div class="card-body p-0">
+                        <table class="table table-dark">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => cstl.PaymentDate)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => cstl.PaymentAmount)
-                                    </td>
+                                    <th>Date</th>
+                                    <th>Amount</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @foreach (PurityERP.Areas.Management.Models.Payment cstl in PayList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => cstl.PaymentDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => cstl.PaymentAmount)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                
             </div>
 
             <hr />
             <div class="card">
-                <div class="card-header text-info h5">Product register</div>
-                <div class="card-body">
-                    <table class="table">
+                <div class="card-header bg-success text-info h5">Product register</div>
+                <div class="card-body p-0">
+                    <table class="table table-dark">
                         <thead>
                             <tr>
                                 <th>Date</th>
