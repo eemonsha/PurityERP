@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class emn1 : Migration
+    public partial class emn7 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -144,7 +144,8 @@ namespace PurityERP.Migrations
                     SalesPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DiscountRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     InitialProductStockQty = table.Column<int>(type: "int", nullable: false),
-                    RemainingQty = table.Column<int>(type: "int", nullable: false)
+                    RemainingQty = table.Column<int>(type: "int", nullable: false),
+                    QRId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -166,6 +167,19 @@ namespace PurityERP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductWorkRegisters", x => x.ProductWorkRegisterID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QRs",
+                columns: table => new
+                {
+                    QRId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QRValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QRs", x => x.QRId);
                 });
 
             migrationBuilder.CreateTable(
@@ -270,6 +284,9 @@ namespace PurityERP.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductWorkRegisters");
+
+            migrationBuilder.DropTable(
+                name: "QRs");
 
             migrationBuilder.DropTable(
                 name: "Suppliers");

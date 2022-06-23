@@ -260,6 +260,9 @@ namespace PurityERP.Migrations
                     b.Property<string>("ProductTittle")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("QRId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RemainingQty")
                         .HasColumnType("int");
 
@@ -296,6 +299,21 @@ namespace PurityERP.Migrations
                     b.HasKey("ProductWorkRegisterID");
 
                     b.ToTable("ProductWorkRegisters");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.QR", b =>
+                {
+                    b.Property<int>("QRId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("QRValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QRId");
+
+                    b.ToTable("QRs");
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Suppliers", b =>

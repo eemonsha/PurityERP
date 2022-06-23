@@ -15,6 +15,7 @@ namespace PurityERP.Areas.Management.Models
         public decimal DiscountRate { get; set; }
         public int InitialProductStockQty { get; set; }
         public int RemainingQty { get; set; }
+        public int QRId { get; set; }
 
     }
 }
