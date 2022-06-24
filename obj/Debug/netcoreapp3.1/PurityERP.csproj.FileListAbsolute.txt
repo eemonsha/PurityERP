@@ -1740,3 +1740,4 @@ C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Invent
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\PaymentManage.cshtml.g.cs
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\PaymentNotClearWorkIndex.cshtml.g.cs
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\SalesIndex.cshtml.g.cs
+D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\SalesIndex.cshtml.g.cs
