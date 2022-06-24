@@ -303,15 +303,18 @@ namespace PurityERP.Migrations
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.QR", b =>
                 {
-                    b.Property<int>("QRId")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("QRValue")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ItemCode")
+                        .HasColumnType("int");
 
-                    b.HasKey("QRId");
+                    b.Property<byte[]>("QrImage")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("ID");
 
                     b.ToTable("QRs");
                 });

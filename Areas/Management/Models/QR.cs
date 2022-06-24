@@ -7,8 +7,9 @@ namespace PurityERP.Areas.Management.Models
 {
     public class QR
     {
-        public int QRId { get; set; }
-        public string QRValue { get; set; }
+        public int ID { get; set; }
+        public int ItemCode { get; set; }
+        public byte[] QrImage { get; set; }
 
     }
 }

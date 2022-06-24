@@ -173,13 +173,14 @@ namespace PurityERP.Migrations
                 name: "QRs",
                 columns: table => new
                 {
-                    QRId = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    QRValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ItemCode = table.Column<int>(type: "int", nullable: false),
+                    QrImage = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QRs", x => x.QRId);
+                    table.PrimaryKey("PK_QRs", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
