@@ -206,7 +206,7 @@ namespace PurityERP.Areas.Management.Controllers
             {
                 decimal SelPerUnitCost = _context.Inventories.Where(x => x.Id == inventoryout.InventoryItem).FirstOrDefault().UnitPrice;
 
-                decimal PerUnitCost = inventoryout.InventoryQuantity*SelPerUnitCost;
+                decimal PerUnitCost = SelPerUnitCost;
                 var NewCost = new CostRegister()
                 {
                     ProdID = inventoryout.ProductTittle,
