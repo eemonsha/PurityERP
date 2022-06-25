@@ -10,6 +10,14 @@
 <body>
 
     <div class="card">
+        <div class="">
+            <div class="border bg-secondary d-flex justify-content-center p-2">
+                <div class="d-grid gap-2 d-md-block">
+                    <a class="btn btn-light" asp-area="Management" asp-controller="Work" asp-action="CompleteWorkIndex">Complete Work Schedule</a>
+                    <a class="btn btn-light" asp-area="Management" asp-controller="Work" asp-action="PaymentNotClearWorkIndex">Payment not clear Work Schedule</a>
+                </div>
+            </div>
+        </div>
 
         <a asp-action="WorkCreate" class=" btn btn-primary float-right">Create New</a>
         <div class="card-header">
@@ -44,9 +52,9 @@
                             <td>@items.Quantity</td>
                             <td class="float-right">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a asp-action="WorkDetails" asp-route-id="@items.WorkId" type="button" class="btn btn-warning">Details</a>
-                                    <a asp-action="WorkManage" asp-route-id="@items.WorkId" type="button" class="btn btn-info">Manage</a>
-
+                                    <a asp-action="WorkDetails" asp-route-id="@items.WorkId" type="button" class="btn btn-info">Details</a>
+                                    <a asp-action="WorkManage" asp-route-id="@items.WorkId" type="button" class="btn btn-dark">Manage</a>
+                                    
                                 </div>
                             </td>
                         </tr>

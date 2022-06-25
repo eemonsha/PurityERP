@@ -28,6 +28,7 @@ namespace PurityERP.Data
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<CostRegister> CostRegisters { get; set; }
+        public DbSet<QR> QRs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
