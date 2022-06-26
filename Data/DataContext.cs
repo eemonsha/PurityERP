@@ -29,6 +29,10 @@ namespace PurityERP.Data
 
         public DbSet<CostRegister> CostRegisters { get; set; }
         public DbSet<QR> QRs { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<SubMenu> SubMenus { get; set; }
+        public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<RolebasedMenu> RolebasedMenus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,9 +41,17 @@ namespace PurityERP.Data
                 new CostMap { CostMapId = 1, OperationType = "Raw Material" },
                 new CostMap { CostMapId = 2, OperationType = "Karchupi Work" }
                 );
+            modelBuilder.Entity<UserType>().HasData(
+
+                new UserType {UserTypeID = 1,UserTypeName = "Administrator" },
+                new UserType {UserTypeID = 2,UserTypeName = "Maneger" },
+                new UserType {UserTypeID = 3,UserTypeName = "Employee" },
+                new UserType {UserTypeID = 4,UserTypeName = "User" }
+
+                );
             modelBuilder.Entity<Users>().HasData(
 
-                 new Users { UserID = 1, UserName = "Admin", PassWord = "123", UserType = "Admin" }
+                 new Users { UserID = 1, UserName = "Admin", PassWord = "123", UserTypeID = 1}
 
                  );
 

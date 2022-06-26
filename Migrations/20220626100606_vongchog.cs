@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class emn1 : Migration
+    public partial class vongchog : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -90,6 +90,19 @@ namespace PurityERP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InventoryOuts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Menus",
+                columns: table => new
+                {
+                    MenuID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ManuName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Menus", x => x.MenuID);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,6 +197,37 @@ namespace PurityERP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RolebasedMenus",
+                columns: table => new
+                {
+                    RBMenuID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SubMenuID = table.Column<int>(type: "int", nullable: false),
+                    UserTypeID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RolebasedMenus", x => x.RBMenuID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubMenus",
+                columns: table => new
+                {
+                    SubMenuID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SubManuName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Controller = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Action = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MainMenuID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubMenus", x => x.SubMenuID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Suppliers",
                 columns: table => new
                 {
@@ -219,11 +263,24 @@ namespace PurityERP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PassWord = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserTypeID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserTypes",
+                columns: table => new
+                {
+                    UserTypeID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserTypeName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTypes", x => x.UserTypeID);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,17 +301,27 @@ namespace PurityERP.Migrations
             migrationBuilder.InsertData(
                 table: "CostMaps",
                 columns: new[] { "CostMapId", "OperationType" },
-                values: new object[] { 1, "Raw Material" });
+                values: new object[,]
+                {
+                    { 1, "Raw Material" },
+                    { 2, "Karchupi Work" }
+                });
 
             migrationBuilder.InsertData(
-                table: "CostMaps",
-                columns: new[] { "CostMapId", "OperationType" },
-                values: new object[] { 2, "Karchupi Work" });
+                table: "UserTypes",
+                columns: new[] { "UserTypeID", "UserTypeName" },
+                values: new object[,]
+                {
+                    { 1, "Administrator" },
+                    { 2, "Maneger" },
+                    { 3, "Employee" },
+                    { 4, "User" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserID", "PassWord", "UserName", "UserType" },
-                values: new object[] { 1, "123", "Admin", "Admin" });
+                columns: new[] { "UserID", "PassWord", "UserName", "UserTypeID" },
+                values: new object[] { 1, "123", "Admin", 1 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -275,6 +342,9 @@ namespace PurityERP.Migrations
                 name: "InventoryOuts");
 
             migrationBuilder.DropTable(
+                name: "Menus");
+
+            migrationBuilder.DropTable(
                 name: "NewWorks");
 
             migrationBuilder.DropTable(
@@ -290,6 +360,12 @@ namespace PurityERP.Migrations
                 name: "QRs");
 
             migrationBuilder.DropTable(
+                name: "RolebasedMenus");
+
+            migrationBuilder.DropTable(
+                name: "SubMenus");
+
+            migrationBuilder.DropTable(
                 name: "Suppliers");
 
             migrationBuilder.DropTable(
@@ -297,6 +373,9 @@ namespace PurityERP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "UserTypes");
 
             migrationBuilder.DropTable(
                 name: "Workers");

@@ -10,8 +10,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220624115347_emn1")]
-    partial class emn1
+    [Migration("20220626100939_vongchog23")]
+    partial class vongchog23
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -168,6 +168,21 @@ namespace PurityERP.Migrations
                     b.ToTable("InventoryOuts");
                 });
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.Menu", b =>
+                {
+                    b.Property<int>("MenuID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ManuName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MenuID");
+
+                    b.ToTable("Menus");
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.NewWork", b =>
                 {
                     b.Property<int>("WorkId")
@@ -321,6 +336,54 @@ namespace PurityERP.Migrations
                     b.ToTable("QRs");
                 });
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.RolebasedMenu", b =>
+                {
+                    b.Property<int>("RBMenuID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("SubMenuID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserTypeID")
+                        .HasColumnType("int");
+
+                    b.HasKey("RBMenuID");
+
+                    b.ToTable("RolebasedMenus");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.SubMenu", b =>
+                {
+                    b.Property<int>("SubMenuID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Action")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Area")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Controller")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MainMenuID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubManuName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubMenuID");
+
+                    b.ToTable("SubMenus");
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Suppliers", b =>
                 {
                     b.Property<int>("SupplierId")
@@ -357,6 +420,43 @@ namespace PurityERP.Migrations
                     b.ToTable("units");
                 });
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.UserType", b =>
+                {
+                    b.Property<int>("UserTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("UserTypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserTypeID");
+
+                    b.ToTable("UserTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            UserTypeID = 1,
+                            UserTypeName = "Administrator"
+                        },
+                        new
+                        {
+                            UserTypeID = 2,
+                            UserTypeName = "Maneger"
+                        },
+                        new
+                        {
+                            UserTypeID = 3,
+                            UserTypeName = "Employee"
+                        },
+                        new
+                        {
+                            UserTypeID = 4,
+                            UserTypeName = "User"
+                        });
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Users", b =>
                 {
                     b.Property<int>("UserID")
@@ -370,8 +470,8 @@ namespace PurityERP.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserTypeID")
+                        .HasColumnType("int");
 
                     b.HasKey("UserID");
 
@@ -383,7 +483,7 @@ namespace PurityERP.Migrations
                             UserID = 1,
                             PassWord = "123",
                             UserName = "Admin",
-                            UserType = "Admin"
+                            UserTypeID = 1
                         });
                 });
 

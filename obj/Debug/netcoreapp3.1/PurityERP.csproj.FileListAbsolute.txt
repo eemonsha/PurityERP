@@ -1741,3 +1741,15 @@ C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\P
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\PaymentNotClearWorkIndex.cshtml.g.cs
 C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\SalesIndex.cshtml.g.cs
 D:\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\SalesIndex.cshtml.g.cs
+C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Home\CreateMenu.cshtml.g.cs
+C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Home\CreateSubMenu.cshtml.g.cs
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+C:\Project\PurityERP\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+C:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Home\RolePermission.cshtml.g.cs
