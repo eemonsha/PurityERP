@@ -234,56 +234,41 @@
                         </li>
 
                         <!--Dynamic Menu-->
+                        @foreach (var items in groupbymenu)
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-store"></i>
+                                    <p>
+                                        @items.Key
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-store"></i>
-                                <p>
-                                    Store
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @foreach (var items in groupbymenu)
-                                {
-                                    <li class="nav-item">
+                                    @*<li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="fas fa-angle-double-right"></i>
                                             <p>
-                                                @items.Key
+
                                                 <i class="right fas fa-angle-left"></i>
                                             </p>
                                         </a>
                                         <ul class="nav nav-treeview">
-                                            @foreach (var submenu in items)
-                                            {
-                                                <li class="nav-item">
-                                                    <a asp-area="Management" asp-controller="@submenu.Controller" asp-action="@submenu.Action" class="nav-link">
-                                                        <i class="fas fa-angle-right"></i>
-                                                        <p>@submenu.SubManuName</p>
-                                                    </a>
-                                                </li>
-                                            }
-
-
-
                                         </ul>
 
 
 
-                                    </li>
-                                }
-
-
-                                <li class="nav-item">
-                                    <a asp-area="Management" asp-controller="Home" asp-action="LogOut" class="nav-link" onclick="logoutbutton()">
-                                        <i class="fas fa-unlock-alt"></i>
-                                        <p>
-                                            Logout
-                                        </p>
-                                    </a>
-                                </li>
-
+                                    </li>*@
+                                    @foreach (var submenu in items)
+                                    {
+                                        <li class="nav-item">
+                                            <a asp-area="@submenu.Area" asp-controller="@submenu.Controller" asp-action="@submenu.Action" class="nav-link">
+                                                <i class="fas fa-angle-right"></i>
+                                                <p>@submenu.SubManuName</p>
+                                            </a>
+                                        </li>
+                                    }
 
 
 
@@ -293,183 +278,23 @@
 
 
 
-                                @*Create Features*@
-                                @*<li class="nav-item">
-        <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-plus-circle"></i>
-
-            <p>
-                Management
-                <i class="right fas fa-angle-left"></i>
-            </p>
-        </a>
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a asp-area="Management" asp-controller="PreModule" asp-action="PreSelect" class="nav-link">
-                    <i class="fas fa-angle-double-right"></i>
-                    <p>
-                        Pre Module SetUp
-                    </p>
-                </a>
-
-            </li>
-
-            <li class="nav-item">
-                <a asp-area="Management" asp-controller="Inventory" asp-action="InventoryIndex" class="nav-link">
-                    <i class="fas fa-angle-double-right"></i>
-                    <p>
-                        Inventory
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a asp-area="Management" asp-controller="Inventory" asp-action="InventoryOutIndex" class="nav-link">
-                    <i class="fas fa-angle-double-right"></i>
-                    <p>
-                        Inventory Out
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a asp-area="Management" asp-controller="Inventory" asp-action="ProductIndex" class="nav-link">
-                    <i class="fas fa-angle-double-right"></i>
-                    <p>
-                        Product
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a asp-area="Management" asp-controller="Work" asp-action="WorkIndex" class="nav-link">
-                    <i class="fas fa-angle-double-right"></i>
-                    <p>
-                        New Work Schedule
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a asp-area="Management" asp-controller="Sales" asp-action="SalesIndex" class="nav-link">
-                    <i class="fas fa-angle-double-right"></i>
-                    <p>
-                        Sales
-                    </p>
-                </a>
-            </li>
 
 
 
+                                </ul>
 
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a asp-area="Management" asp-controller="Home" asp-action="LogOut" class="nav-link" onclick="logoutbutton()">
+                                <i class="fas fa-unlock-alt"></i>
+                                <p>
+                                    Logout
+                                </p>
+                            </a>
+                        </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-info-circle"></i>
-
-                    <p>
-                        Employee Information
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-
-                    <li class="nav-item">
-                        <a asp-area="Employees" asp-controller="Employee" asp-action="AllEmployee" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Information
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Employees" asp-controller="Attendance" asp-action="File" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Attendance
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Staff Information
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Resigned
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Promotion
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Increment
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Staff Increment Proposal
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Migrate
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Transfer
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Store" asp-controller="Inventorys" asp-action="OtherRequest" class="nav-link">
-                            <i class="fas fa-angle-double-right"></i>
-                            <p>
-                                Lefty Letter Issue
-                            </p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item">
-                <a asp-area="Admin" asp-controller="Home" asp-action="Logout" class="nav-link" onclick="logoutbutton()">
-                    <i class="fas fa-unlock-alt"></i>
-                    <p>
-                        Logout
-                    </p>
-                </a>
-            </li>
-
-        </ul>
-        </li>*@
-                            </ul>
-
-                </nav>
+</nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->

@@ -33,13 +33,13 @@ namespace PurityERP.Areas.Management.Controllers
             return View();
         }
 
-       
+
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
-        public IActionResult Login(string Username,string Password)
+        public IActionResult Login(string Username, string Password)
         {
             var user = _context.Users.Where(x => x.UserName == Username && x.PassWord == Password).FirstOrDefault();
-            if(user != null)
+            if (user != null)
             {
                 HttpContext.Session.SetInt32("UserTypeId", user.UserTypeID);
                 HttpContext.Session.SetInt32("UserId", user.UserID);
@@ -60,8 +60,8 @@ namespace PurityERP.Areas.Management.Controllers
                                          }).ToList();
                 HttpContext.Session.Set<List<MenuVM>>("someKey", submenus);
 
-                
-                
+
+
 
 
                 return RedirectToAction("Index");
@@ -83,9 +83,13 @@ namespace PurityERP.Areas.Management.Controllers
                 TempData["msg"] = "Wrong ID or Password";
                 return View();
             }
-            
-        }
 
+        }
+        public IActionResult MenuIndex()
+        {
+            var menus = _context.Menus.ToList();
+            return View(menus);
+        }
         public IActionResult CreateMenu()
         {
             
@@ -96,15 +100,26 @@ namespace PurityERP.Areas.Management.Controllers
         {
             _context.Add(menu);
             _context.SaveChanges();
-            return View();
+            return RedirectToAction("MenuIndex");
+        }
+        public IActionResult SubMenuIndex()
+        {
+            var submenus = (from sub in _context.SubMenus.ToList()
+                           join mainmenu in _context.Menus
+                           on sub.MainMenuID equals mainmenu.MenuID
+                           select new MenuVM
+                           {
+                               SubMenuID = sub.SubMenuID,
+                               SubManuName = sub.SubManuName,
+                               Area = sub.Area,
+                               Controller = sub.Controller,
+                               Action = sub.Action,
+                               ManuName = mainmenu.ManuName
+                           }).ToList();
+            return View(submenus);
         }
         public IActionResult CreateSubMenu()
         {
-
-
-
-
-
 
             ViewBag.menus = _context.Menus.ToList();
             return View();
@@ -122,7 +137,27 @@ namespace PurityERP.Areas.Management.Controllers
 
             _context.Add(submenu);
             _context.SaveChanges();
-            return View();
+            return RedirectToAction("SubMenuIndex");
+        }
+        public IActionResult RoleIndex()
+        {
+            var role = (from roles in _context.RolebasedMenus.ToList()
+                        join sub in _context.SubMenus
+                        on roles.SubMenuID equals sub.SubMenuID
+                        join user in _context.Users
+                        on roles.UserID equals user.UserID
+                        join userty in _context.UserTypes
+                        on roles.UserTypeID equals userty.UserTypeID
+                        select new MenuVM
+                        {
+                            RBMenuID = roles.RBMenuID,
+                            SubManuName = sub.SubManuName,
+                            UserName = user.UserName,
+                            UserTypeName = userty.UserTypeName,
+                            ActiveStatus = roles.ActiveStatus
+
+                        }).ToList();
+            return View(role);
         }
         public IActionResult RolePermission()
         {
@@ -135,17 +170,18 @@ namespace PurityERP.Areas.Management.Controllers
         [HttpPost]
         public IActionResult RolePermission(MenuVM menuvm)
         {
+            var user = _context.Users.Where(x => x.UserID == menuvm.UserID).FirstOrDefault();
             
             var role = new RolebasedMenu
             {
                 SubMenuID = menuvm.SubMenuID,
                 UserID = menuvm.UserID,
-                UserTypeID = menuvm.UserTypeID,
+                UserTypeID = user.UserTypeID,
                 ActiveStatus = true
             };
             _context.Add(role);
             _context.SaveChanges();
-            return View();
+            return RedirectToAction("RoleIndex");
         }
         
         public IActionResult LogOut()

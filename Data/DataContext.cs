@@ -44,7 +44,7 @@ namespace PurityERP.Data
             modelBuilder.Entity<UserType>().HasData(
 
                 new UserType {UserTypeID = 1,UserTypeName = "Administrator" },
-                new UserType {UserTypeID = 2,UserTypeName = "Maneger" },
+                new UserType {UserTypeID = 2,UserTypeName = "Manager" },
                 new UserType {UserTypeID = 3,UserTypeName = "Employee" },
                 new UserType {UserTypeID = 4,UserTypeName = "User" }
 
@@ -54,6 +54,27 @@ namespace PurityERP.Data
                  new Users { UserID = 1, UserName = "Admin", PassWord = "123", UserTypeID = 1}
 
                  );
+
+            modelBuilder.Entity<Menu>().HasData(
+
+                new Menu { MenuID = 1, ManuName = "Super Admin" },
+                new Menu { MenuID = 2, ManuName= "Management"}
+                 );
+             modelBuilder.Entity<SubMenu>().HasData(
+
+                new SubMenu { SubMenuID = 1, SubManuName = "Menus", Area = "Management", Controller = "Home", Action = "MenuIndex", MainMenuID=1 },
+                new SubMenu { SubMenuID = 2, SubManuName = "Sub Menus", Area = "Management", Controller = "Home", Action = "SubMenuIndex", MainMenuID=1 },
+                new SubMenu { SubMenuID = 3, SubManuName = "Role Based Menus", Area = "Management", Controller = "Home", Action = "RolePermission", MainMenuID=1 }
+                
+                 );
+            modelBuilder.Entity<RolebasedMenu>().HasData(
+
+                new RolebasedMenu { RBMenuID=1, UserID = 1, UserTypeID = 1, SubMenuID = 1, ActiveStatus = true },
+                new RolebasedMenu { RBMenuID=2, UserID = 1, UserTypeID = 1, SubMenuID = 2, ActiveStatus = true },
+                new RolebasedMenu { RBMenuID=3, UserID = 1, UserTypeID = 1, SubMenuID = 3, ActiveStatus = true }
+
+                );
+
 
         }
 

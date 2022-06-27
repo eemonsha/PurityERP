@@ -17,7 +17,10 @@ namespace PurityERP.Areas.Management.ViewModel
         public int MainMenuID { get; set; }
         public int RBMenuID { get; set; }
         public string UserTypeName { get; set; }
+        public string UserName { get; set; }
+        public string UserPass { get; set; }
         public int UserTypeID { get; set; }
         public int UserID { get; set; }
+        public bool ActiveStatus { get; set; }
     }
 }

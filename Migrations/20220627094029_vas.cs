@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class vongchog : Migration
+    public partial class vas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -204,7 +204,8 @@ namespace PurityERP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SubMenuID = table.Column<int>(type: "int", nullable: false),
                     UserTypeID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false)
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    ActiveStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,6 +220,7 @@ namespace PurityERP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SubManuName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Controller = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Area = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Action = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MainMenuID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -308,12 +310,41 @@ namespace PurityERP.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Menus",
+                columns: new[] { "MenuID", "ManuName" },
+                values: new object[,]
+                {
+                    { 1, "Super Admin" },
+                    { 2, "Management" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RolebasedMenus",
+                columns: new[] { "RBMenuID", "ActiveStatus", "SubMenuID", "UserID", "UserTypeID" },
+                values: new object[,]
+                {
+                    { 1, true, 1, 1, 1 },
+                    { 2, true, 2, 1, 1 },
+                    { 3, true, 3, 1, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SubMenus",
+                columns: new[] { "SubMenuID", "Action", "Area", "Controller", "MainMenuID", "SubManuName" },
+                values: new object[,]
+                {
+                    { 1, "MenuIndex", "Management", "Home", 1, "Menus" },
+                    { 2, "SubMenuIndex", "Management", "Home", 1, "Sub Menus" },
+                    { 3, "RolePermission", "Management", "Home", 1, "Role Based Menus" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "UserTypes",
                 columns: new[] { "UserTypeID", "UserTypeName" },
                 values: new object[,]
                 {
                     { 1, "Administrator" },
-                    { 2, "Maneger" },
+                    { 2, "Manager" },
                     { 3, "Employee" },
                     { 4, "User" }
                 });

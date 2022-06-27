@@ -10,8 +10,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220626100939_vongchog23")]
-    partial class vongchog23
+    [Migration("20220627094029_vas")]
+    partial class vas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -181,6 +181,18 @@ namespace PurityERP.Migrations
                     b.HasKey("MenuID");
 
                     b.ToTable("Menus");
+
+                    b.HasData(
+                        new
+                        {
+                            MenuID = 1,
+                            ManuName = "Super Admin"
+                        },
+                        new
+                        {
+                            MenuID = 2,
+                            ManuName = "Management"
+                        });
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.NewWork", b =>
@@ -343,6 +355,9 @@ namespace PurityERP.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<bool>("ActiveStatus")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SubMenuID")
                         .HasColumnType("int");
 
@@ -355,6 +370,32 @@ namespace PurityERP.Migrations
                     b.HasKey("RBMenuID");
 
                     b.ToTable("RolebasedMenus");
+
+                    b.HasData(
+                        new
+                        {
+                            RBMenuID = 1,
+                            ActiveStatus = true,
+                            SubMenuID = 1,
+                            UserID = 1,
+                            UserTypeID = 1
+                        },
+                        new
+                        {
+                            RBMenuID = 2,
+                            ActiveStatus = true,
+                            SubMenuID = 2,
+                            UserID = 1,
+                            UserTypeID = 1
+                        },
+                        new
+                        {
+                            RBMenuID = 3,
+                            ActiveStatus = true,
+                            SubMenuID = 3,
+                            UserID = 1,
+                            UserTypeID = 1
+                        });
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.SubMenu", b =>
@@ -382,6 +423,35 @@ namespace PurityERP.Migrations
                     b.HasKey("SubMenuID");
 
                     b.ToTable("SubMenus");
+
+                    b.HasData(
+                        new
+                        {
+                            SubMenuID = 1,
+                            Action = "MenuIndex",
+                            Area = "Management",
+                            Controller = "Home",
+                            MainMenuID = 1,
+                            SubManuName = "Menus"
+                        },
+                        new
+                        {
+                            SubMenuID = 2,
+                            Action = "SubMenuIndex",
+                            Area = "Management",
+                            Controller = "Home",
+                            MainMenuID = 1,
+                            SubManuName = "Sub Menus"
+                        },
+                        new
+                        {
+                            SubMenuID = 3,
+                            Action = "RolePermission",
+                            Area = "Management",
+                            Controller = "Home",
+                            MainMenuID = 1,
+                            SubManuName = "Role Based Menus"
+                        });
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Suppliers", b =>
@@ -443,7 +513,7 @@ namespace PurityERP.Migrations
                         new
                         {
                             UserTypeID = 2,
-                            UserTypeName = "Maneger"
+                            UserTypeName = "Manager"
                         },
                         new
                         {
