@@ -31,28 +31,28 @@
                 <tbody>
                     @foreach (var items in Model)
                     {
-                    <tr>
+                        <tr>
 
 
 
-                        <td>@items.WorkerName</td>
-                        <td>@items.WorkerPhno</td>
-                        <td>@items.WorkerNid</td>
+                            <td>@items.WorkerName</td>
+                            <td>@items.WorkerPhno</td>
+                            <td>@items.WorkerNid</td>
 
-                        <td class="float-right">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                @*<a asp-action="EditSupplier" asp-route-id="@items.WorkerId" type="button" class="btn btn-warning">Edit</a>*@
-                                <button class="btn btn-danger stitchdetails" type="button"
-                                        data-assigned-id="@items.WorkerId" data-text="@items.WorkerName">
-                                    Delete
-                                </button>
-                            </div>
-
-
-                        </td>
+                            <td class="float-right">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    @*<a asp-action="EditSupplier" asp-route-id="@items.WorkerId" type="button" class="btn btn-warning">Edit</a>*@
+                                    <button class="btn btn-danger stitchdetails" type="button"
+                                            data-assigned-id="@items.WorkerId" data-text="@items.WorkerName">
+                                        Delete
+                                    </button>
+                                </div>
 
 
-                    </tr>
+                            </td>
+
+
+                        </tr>
 
                     }
 
@@ -123,10 +123,12 @@
                     "responsive": true, "lengthChange": false, "autoWidth": false,
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                
+
             });
         </script>
     }
-    </body>
+
+    <a class="btn btn-primary" asp-area="Management" asp-controller="PreModule" asp-action="PreSelect">Return</a>
+</body>
 </html>
 

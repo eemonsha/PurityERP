@@ -37,16 +37,16 @@
                                 <td class="float-right">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a asp-action="EditUnit" asp-route-id="@items.UnitID" type="button" class="btn btn-warning">Edit</a>
-                                        <button class="btn btn-danger stitchdetails" type="button" 
+                                        <button class="btn btn-danger stitchdetails" type="button"
                                                 data-assigned-id="@items.UnitID" data-text="@items.UnitName">
                                             Delete
                                         </button>
                                     </div>
 
-                                    
+
                                 </td>
 
-                                
+
 
                             </tr>
                         }
@@ -130,5 +130,6 @@
                 });
             </script>
         }
+        <a class="btn btn-primary" asp-area="Management" asp-controller="PreModule" asp-action="PreSelect">Return</a>
     </body>
     </html>

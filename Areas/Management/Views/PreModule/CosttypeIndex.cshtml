@@ -29,23 +29,23 @@
                 <tbody>
                     @foreach (var items in Model)
                     {
-                    <tr>
-                        <td>@items.Costtittle</td>
-                        <td>@items.OperationType</td>
+                        <tr>
+                            <td>@items.Costtittle</td>
+                            <td>@items.OperationType</td>
 
-                        <td class="float-right">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a asp-action="EditCostType" asp-route-id="@items.CostId" type="button" class="btn btn-warning">Edit</a>
-                                <button class="btn btn-danger stitchdetails" type="button"
-                                        data-assigned-id="@items.CostId" data-text="@items.Costtittle">
-                                    Delete
-                                </button>
-                            </div>
+                            <td class="float-right">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a asp-action="EditCostType" asp-route-id="@items.CostId" type="button" class="btn btn-warning">Edit</a>
+                                    <button class="btn btn-danger stitchdetails" type="button"
+                                            data-assigned-id="@items.CostId" data-text="@items.Costtittle">
+                                        Delete
+                                    </button>
+                                </div>
 
 
-                        </td>
-                        
-                    </tr>
+                            </td>
+
+                        </tr>
 
                     }
 
@@ -123,7 +123,7 @@
         </script>
     }
 
-
+    <a class="btn btn-primary" asp-area="Management" asp-controller="PreModule" asp-action="PreSelect">Return</a>
 
 </body>
 </html>
