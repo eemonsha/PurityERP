@@ -334,7 +334,7 @@ namespace PurityERP.Areas.Management.Controllers
         public IActionResult ProductQrCode(int id)
         {
             var product = _context.Products.Find(id);
-            var data = "Product Name - "+product.ProductTittle+"-"+product.ProductCode;
+            var data = "Product Name - "+product.ProductTittle+"-"+product.ProductCode+"-"+product.SalesPrice;
             QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
             QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
             QRCode qRCode = new QRCode(qRCodeData);

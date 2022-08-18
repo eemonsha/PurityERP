@@ -28,7 +28,7 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-
+                        <th>Product Code</th>
                         <th>Product Tittle</th>
                         <th>Sales price</th>
                         <th>Action</th>
@@ -39,27 +39,28 @@
                 <tbody>
                     @foreach (var items in products)
                     {
-                        <tr>
+                    <tr>
+                        <td>@items.ProductCode</td>
+                        <td>@items.ProductTittle</td>
+                        <td>@items.SalesPrice</td>
+                        <td class="float-right">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
+                                <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
+                                <a asp-action="ProductManage" asp-route-id="@items.Id" type="button" class="btn btn-dark">Manage</a>
+                                <a asp-action="ProductQrCode" asp-route-id="@items.Id" type="button" class="btn btn-info">Genarete QR</a>
 
-                            <td>@items.ProductTittle</td>
-                            <td>@items.SalesPrice</td>
-                            <td class="float-right">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
-                                    <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
-                                    <a asp-action="ProductManage" asp-route-id="@items.Id" type="button" class="btn btn-dark">Manage</a>
-                                    <a asp-action="ProductQrCode" asp-route-id="@items.Id" type="button" class="btn btn-info">Genarete QR</a>
+                            </div>
 
-                                </div>                                                                                                                                                                                                                                                                                                                       
-
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                     }
 
                 </tbody>
                 <tfoot>
                     <tr>
 
+                        <th>Product Code</th>
                         <th>Product Tittle</th>
                         <th>Sales price</th>
                         <th>Action</th>
