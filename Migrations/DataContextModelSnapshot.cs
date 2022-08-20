@@ -346,6 +346,35 @@ namespace PurityERP.Migrations
                     b.ToTable("QRs");
                 });
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.QRCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QcStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QrStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("QRCodes");
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.RolebasedMenu", b =>
                 {
                     b.Property<int>("RBMenuID")
@@ -574,6 +603,17 @@ namespace PurityERP.Migrations
                     b.HasKey("WorkerId");
 
                     b.ToTable("Workers");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.QRCode", b =>
+                {
+                    b.HasOne("PurityERP.Areas.Management.Models.Product", "Inventorys")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Inventorys");
                 });
 #pragma warning restore 612, 618
         }
