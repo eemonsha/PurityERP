@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class emn : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,6 +51,23 @@ namespace PurityERP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Costtypes", x => x.CostId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerInfos",
+                columns: table => new
+                {
+                    CustomerID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomarPhn = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerArea = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomarAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerInfos", x => x.CustomerID);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,6 +230,45 @@ namespace PurityERP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    SaleID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustID = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SubTotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CashAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CardAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MobilebankingAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Vat = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.SaleID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SalesProducts",
+                columns: table => new
+                {
+                    SalesProID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SaleID = table.Column<int>(type: "int", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    OrderQty = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Returnable = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SalesProducts", x => x.SalesProID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubMenus",
                 columns: table => new
                 {
@@ -300,6 +356,29 @@ namespace PurityERP.Migrations
                     table.PrimaryKey("PK_Workers", x => x.WorkerId);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "QRCodes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    QcStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    QrStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Img = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QRCodes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_QRCodes_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "CostMaps",
                 columns: new[] { "CostMapId", "OperationType" },
@@ -353,6 +432,11 @@ namespace PurityERP.Migrations
                 table: "Users",
                 columns: new[] { "UserID", "PassWord", "UserName", "UserTypeID" },
                 values: new object[] { 1, "123", "Admin", 1 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCodes_ProductId",
+                table: "QRCodes",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -365,6 +449,9 @@ namespace PurityERP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Costtypes");
+
+            migrationBuilder.DropTable(
+                name: "CustomerInfos");
 
             migrationBuilder.DropTable(
                 name: "Inventories");
@@ -382,16 +469,22 @@ namespace PurityERP.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductWorkRegisters");
 
             migrationBuilder.DropTable(
-                name: "ProductWorkRegisters");
+                name: "QRCodes");
 
             migrationBuilder.DropTable(
                 name: "QRs");
 
             migrationBuilder.DropTable(
                 name: "RolebasedMenus");
+
+            migrationBuilder.DropTable(
+                name: "Sales");
+
+            migrationBuilder.DropTable(
+                name: "SalesProducts");
 
             migrationBuilder.DropTable(
                 name: "SubMenus");
@@ -410,6 +503,9 @@ namespace PurityERP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Workers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
         }
     }
 }

@@ -35,6 +35,9 @@ namespace PurityERP.Data
         public DbSet<SubMenu> SubMenus { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<RolebasedMenu> RolebasedMenus { get; set; }
+        public DbSet<CustomerInfo> CustomerInfos { get; set; }
+        public DbSet<Sales> Sales{ get; set; }
+        public DbSet<SalesProduct> SalesProducts{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
