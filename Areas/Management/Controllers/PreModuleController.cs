@@ -258,6 +258,10 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         //Customar ADD 
+        public IActionResult CustomerIndex()
+        {
+            return View();
+        }
 
         public IActionResult CreateCustomer()
         {
@@ -265,19 +269,24 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCustomer(int id)
+        public IActionResult CreateCustomer(CustomerInfo customerInfo)
         {
-            //var SelSup = _context.Suppliers.Where(x => x.SupplierName == suppliers.SupplierName).FirstOrDefault();
-            //if (SelSup != null)
-            //{
-            //    _toastNotification.AddErrorToastMessage("An existing Supplier exists in the same name");
-            //    return View(suppliers);
-            //}
+            var alcus = _context.CustomerInfos.Where(x => x.CustomerName == customerInfo.CustomerName).FirstOrDefault();
+            if (alcus != null)
+                {
+                    _toastNotification.AddErrorToastMessage("An existing Supplier exists in the same name");
+                    return View(customerInfo);
+                }
 
-            //_context.Add(suppliers);
-            //_context.SaveChanges();
-            //_toastNotification.AddSuccessToastMessage("Supplier added successfully");
-            //return RedirectToAction("SupplierIndex");
+            _context.Add(customerInfo);
+            _context.SaveChanges();
+            _toastNotification.AddSuccessToastMessage("Supplier added successfully");
+            return RedirectToAction("CustomerIndex");
+
+            
+
+
+            
         }
 
 

@@ -2325,3 +2325,5 @@ D:\Project\PurityERP\bin\Debug\netcoreapp3.1\zh-CHT\Microsoft.ReportViewer.WinFo
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\RdlCompile.cache
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\RdlCompile.compiled
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\QRCodes\GenerateQRCode.cshtml.g.cs
+D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CreateCustomer.cshtml.g.cs
+D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CustomerIndex.cshtml.g.cs
