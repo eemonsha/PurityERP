@@ -182,53 +182,5 @@
             }
         });
 
-
-        @*$("#suppliersubmit").click(function () {
-            alert("OK");
-            CusName = $("#supname").val();
-            CusPhno = $("#supphone").val();
-            Area = $("#supaddress").val();
-            Address = $("#add").val();
-            email = $("#ema").val();
-
-            $.getJSON('@Url.Action("CustomerCreate")', { cusname: CusName, cusphon: CusPhno, Area: Area, Address: Address, email: email },, function (mainhead) {
-                    console.log(mainhead);
-
-                    //$('#name').val(mainhead.productTittle);
-                    //$('#sellprice').val(mainhead.salesPrice);
-                    //$('#rmn').val(mainhead.remainingQty);
-
-            });*@
-
-
-            //$.ajax({
-            //    url: "/Management/Sales/Sales",
-            //    type: "POST",
-            //    data: { data: mydata },
-            //    success: function (subheads) {
-            //        $('#supplier').find("option:not(:first)").remove();
-            //        console.log(subheads);
-            //        $.each(subheads, function (index, subhead) {
-
-            //            $('#supplier').append(`<option value = "` + subhead.supplierId + `">` + subhead.supplierName + `</option>`);
-            //        });
-            //        $('#supplier option:eq(1)').prop('selected', true);
-            //        $("#supname").val(null);
-            //        $("#supphone").val(null);
-            //        $("#supaddress").val(null);
-            //        $('#suppliercreate').modal('toggle');
-            //        $('#supplierclose').click();
-            //    },
-            //    error: function (error) {
-            //        alert('failed');
-            //        alert(error);
-            //    }
-
-            //});
-
-
-
-        });
-
     </script>
 }
