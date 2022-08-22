@@ -260,7 +260,8 @@ namespace PurityERP.Areas.Management.Controllers
         //Customar ADD 
         public IActionResult CustomerIndex()
         {
-            return View();
+            var customer = _context.CustomerInfos.ToList();
+            return View(customer);
         }
 
         public IActionResult CreateCustomer()

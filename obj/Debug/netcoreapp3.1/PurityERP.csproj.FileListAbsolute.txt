@@ -2230,7 +2230,6 @@ D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreMod
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\UnitIndex.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\Worker.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\WorkerIndex.cshtml.g.cs
-D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\SalesIndex.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Shared\_AdminDashboard.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\CompleteWorkIndex.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\PaymentManage.cshtml.g.cs
@@ -2327,3 +2326,4 @@ D:\Project\PurityERP\obj\Debug\netcoreapp3.1\RdlCompile.compiled
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\QRCodes\GenerateQRCode.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CreateCustomer.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CustomerIndex.cshtml.g.cs
+D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Sales.cshtml.g.cs
