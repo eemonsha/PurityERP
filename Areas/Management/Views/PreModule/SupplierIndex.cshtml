@@ -31,30 +31,30 @@
                 <tbody>
                     @foreach (var items in Model)
                     {
-                    <tr>
+                        <tr>
 
 
 
-                        <td>@items.SupplierName</td>
-                        <td>@items.SupplierPhno</td>
-                        <td>@items.SupplierAddress</td>
+                            <td>@items.SupplierName</td>
+                            <td>@items.SupplierPhno</td>
+                            <td>@items.SupplierAddress</td>
 
 
-                        <td class="float-right">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a asp-action="EditSupplier" asp-route-id="@items.SupplierId" type="button" class="btn btn-warning">Edit</a>
-                                <button class="btn btn-danger stitchdetails" type="button"
-                                        data-assigned-id="@items.SupplierId" data-text="@items.SupplierName">
-                                    Delete
-                                </button>
-                            </div>
+                            <td class="float-right">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a asp-action="EditSupplier" asp-route-id="@items.SupplierId" type="button" class="btn btn-warning">Edit</a>
+                                    <button class="btn btn-danger stitchdetails" type="button"
+                                            data-assigned-id="@items.SupplierId" data-text="@items.SupplierName">
+                                        Delete
+                                    </button>
+                                </div>
 
 
-                        </td>
+                            </td>
 
-                        
 
-                    </tr>
+
+                        </tr>
                     }
 
                 </tbody>
@@ -136,5 +136,6 @@
             });
         </script>
     }
-    </body>
+    <a class="btn btn-primary" asp-area="Management" asp-controller="PreModule" asp-action="PreSelect">Return</a>
+</body>
 </html>

@@ -1,0 +1,54 @@
+﻿@model PurityERP.Areas.Management.ViewModel.MenuVM
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Unit Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="CreateSubMenu">
+            <div class="card-body">
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">SubMenu Name</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="SubMenu Name" asp-for="SubManuName">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Area</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Area" asp-for="Area">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Controller</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Controller" asp-for="Controller">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Action</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Action" asp-for="Action">
+                </div>
+                <div class="form-group">
+                    <label asp-for="MenuID" class="control-label">Main Menu</label>
+                    <div class=" input-group">
+                        <select class="form-control select2" data-native-menu="false" id="inventory" asp-for="MainMenuID" asp-items="@(new SelectList(ViewBag.menus, "MenuID","ManuName"))">
+                            <option disabled selected="selected">Select One</option>
+                        </select>
+                        @**@
+                    </div>
+                    <span asp-validation-for="MenuID" class="text-danger"></span>
+                </div>
+
+
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
