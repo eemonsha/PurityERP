@@ -1456,3 +1456,4 @@ D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\bin\Debug\netcoreap
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Inventory\ProductQrCode.cshtml.g.cs
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\PaymentManage.cshtml.g.cs
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Work\PaymentNotClearWorkIndex.cshtml.g.cs
+D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\SalesIndex.cshtml.g.cs
