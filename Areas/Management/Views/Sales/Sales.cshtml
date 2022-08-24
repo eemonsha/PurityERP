@@ -3,100 +3,211 @@
 <h4>Sales</h4>
 <hr />
 
+
+
 <div class="row">
-    <div class="col-md-6">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label class="control-label">Product</label>
-            <select class="form-control" id="inv" asp-items="@ViewBag.pr" name="id">
-                <option selected>Select One </option>
-            </select>
-            <span class="text-danger"></span>
+    <div class="col-6">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">Product</label>
+                    <select class="form-control" id="inv" asp-items="@ViewBag.pr" name="id">
+                        <option selected>Select One </option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+
+            </div>
+
         </div>
 
-    </div>
-    <div class="col-md-6">
-        <label asp-for="CustID" class="control-label">Customer</label>
-        <div class=" input-group">
-            <select class="form-control select2" data-native-menu="false" id="supplier" asp-for="CustID" asp-items="@ViewBag.cs">
-                <option disabled selected="selected">Select One</option>
-            </select>
-            @**@
-            <div class="input-group-append">
-                <span class="input-group-text">
-                    <a href="#" data-toggle="modal"
-                       data-target="#suppliercreate">  <i class="fas fa-plus-circle"></i></a>
-                </span>
+
+
+        <div class="row mt-2">
+            <div class="col-3 border border-secondary rounded-left">
+                <b>Product Code</b>
+            </div>
+            <div class="col-3 border border-secondary">
+                <b>Product Name</b>
+            </div>
+            <div class="col-3 border border-secondary">
+                <b>Unit Price</b>
+            </div>
+            <div class="col-3 border border-secondary rounded-right">
+                <b>Remain Qty</b>
+            </div>
+
+        </div>
+        <div class="row mb-2">
+            <div class="col-3 border border-secondary">
+                <input type="text" class="form-control" id="product" readonly />
+            </div>
+            <div class="col-3 border border-secondary">
+                <input type="text" class="form-control" id="name" readonly />
+            </div>
+            <div class="col-3 border border-secondary">
+                <input type="text" class="form-control" id="sellprice" readonly />
+            </div>
+            <div class="col-3 border border-secondary">
+                <input type="text" class="form-control" id="rmn" readonly />
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>Order Qty :</label>
+                <input type="number" id="qty" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+
+                <label>Amount :</label>
+                <input readonly type="text" id="amount" class="form-control" />
+
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label> Discount Percentage :</label>
+                <input type="text" id="per" class="form-control" value="0" />
+            </div>
+            <div class="col-md-6">
+                <label> Amount :</label>
+                <input readonly type="text" id="amnt" class="form-control" value="0" />
             </div>
         </div>
-        <span asp-validation-for="CustID" class="text-danger"></span>
+        <div class="row">
+            <div class="col-md-6">
+                <label> vat :</label>
+                <input type="text" id="vap" class="form-control" value="0" />
+            </div>
+            <div class="col-md-6">
+                <label> vat :</label>
+                <input type="text" id="vaa" class="form-control" value="0" />
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <label> Total :</label>
+                <input readonly type="text" id="totaltt" class="form-control" />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="btn-group">
+                    <button id="additem" class="btn btn-success">Add</button>
+                    <a asp-action="Index" class="btn btn-warning">Back to List</a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="productname" value="" />
     </div>
+
+    <div class="col-6">
+        <div class="row">
+            <div class="col-12">
+
+                <label asp-for="CustID" class="control-label">Customer</label>
+                <div class=" input-group">
+                    <select class="form-control select2" data-native-menu="false" id="supplier" asp-for="CustID" asp-items="@ViewBag.cs">
+                        <option disabled selected="selected">Select One</option>
+                    </select>
+                    @**@
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <a href="#" data-toggle="modal"
+                               data-target="#suppliercreate">  <i class="fas fa-plus-circle"></i></a>
+                        </span>
+                    </div>
+                </div>
+                <span asp-validation-for="CustID" class="text-danger"></span>
+
+            </div>
+        </div>
+
+        <div class="row mt-5">
+
+            <div class="col-6">
+                <b>Total Amount</b>
+            </div>
+            <div class="col-6">
+                <input type="text" readonly id="totalall" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-6">
+                <b>Total Vat</b>
+            </div>
+            <div class="col-6">
+                <input type="text" readonly id="totalvat" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-6">
+                <b>Total Discount</b>
+            </div>
+            <div class="col-6">
+                <input type="text" readonly id="totaldis" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-6">
+                <b>Payable Amount</b>
+            </div>
+            <div class="col-6">
+                <input type="text" readonly id="payable" class="form-control" />
+            </div>
+        </div>
+
+
+
+    </div>
+
 </div>
-<div class="row">
-    <div class="col-md-8">
-
-        <table id="example1" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-
-                    <th>Product Code</th>
-                    <th>Product Name</th>
-                    <th>Unit Price</th>
-                    <th>Remain Qty</th>
 
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <input type="text" id="product" readonly />
-                    </td>
-                    <td>
-                        <input type="text" id="name" readonly />
-                    </td>
-                    <td>
-                        <input type="text" id="sellprice" readonly />
-                    </td>
-                    <td>
-                        <input type="text" id="rmn" readonly />
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <label>Order Qty :</label>
-        <input type="number" id="qty" />
-    </div>
-
-    <div class="col-md-4">
-
-        <label>Amount :</label>
-        <input readonly type="text" id="amount" />
-
-    </div>
-</div>
-
-
+<h2>Item Details</h2>
 <div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <table class="table table-light table-hover">
+        <thead>
+            <tr>
 
+                <th>Product Name</th>
+                <th>Qty</th>
+                <th>Discount</th>
+                <th>Vat</th>
+                <th>Total</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody id="partTable">
+        </tbody>
+        @*<tr> <td class="text-right"> Total<td id="total"></td> </tr>*@
+
+    </table>
+</div>
 
 
 @*Customer*@
 <div class="modal fade" id="suppliercreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form asp-action="CustomerCreate" method="post">
+            @*<form asp-action="CustomerCreate" method="post">*@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Create Customer</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -106,45 +217,82 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputPassword1">CustomarName</label>
-                        <input type="text" asp-for="CustomerName" class="form-control" id="supname" placeholder="Name">
+                        <input type="text" class="form-control" id="supname" placeholder="Name">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Customar Phone Number</label>
-                        <input type="text" class="form-control" id="supphone" asp-for="CustomarPhn" placeholder="Number">
+                        <input type="text" class="form-control" id="supphone" placeholder="Number">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Area</label>
-                        <input type="text" asp-for="CustomerArea" class="form-control" id="supaddress" placeholder="Area">
+                        <input type="text" class="form-control" id="suparea" placeholder="Area">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Customer Address</label>
-                        <input type="text" asp-for="CustomarAddress" class="form-control" id="add" placeholder="Address">
+                        <input type="text" class="form-control" id="subadd" placeholder="Address">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Email</label>
-                        <input type="email" asp-for="CustomerEmail" form-control" id="ema" placeholder="Email">
+                        <input type="email" class="form-control" id="supemail" placeholder="Email">
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="customermodaloff">Close</button>
+                    <button type="submit" class="btn btn-primary" id="customercreate">Save changes</button>
                 </div>
-            </form>
+            @*</form>*@
         </div>
 
-       
+
 
     </div>
 </div>
 
 
+<script src="https://cdn.snpsujon.me/snpcookie.js"></script>
 
 
 @section Scripts {
 
-
     <script>
+        $('#customercreate').click(function () {
+            var cusname = $('#supname').val();
+            var cusphone = $('#supphone').val();
+            var cusarea = $('#suparea').val();
+            var cusadd = $('#subadd').val();
+            var cusemail = $('#supemail').val();
+
+            var mydata = {};
+
+            mydata.CustomerName = cusname;
+            mydata.CustomarPhn = cusphone;
+            mydata.CustomerArea = cusarea;
+            mydata.CustomarAddress = cusadd;
+            mydata.CustomerEmail = cusemail;
+
+            console.log(mydata);
+            $.ajax({
+                url: "/Management/Sales/CustomerCreate",
+                type: "POST",
+                data: { data: mydata },
+                success: function (mydata) {
+                    if (mydata == 1) {
+                        alert("Data has been saved");
+                    }
+                    else {
+                        alert("Data has been  not saved");
+                    }
+                },
+                
+            });
+
+        });
+
+
+
+
+        //For Get Product Details
         $("#inv").change(function () {
             var prname = $("#inv").val();
             /*alert(prname);*/
@@ -156,13 +304,101 @@
                     $('#name').val(mainhead.productTittle);
                     $('#sellprice').val(mainhead.salesPrice);
                     $('#rmn').val(mainhead.remainingQty);
+                    $('#productname').val(mainhead.productTittle);
+                    $("#qty,#amount,#vap,#vaa,#per,#amnt").val("0");
+
 
                 });
             }
         });
+        //add multi item to table
+        $('#additem').click(function () {
+            var customer = $('#supplier').val();
+            var product = $('#productname').val();
+            var quan = $('#qty').val();
+            var discount = $('#amnt').val();
+            var amount = $('#amount').val();
+            var vat = $('#vaa').val();
+            var total = $('#totaltt').val();
+
+            var _tr = '<tr><td>' + product + '</td><td>' + quan + '</td><td id="sum1">' + discount + '</td> <td>' + vat + '</td><td>' + total + '</td><td><button class="btn btn-success removeitem">Remove</button></td></tr>';
+            $('#partTable').append(_tr);
+
+
+            //for final calculation using cookie
+            var totalamm = getCookie("totalamm");
+            var totalvat = getCookie("totalvat");
+            var totaldis = getCookie("totaldis");
+            var payable = getCookie("payable");
+            if (totalamm == null) {
+                setCookie("totalamm", amount, 365);
+                $('#totalall').val(amount);
+            }
+            else {
+                totalamm = parseFloat(totalamm) + parseFloat(amount);
+                setCookie("totalamm", totalamm, 365);
+                $('#totalall').val(totalamm);
+            }
+            if (totalvat == null) {
+                setCookie("totalvat", vat, 365);
+                $('#totalvat').val(vat);
+            }
+            else {
+                totalvat = parseFloat(totalvat) + parseFloat(vat);
+                setCookie("totalvat", totalvat, 365);
+                $('#totalvat').val(totalvat);
+            }
+            if (totaldis == null) {
+                setCookie("totaldis", discount, 365);
+                $('#totaldis').val(discount);
+            }
+            else {
+                totaldis = parseFloat(totaldis) + parseFloat(discount);
+                setCookie("totaldis", totaldis, 365);
+                $('#totaldis').val(totaldis);
+            }
+            if (payable == null) {
+                setCookie("payable", total, 365);
+                $('#payable').val(total);
+            }
+            else {
+                payable = parseFloat(payable) + parseFloat(total);
+                setCookie("payable", payable, 365);
+                $('#payable').val(payable);
+            }
+
+
+
+
+
+        });
+        //delete data from multi table
+        $("body").on("click", ".removeitem", function () {
+
+            var product = $('#productname').val();
+            if (confirm("Do you want to delete: " + product)) {
+                $(this).closest('tr').remove();
+
+            }
+
+
+
+        });
+
+
+        //delete cookie on load
+        function Onload() {
+            setCookie("totalvat", null, -1);
+            setCookie("payable", null, -1);
+            setCookie("totalamm", null, -1);
+            setCookie("totaldis", null, -1);
+        }
+        window.onload = Onload();
+
     </script>
 
     <script>
+        //change quantity to change ammount
         $("#qty").change(function () {
             var name = $("#inv").val();
             var Quantity = $("#qty").val();
@@ -173,14 +409,49 @@
                 $.getJSON('@Url.Action("GetAmount")', { name: name, Quantity: Quantity}, function (mainhead) {
                     console.log(mainhead);
                     $('#amount').val(mainhead);
-                    //$('#name').val(mainhead.productTittle);
-                    //$('#sellprice').val(mainhead.salesPrice);
-                    //$('#rmn').val(mainhead.remainingQty);
+                    $('#vap').keyup();
+                    $('#per').keyup();
 
                 });
 
             }
+
         });
 
+
+        //for change discount percent
+        $('#per').keyup(function () {
+            var amount = $('#amount').val();
+            var per = $('#per').val();
+            var dip = ((amount * per) / 100);
+            $('#amnt').val(dip);
+            $('#vap').keyup();
+
+        });
+
+        //for change vat 
+        $('#vap').keyup(function () {
+            var vamount = $('#amount').val();
+            var discount = $('#amnt').val();
+            var vat = $('#vap').val();
+
+            var vatamnt = (((vamount - discount) * vat) / 100);
+            $('#vaa').val(vatamnt);
+        });
+
+        //for total after calculation
+        $("#qty,#amount,#vap,#vaa,#per,#amnt").on('keyup change', function () {
+            var vamount = $('#amount').val();
+            var discount = $('#amnt').val();
+            var vat = $('#vaa').val();
+            var total = (parseFloat(vamount - discount) + parseFloat(vat));
+            $('#totaltt').val(total);
+        })
+
+
+
+
     </script>
+
+
 }

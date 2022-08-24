@@ -54,20 +54,20 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult CustomerCreate(CustomerVM model)   
+        public JsonResult CustomerCreate(CustomerVM data)   
         {
             CustomerInfo customer = new CustomerInfo
             {
                 CustomerID = 0,
-                CustomerName = model.CustomerName,
-                CustomarAddress = model.CustomarAddress,
-                CustomarPhn = model.CustomarPhn,
-                CustomerArea = model.CustomerArea,
-                CustomerEmail = model.CustomerEmail
+                CustomerName = data.CustomerName,
+                CustomarAddress = data.CustomarAddress,
+                CustomarPhn = data.CustomarPhn,
+                CustomerArea = data.CustomerArea,
+                CustomerEmail = data.CustomerEmail
             };
             _context.CustomerInfos.Add(customer);
             _context.SaveChanges();
-            return RedirectToAction("Sales");
+            return Json(1);
         }
 
         public JsonResult GetProductName(int proname)
