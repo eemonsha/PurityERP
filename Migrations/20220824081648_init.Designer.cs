@@ -10,7 +10,7 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220821102245_init")]
+    [Migration("20220824081648_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,8 +139,8 @@ namespace PurityERP.Migrations
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PurchaseQuantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PurchaseQuantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("RemainingQty")
                         .HasColumnType("decimal(18,2)");

@@ -14,7 +14,7 @@ namespace PurityERP.Areas.Management.Models
         public string Tittle { get; set; }
         public DateTime PurchaseDate { get; set; }
         public int UnidId { get; set; }
-        public int PurchaseQuantity { get; set; }
+        public decimal PurchaseQuantity { get; set; }
         public decimal UnitPrice { get; set; }
         public int SupplierId { get; set; }
         public decimal RemainingQty { get; set; }

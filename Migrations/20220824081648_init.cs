@@ -80,7 +80,7 @@ namespace PurityERP.Migrations
                     Tittle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UnidId = table.Column<int>(type: "int", nullable: false),
-                    PurchaseQuantity = table.Column<int>(type: "int", nullable: false),
+                    PurchaseQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SupplierId = table.Column<int>(type: "int", nullable: false),
                     RemainingQty = table.Column<decimal>(type: "decimal(18,2)", nullable: false)

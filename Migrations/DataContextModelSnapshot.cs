@@ -137,8 +137,8 @@ namespace PurityERP.Migrations
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PurchaseQuantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PurchaseQuantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("RemainingQty")
                         .HasColumnType("decimal(18,2)");
