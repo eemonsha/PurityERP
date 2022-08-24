@@ -331,25 +331,25 @@ namespace PurityERP.Areas.Management.Controllers
             
         }
 
-        public IActionResult ProductQrCode(int id)
-        {
-            var product = _context.Products.Find(id);
-            var data = "Product Name - "+product.ProductTittle+"-"+product.ProductCode+"-"+product.SalesPrice;
-            QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
-            QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
-            QRCode qRCode = new QRCode(qRCodeData);
-            Bitmap bitmap = qRCode.GetGraphic(15);
+        //public IActionResult ProductQrCode(int id)
+        //{
+        //    var product = _context.Products.Find(id);
+        //    var data = "Product Name - "+product.ProductTittle+"-"+product.ProductCode+"-"+product.SalesPrice;
+        //    QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
+        //    QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+        //    QRCode qRCode = new QRCode(qRCodeData);
+        //    Bitmap bitmap = qRCode.GetGraphic(15);
 
-            var bitmapBytes = ConvertBitmapToBytes(bitmap);
+        //    var bitmapBytes = ConvertBitmapToBytes(bitmap);
 
-            var img = "data:image/png;base64," + Convert.ToBase64String(bitmapBytes);
-            HttpContext.Session.SetString("image", img);
-            var file = File(bitmapBytes, "image/jpeg");
-            //TempData["qr"] = bitmapBytes;
-            return RedirectToAction("ProductIndex");
+        //    var img = "data:image/png;base64," + Convert.ToBase64String(bitmapBytes);
+        //    HttpContext.Session.SetString("image", img);
+        //    var file = File(bitmapBytes, "image/jpeg");
+        //    //TempData["qr"] = bitmapBytes;
+        //    return RedirectToAction("ProductIndex");
             
             
-        }
+        //}
         //[HttpPost]
         ////QR
         //public IActionResult ProductQrCode(string Code)

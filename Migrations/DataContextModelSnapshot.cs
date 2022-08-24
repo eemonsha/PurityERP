@@ -97,6 +97,33 @@ namespace PurityERP.Migrations
                     b.ToTable("Costtypes");
                 });
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.CustomerInfo", b =>
+                {
+                    b.Property<int>("CustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CustomarAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomarPhn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerArea")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerID");
+
+                    b.ToTable("CustomerInfos");
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.Inventory", b =>
                 {
                     b.Property<int>("Id")
@@ -110,8 +137,8 @@ namespace PurityERP.Migrations
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PurchaseQuantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PurchaseQuantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("RemainingQty")
                         .HasColumnType("decimal(18,2)");
@@ -346,6 +373,35 @@ namespace PurityERP.Migrations
                     b.ToTable("QRs");
                 });
 
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.QRCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QcStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QrStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("QRCodes");
+                });
+
             modelBuilder.Entity("PurityERP.Areas.Management.Models.RolebasedMenu", b =>
                 {
                     b.Property<int>("RBMenuID")
@@ -394,6 +450,75 @@ namespace PurityERP.Migrations
                             UserID = 1,
                             UserTypeID = 1
                         });
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.Sales", b =>
+                {
+                    b.Property<int>("SaleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<decimal>("CardAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CashAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CustID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("MobilebankingAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SubTotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Vat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("SaleID");
+
+                    b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.SalesProduct", b =>
+                {
+                    b.Property<int>("SalesProID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("OrderQty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Returnable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SaleID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("SalesProID");
+
+                    b.ToTable("SalesProducts");
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.SubMenu", b =>
@@ -574,6 +699,17 @@ namespace PurityERP.Migrations
                     b.HasKey("WorkerId");
 
                     b.ToTable("Workers");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.QRCode", b =>
+                {
+                    b.HasOne("PurityERP.Areas.Management.Models.Product", "Inventorys")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Inventorys");
                 });
 #pragma warning restore 612, 618
         }

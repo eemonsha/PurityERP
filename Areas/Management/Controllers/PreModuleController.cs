@@ -59,13 +59,13 @@ namespace PurityERP.Areas.Management.Controllers
             {
                 _toastNotification.AddErrorToastMessage("An existing unit exists in the same name");
                 return View(units);
-                
+
             }
 
             _context.units.Add(units);
             _context.SaveChanges();
             _toastNotification.AddSuccessToastMessage("Unit added successfully");
-            return RedirectToAction("UnitIndex"); 
+            return RedirectToAction("UnitIndex");
         }
         public IActionResult EditUnit(int id)
         {
@@ -91,7 +91,7 @@ namespace PurityERP.Areas.Management.Controllers
         {
             var suppliers = _context.Suppliers.ToList();
             return View(suppliers);
-   
+
         }
 
         public IActionResult SupplierCreate()
@@ -106,7 +106,7 @@ namespace PurityERP.Areas.Management.Controllers
             if (SelSup != null)
             {
                 _toastNotification.AddErrorToastMessage("An existing Supplier exists in the same name");
-               return View(suppliers);
+                return View(suppliers);
             }
 
             _context.Add(suppliers);
@@ -163,10 +163,10 @@ namespace PurityERP.Areas.Management.Controllers
 
         [HttpPost]
         public IActionResult CostType(Costtype costtype)
-           {
+        {
             ViewBag.costmape = _context.CostMaps.ToList();
             var CostSup = _context.Costtypes.Where(x => x.Costtittle == costtype.Costtittle).FirstOrDefault();
-            if(CostSup != null)
+            if (CostSup != null)
             {
                 _toastNotification.AddErrorToastMessage("An existing Coset exists in the same name");
                 return View(costtype);
@@ -187,10 +187,10 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditCostType(Costtype costtype )
+        public IActionResult EditCostType(Costtype costtype)
         {
-      
-           _context.Update(costtype);
+
+            _context.Update(costtype);
             _context.SaveChanges();
             return RedirectToAction("CosttypeIndex");
         }
@@ -211,7 +211,7 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult WorkerIndex()
         {
-            
+
             var worker = _context.Workers.ToList();
             return View(worker);
         }
@@ -241,7 +241,7 @@ namespace PurityERP.Areas.Management.Controllers
 
         }
 
-       public IActionResult DeleteWorker(int id)
+        public IActionResult DeleteWorker(int id)
         {
             var data = _context.Workers.Where(x => x.WorkerId == id).FirstOrDefault();
             _context.Remove(data);
@@ -257,8 +257,38 @@ namespace PurityERP.Areas.Management.Controllers
 
         }
 
+        //Customar ADD 
+        public IActionResult CustomerIndex()
+        {
+            var customer = _context.CustomerInfos.ToList();
+            return View(customer);
+        }
+
+        public IActionResult CreateCustomer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCustomer(CustomerInfo customerInfo)
+        {
+            var alcus = _context.CustomerInfos.Where(x => x.CustomerName == customerInfo.CustomerName).FirstOrDefault();
+            if (alcus != null)
+                {
+                    _toastNotification.AddErrorToastMessage("An existing Supplier exists in the same name");
+                    return View(customerInfo);
+                }
+
+            _context.Add(customerInfo);
+            _context.SaveChanges();
+            _toastNotification.AddSuccessToastMessage("Supplier added successfully");
+            return RedirectToAction("CustomerIndex");
+
+            
 
 
+            
+        }
 
 
 
