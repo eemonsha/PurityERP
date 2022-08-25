@@ -281,6 +281,7 @@ namespace PurityERP.Areas.Management.Controllers
 
                 salermnqty.InitialProductStockQty = product.InitialProductStockQty;
                 salermnqty.SalesRemainQty = salermnqty.InitialProductStockQty;
+                salermnqty.RemainingQty = salermnqty.InitialProductStockQty;
                 salermnqty.ProductCode = product.ProductCode;
                 salermnqty.ProductTittle = product.ProductTittle;
                 salermnqty.CostingPrice = product.CostingPrice;

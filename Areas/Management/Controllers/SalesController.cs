@@ -23,7 +23,27 @@ namespace PurityERP.Areas.Management.Controllers
             _toastNotification = toastNotification;
         }
 
+        public IActionResult Salesindex()
+        {
+            var salesin = (from pro in _context.Products
+                           join spro in _context.SalesProducts
+                           on pro.Id equals spro.ProductID
+                           join sa in _context.Sales
+                           on spro.SaleID equals sa.SaleID
+                           
 
+                           select new CustomerVM
+                           {
+                               SaleID = sa.SaleID,
+                               ProductCode = pro.ProductCode,
+                               ProductTittle = pro.ProductTittle,
+                               Date = sa.Date,
+                               
+                               Amount = spro.Amount,
+                               OrderQty = spro.OrderQty
+                           });
+            return View(salesin);
+        }
 
        
         public IActionResult Sales()
