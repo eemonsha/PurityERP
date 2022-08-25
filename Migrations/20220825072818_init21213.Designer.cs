@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PurityERP.Data;
 
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220825072818_init21213")]
+    partial class init21213
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -322,9 +324,6 @@ namespace PurityERP.Migrations
 
                     b.Property<decimal>("SalesPrice")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("SalesRemainQty")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

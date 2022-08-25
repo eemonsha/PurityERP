@@ -23,7 +23,27 @@ namespace PurityERP.Areas.Management.Controllers
             _toastNotification = toastNotification;
         }
 
+        public IActionResult Salesindex()
+        {
+            var salesin = (from pro in _context.Products
+                           join spro in _context.SalesProducts
+                           on pro.Id equals spro.ProductID
+                           join sa in _context.Sales
+                           on spro.SaleID equals sa.SaleID
+                           
 
+                           select new CustomerVM
+                           {
+                               SaleID = sa.SaleID,
+                               ProductCode = pro.ProductCode,
+                               ProductTittle = pro.ProductTittle,
+                               Date = sa.Date,
+                               
+                               Amount = spro.Amount,
+                               OrderQty = spro.OrderQty
+                           });
+            return View(salesin);
+        }
 
        
         public IActionResult Sales()
@@ -54,20 +74,76 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult CustomerCreate(CustomerVM model)   
+        public JsonResult CustomerCreate(CustomerVM data)   
         {
             CustomerInfo customer = new CustomerInfo
             {
                 CustomerID = 0,
-                CustomerName = model.CustomerName,
-                CustomarAddress = model.CustomarAddress,
-                CustomarPhn = model.CustomarPhn,
-                CustomerArea = model.CustomerArea,
-                CustomerEmail = model.CustomerEmail
+                CustomerName = data.CustomerName,
+                CustomarAddress = data.CustomarAddress,
+                CustomarPhn = data.CustomarPhn,
+                CustomerArea = data.CustomerArea,
+                CustomerEmail = data.CustomerEmail
             };
             _context.CustomerInfos.Add(customer);
             _context.SaveChanges();
-            return RedirectToAction("Sales");
+            var allcus = _context.CustomerInfos.OrderByDescending(x=>x.CustomerID).ToList();
+            return Json(allcus);
+        }
+
+
+
+        public JsonResult SalesCreate(CustomerVM data)
+        {
+            try
+            {
+                var sales = new Sales()
+                {
+                    CustID = data.CustID,
+                    Date = DateTime.UtcNow.AddHours(6),
+                    SubTotalAmount = data.SubTotalAmount,
+                    TotalAmount = data.TotalAmount,
+                    Discount = data.Discount,
+                    CashAmount = data.CashAmount,
+                    CardAmount = data.CardAmount,
+                    MobilebankingAmount = data.MobilebankingAmount,
+                    Vat = data.Vat,
+
+                };
+                _context.Add(sales);
+                _context.SaveChanges();
+
+                foreach (var item in data.selsp)
+                {
+                    var proqty = _context.Products.Where(x => x.Id == item.ProductID).FirstOrDefault();
+                    proqty.SalesRemainQty = proqty.SalesRemainQty - item.OrderQty;
+                    _context.Update(proqty);
+                    _context.SaveChanges();
+
+
+                    var salep = new SalesProduct()
+                    {
+                        SaleID = sales.SaleID,
+                        ProductID = item.ProductID,
+                        OrderQty = item.OrderQty,
+                        UnitPrice = item.UnitPrice,
+                        Amount = item.Amount,
+                        Pvat = item.Pvat,
+                        PDiscount = item.PDiscount,
+                        Returnable = false,
+                    };
+                    _context.Add(salep);
+                    _context.SaveChanges();
+                }
+
+
+                return Json(1);
+            }
+            catch
+            {
+                return Json(0);
+            }
+            
         }
 
         public JsonResult GetProductName(int proname)
