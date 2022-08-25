@@ -24,37 +24,39 @@
         </div>
 
 
-
+        <hr />
         <div class="row mt-2">
-            <div class="col-3 border border-secondary rounded-left">
+            <div class="col-3">
                 <b>Product Code</b>
             </div>
-            <div class="col-3 border border-secondary">
+            <div class="col-3">
                 <b>Product Name</b>
             </div>
-            <div class="col-3 border border-secondary">
+            <div class="col-3">
                 <b>Unit Price</b>
             </div>
-            <div class="col-3 border border-secondary rounded-right">
+            <div class="col-3">
                 <b>Remain Qty</b>
             </div>
 
         </div>
         <div class="row mb-2">
-            <div class="col-3 border border-secondary">
+            <div class="col-3">
                 <input type="text" class="form-control" id="product" readonly />
             </div>
-            <div class="col-3 border border-secondary">
+            <div class="col-3">
                 <input type="text" class="form-control" id="name" readonly />
             </div>
-            <div class="col-3 border border-secondary">
+            <div class="col-3">
                 <input type="text" class="form-control" id="sellprice" readonly />
             </div>
-            <div class="col-3 border border-secondary">
+            <div class="col-3">
                 <input type="text" class="form-control" id="rmn" readonly />
             </div>
 
         </div>
+
+        <hr />
 
         <div class="row">
 
@@ -102,6 +104,7 @@
                 <input readonly type="text" id="totaltt" class="form-control" />
             </div>
         </div>
+        <hr />
         <div class="row mt-2">
             <div class="col-4"></div>
             <div class="col-4">
@@ -135,6 +138,7 @@
 
             </div>
         </div>
+        <hr />
 
         <div class="row mt-5">
 
@@ -173,9 +177,56 @@
             </div>
         </div>
 
+        <hr />
+
+        <h4>Payment</h4>
+        <div class="row mt-3">
+
+            <div class="col-6">
+                <b>Cash</b>
+            </div>
+            <div class="col-6">
+                <input type="text"  id="cashpay" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-6">
+                <b>Card</b>
+            </div>
+            <div class="col-6">
+                <input type="text"  id="cardpay" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-2">
+
+            <div class="col-6">
+                <b>Mobile Banking</b>
+            </div>
+            <div class="col-6">
+                <input type="text"  id="mfspay" class="form-control" />
+            </div>
+        </div>
+        <hr />
+        <div class="row mt-2">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="btn-group">
+                    <button id="btnsubmit" class="btn btn-success">Submit</button>
+                    <button id="btncancel" class="btn btn-warning">Cancel</button>
+                    
+                </div>
+            </div>
+
+        </div>
+        
 
 
     </div>
+
+    
+        
+    
 
 </div>
 
@@ -186,8 +237,10 @@
         <thead>
             <tr>
 
+                
                 <th>Product Name</th>
                 <th>Qty</th>
+                <th>Unit Price</th>
                 <th>Discount</th>
                 <th>Vat</th>
                 <th>Total</th>
@@ -204,50 +257,56 @@
 
 
 @*Customer*@
-<div class="modal fade" id="suppliercreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+
+
+<div class="modal fade" id="suppliercreate" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
-            @*<form asp-action="CustomerCreate" method="post">*@
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Customer</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">CustomarName</label>
-                        <input type="text" class="form-control" id="supname" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Customar Phone Number</label>
-                        <input type="text" class="form-control" id="supphone" placeholder="Number">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Area</label>
-                        <input type="text" class="form-control" id="suparea" placeholder="Area">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Customer Address</label>
-                        <input type="text" class="form-control" id="subadd" placeholder="Address">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Email</label>
-                        <input type="email" class="form-control" id="supemail" placeholder="Email">
-                    </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Customer Create</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">CustomarName</label>
+                    <input type="text" class="form-control" id="supname" placeholder="Name">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="customermodaloff">Close</button>
-                    <button type="submit" class="btn btn-primary" id="customercreate">Save changes</button>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Customar Phone Number</label>
+                    <input type="text" class="form-control" id="supphone" placeholder="Number">
                 </div>
-            @*</form>*@
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Area</label>
+                    <input type="text" class="form-control" id="suparea" placeholder="Area">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Customer Address</label>
+                    <input type="text" class="form-control" id="subadd" placeholder="Address">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Email</label>
+                    <input type="email" class="form-control" id="supemail" placeholder="Email">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="customermodaloff">Close</button>
+                <input id="customercreate" type="submit" class="btn btn-primary" value="Save Changes" />
+
+
+                @*<input id="btnSaveCountry" type="submit" class="btn btn-primary" value="Create" />*@
+            </div>
+
         </div>
-
-
-
     </div>
 </div>
+
+
+
+
+
 
 
 <script src="https://cdn.snpsujon.me/snpcookie.js"></script>
@@ -274,6 +333,65 @@
             console.log(mydata);
             $.ajax({
                 url: "/Management/Sales/CustomerCreate",
+                type: "POST",
+                data: { data: mydata },
+                success: function (subheads) {
+                    if (subheads != null && !jQuery.isEmptyObject(subheads)) {
+                        $('#supplier').find("option:not(:first)").remove();
+                        $.each(subheads, function (index, subhead) {
+
+                            $('#supplier').append(`<option value="` + subhead.customerID + `">` + subhead.customerName + `</option>`);
+
+                        });
+                        $('#supplier option:eq(1)').prop('selected', true);
+                        alert("Customer Added.");
+                        //$('#customermodaloff').click();
+                    };
+                },
+                
+            });
+
+        });
+        $('#btnsubmit').click(function () {
+            
+
+            var mydata = {};
+
+            mydata.CustID = $('#supplier').val();
+            mydata.SubTotalAmount = $('#totalall').val();
+            mydata.TotalAmount = $('#payable').val();
+            mydata.Discount = $('#totaldis').val();
+            mydata.Vat = $('#totalvat').val();
+            mydata.CashAmount = $('#cashpay').val();
+            mydata.CardAmount = $('#cardpay').val();
+            mydata.MobilebankingAmount = $('#mfspay').val();
+
+            console.log("sales TBL - ",mydata);
+
+            var SalesProduct = new Array();
+            $("#partTable TR").each(function () {
+                var row = $(this);
+                var selsp = {};
+                
+                selsp.ProductID = row.find("TD").eq(0).html();
+                selsp.OrderQty = row.find("TD").eq(2).html();
+                selsp.UnitPrice = row.find("TD").eq(3).html();
+                selsp.Amount = row.find("TD").eq(6).html();
+                selsp.Pvat = row.find("TD").eq(5).html();
+                selsp.PDiscount = row.find("TD").eq(4).html();
+                //selsp.Returnable = row.find("TD").eq(6).html();
+                SalesProduct.push(selsp);
+                
+
+
+
+            });
+            mydata.selsp = SalesProduct;
+
+            console.log("salesProduct TBL - ", SalesProduct);
+
+            $.ajax({
+                url: "/Management/Sales/SalesCreate",
                 type: "POST",
                 data: { data: mydata },
                 success: function (mydata) {
@@ -303,7 +421,7 @@
                     $('#product').val(mainhead.productCode);
                     $('#name').val(mainhead.productTittle);
                     $('#sellprice').val(mainhead.salesPrice);
-                    $('#rmn').val(mainhead.remainingQty);
+                    $('#rmn').val(mainhead.salesRemainQty);
                     $('#productname').val(mainhead.productTittle);
                     $("#qty,#amount,#vap,#vaa,#per,#amnt").val("0");
 
@@ -315,13 +433,15 @@
         $('#additem').click(function () {
             var customer = $('#supplier').val();
             var product = $('#productname').val();
+            var productid = $('#inv').val();
             var quan = $('#qty').val();
             var discount = $('#amnt').val();
             var amount = $('#amount').val();
             var vat = $('#vaa').val();
             var total = $('#totaltt').val();
+            var unitprice = (amount / quan);
 
-            var _tr = '<tr><td>' + product + '</td><td>' + quan + '</td><td id="sum1">' + discount + '</td> <td>' + vat + '</td><td>' + total + '</td><td><button class="btn btn-success removeitem">Remove</button></td></tr>';
+            var _tr = '<tr><td hidden>' + productid + '</td><td>' + product + '</td><td>' + quan + '</td><td>' + unitprice + '</td><td id="sum1">' + discount + '</td> <td>' + vat + '</td><td>' + total + '</td><td><button class="btn btn-success removeitem">Remove</button></td></tr>';
             $('#partTable').append(_tr);
 
 

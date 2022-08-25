@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PurityERP.Areas.Management.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,5 +29,7 @@ namespace PurityERP.Areas.Management.ViewModel
         public decimal CardAmount { get; set; }
         public decimal MobilebankingAmount { get; set; }
         public decimal Vat { get; set; }
+
+        public List<SalesProduct> selsp { get; set; }
     }
 }

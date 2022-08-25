@@ -15,6 +15,8 @@ namespace PurityERP.Areas.Management.Models
         public int OrderQty { get; set; }
         public decimal  UnitPrice { get; set; }
         public decimal  Amount { get; set; }
+        public decimal  Pvat { get; set; }
+        public decimal  PDiscount { get; set; }
         public bool  Returnable { get; set; }
 
 

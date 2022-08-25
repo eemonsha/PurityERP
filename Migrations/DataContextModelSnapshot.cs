@@ -323,6 +323,9 @@ namespace PurityERP.Migrations
                     b.Property<decimal>("SalesPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("SalesRemainQty")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Products");
@@ -504,8 +507,14 @@ namespace PurityERP.Migrations
                     b.Property<int>("OrderQty")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("PDiscount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Pvat")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("Returnable")
                         .HasColumnType("bit");

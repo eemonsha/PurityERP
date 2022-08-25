@@ -264,6 +264,7 @@ namespace PurityERP.Areas.Management.Controllers
         public IActionResult Productcreate()
         {
             var NewProduct = new Product();
+            
             NewProduct.CostingPrice = 0;
             NewProduct.SalesPrice = 0;
             NewProduct.DiscountRate = 0;
@@ -276,7 +277,21 @@ namespace PurityERP.Areas.Management.Controllers
             var procoe = _context.Products.Where(x => x.ProductCode == product.ProductCode).FirstOrDefault();
             if (procoe == null)
             {
-                _context.Products.Add(product);
+                var salermnqty = new Product();
+
+                salermnqty.InitialProductStockQty = product.InitialProductStockQty;
+                salermnqty.SalesRemainQty = salermnqty.InitialProductStockQty;
+                salermnqty.ProductCode = product.ProductCode;
+                salermnqty.ProductTittle = product.ProductTittle;
+                salermnqty.CostingPrice = product.CostingPrice;
+                salermnqty.SalesPrice = product.SalesPrice;
+                salermnqty.DiscountRate = product.DiscountRate;
+                salermnqty.QRId = product.QRId;
+
+                    
+                
+                _context.Products.Add(salermnqty);
+
                 _context.SaveChanges();
                 return RedirectToAction("ProductIndex");
             }
@@ -324,7 +339,8 @@ namespace PurityERP.Areas.Management.Controllers
                            DiscountRate = product.DiscountRate,
                            InitialProductStockQty = product.InitialProductStockQty,
                            RemainingQty = product.RemainingQty,
-                           pId = product.Id
+                           pId = product.Id,
+                           SalesRemainQty= product.SalesRemainQty
                            
                        }).FirstOrDefault();
             return View(sql);

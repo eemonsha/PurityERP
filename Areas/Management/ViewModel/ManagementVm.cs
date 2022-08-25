@@ -28,6 +28,7 @@ namespace PurityERP.Areas.Management.ViewModel
         public DateTime SystemDate { get; set; }
         public string ProductTittle { get; set; }
         public decimal ProductQuantity { get; set; }
+        public int SalesRemainQty { get; set; }
         public decimal InventoryQuantity { get; set; }
         public string Worker { get; set; }
         public string ProductCode { get; set; }

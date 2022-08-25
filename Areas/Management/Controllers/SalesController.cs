@@ -67,7 +67,63 @@ namespace PurityERP.Areas.Management.Controllers
             };
             _context.CustomerInfos.Add(customer);
             _context.SaveChanges();
-            return Json(1);
+            var allcus = _context.CustomerInfos.OrderByDescending(x=>x.CustomerID).ToList();
+            return Json(allcus);
+        }
+
+
+
+        public JsonResult SalesCreate(CustomerVM data)
+        {
+            try
+            {
+                var sales = new Sales()
+                {
+                    CustID = data.CustID,
+                    Date = DateTime.UtcNow.AddHours(6),
+                    SubTotalAmount = data.SubTotalAmount,
+                    TotalAmount = data.TotalAmount,
+                    Discount = data.Discount,
+                    CashAmount = data.CashAmount,
+                    CardAmount = data.CardAmount,
+                    MobilebankingAmount = data.MobilebankingAmount,
+                    Vat = data.Vat,
+
+                };
+                _context.Add(sales);
+                _context.SaveChanges();
+
+                foreach (var item in data.selsp)
+                {
+                    var proqty = _context.Products.Where(x => x.Id == item.ProductID).FirstOrDefault();
+                    proqty.SalesRemainQty = proqty.SalesRemainQty - item.OrderQty;
+                    _context.Update(proqty);
+                    _context.SaveChanges();
+
+
+                    var salep = new SalesProduct()
+                    {
+                        SaleID = sales.SaleID,
+                        ProductID = item.ProductID,
+                        OrderQty = item.OrderQty,
+                        UnitPrice = item.UnitPrice,
+                        Amount = item.Amount,
+                        Pvat = item.Pvat,
+                        PDiscount = item.PDiscount,
+                        Returnable = false,
+                    };
+                    _context.Add(salep);
+                    _context.SaveChanges();
+                }
+
+
+                return Json(1);
+            }
+            catch
+            {
+                return Json(0);
+            }
+            
         }
 
         public JsonResult GetProductName(int proname)
