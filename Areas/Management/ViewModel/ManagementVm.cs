@@ -20,7 +20,7 @@ namespace PurityERP.Areas.Management.ViewModel
         public string Tittle { get; set; }
         public DateTime PurchaseDate { get; set; }
         
-        public int PurchaseQuantity { get; set; }
+        public decimal PurchaseQuantity { get; set; }
         public decimal UnitPrice { get; set; }
 
         public decimal RemainingQty { get; set; }
@@ -28,6 +28,7 @@ namespace PurityERP.Areas.Management.ViewModel
         public DateTime SystemDate { get; set; }
         public string ProductTittle { get; set; }
         public decimal ProductQuantity { get; set; }
+        public int SalesRemainQty { get; set; }
         public decimal InventoryQuantity { get; set; }
         public string Worker { get; set; }
         public string ProductCode { get; set; }

@@ -16,6 +16,7 @@ namespace PurityERP.Areas.Management.Models
         public int InitialProductStockQty { get; set; }
         public int RemainingQty { get; set; }
         public int QRId { get; set; }
+        public int SalesRemainQty { get; set; }
 
     }
 }
