@@ -9,6 +9,7 @@ namespace PurityERP.Areas.Management.ViewModel
     public class CustomerVM
     {
         public int SaleID { get; set; }
+        public int SalesProID { get; set; }
         public int CustID { get; set; }
         public String CustomerName { get; set; }
         public String CustomarPhn { get; set; }

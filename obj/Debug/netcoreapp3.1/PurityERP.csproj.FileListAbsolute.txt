@@ -2825,3 +2825,4 @@ D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\PreMod
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\QRCodes\GenerateQRCode.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Sales.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Salesindex.cshtml.g.cs
+D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Salesdetails.cshtml.g.cs

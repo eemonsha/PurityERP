@@ -25,22 +25,12 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult Salesindex()
         {
-            var salesin = (from pro in _context.Products
-                           join spro in _context.SalesProducts
-                           on pro.Id equals spro.ProductID
-                           join sa in _context.Sales
-                           on spro.SaleID equals sa.SaleID
-                           
-
+            var salesin = (from sa in _context.Sales
                            select new CustomerVM
                            {
                                SaleID = sa.SaleID,
-                               ProductCode = pro.ProductCode,
-                               ProductTittle = pro.ProductTittle,
                                Date = sa.Date,
-                               
-                               Amount = spro.Amount,
-                               OrderQty = spro.OrderQty
+                               TotalAmount = sa.TotalAmount,
                            });
             return View(salesin);
         }
@@ -66,6 +56,27 @@ namespace PurityERP.Areas.Management.Controllers
             ViewBag.cs = cus;
             ViewBag.pr = pro;
             return View();
+        }
+
+        public IActionResult Salesdetails(int id)
+        {
+            var salesdetails = (from sal in _context.Sales.Where(x => x.SaleID == id)
+                                join prosel in _context.SalesProducts
+                                on sal.SaleID equals prosel.SaleID
+                                join product in _context.Products
+                                on prosel.ProductID equals product.Id
+                                select new CustomerVM
+                                {
+                                    SaleID = sal.SaleID,
+                                    SalesProID = prosel.SalesProID,
+                                    Date = sal.Date,
+                                    Amount = prosel.Amount,
+                                    ProductTittle = product.ProductTittle,
+                                    OrderQty = prosel.OrderQty
+
+                                }).FirstOrDefault();
+            return View(salesdetails);
+            
         }
 
         [HttpPost]

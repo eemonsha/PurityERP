@@ -1,4 +1,5 @@
-﻿@model IEnumerable<PurityERP.Areas.Management.ViewModel.CustomerVM>
+﻿@model PurityERP.Areas.Management.ViewModel.CustomerVM
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,66 +9,67 @@
     <link rel="stylesheet" href="~/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 <body>
-
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Sell Product </h3>
+            <h3 class="card-title">Detail LeftOver report</h3>
+            @*<p>on @ViewBag.rdate</p>*@
         </div>
-        <a asp-action="Sales" class=" btn btn-primary float-right">Sale</a>
+        <br />
+        <p>
+             <a asp-action="Salesindex" class="btn btn-secondary">Back</a>
+        </p>
 
-        <div class="card-body">
+        <br />
+        <!-- /.card-header -->
+        <div class="card-body" style="font-size:small">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Sales ID</th>
+                        <th>Product Name</th>
+                        <th>Qty</th>
                         <th>Amount</th>
                         <th>Action</th>
-
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var items in Model)
-                    {
-                        <tr>
-                            <td>@items.SaleID</td>
-                            <td>@items.Date</td>
-                            <td>@items.TotalAmount</td>
-                            
-                            <td class="float-right">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    @*<a asp-action="" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>*@
-                                    <a asp-action="Salesdetails" asp-route-id="@items.SaleID" type="button" class="btn btn-info">Details</a>
-                                </div>
-                            </td>
 
+                    <tr>
 
-                        </tr>
-                    }
+                        <td>@Model.Date</td>
+                        <td>@Model.ProductTittle</td>
+                        <td>@Model.OrderQty</td>
+                        <td>@Model.Amount</td>
+                        <td class="float-right">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a asp-action="Deletelft" asp-route-ReportID="@Model.SaleID" type="button" class="btn btn-info">Delete</a>
+                            </div>
+                        </td>
+
+                    </tr>
+
 
                 </tbody>
                 <tfoot>
                     <tr>
-
                         <th>Date</th>
-                        <th>Sales ID</th>
+                        <th>Product Name</th>
+                        <th>Qty</th>
                         <th>Amount</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
-
+        <!-- /.card-body -->
     </div>
-
-
 
     @section Scripts {
         <script src="~/assets/plugins/jquery/jquery.min.js"></script>
-
+        <!-- Bootstrap 4 -->
         <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+        <!-- DataTables  & Plugins -->
         <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="~/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
         <script src="~/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -80,11 +82,33 @@
         <script src="~/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
         <script src="~/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
         <script src="~/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
+        <!-- AdminLTE App -->
         <script src="~/assets/dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <!-- Page specific script -->
+
+        <script>
+        $(function () {
+            $('.stitchdetails').click(function () {
+                var Styleid = $(this).data('assigned-id');
+                var Stylename = $(this).data('text');
+                if (confirm("Are you Sure to Delete " + Stylename +" ?")) {
+                    $(this).closest("tr").remove();
+                    $.getJSON('@Url.Action("DeleteCost")', { id: Styleid }, function (subheads) {
+                        if (subheads == 1 ) {
+                            alert("Successfull");
+                        };
+                    });
+                } else {
 
 
+                }
+                //alert("Are you Sure to Delete " + Stylename + Styleid +" ?")
+                console.log("sss", Styleid);
+            });
 
+        });
+        </script>
         <script>
             $(function () {
                 $("#example1").DataTable({
@@ -94,7 +118,5 @@
             });
         </script>
     }
-
 </body>
 </html>
-
