@@ -67,11 +67,6 @@ namespace PurityERP.Areas.Management.Controllers
             ViewBag.pr = pro;
             return View();
         }
-        [HttpPost]
-        public IActionResult Sales(int id)
-        {
-            return View();
-        }
 
         [HttpPost]
         public JsonResult CustomerCreate(CustomerVM data)   
@@ -116,7 +111,7 @@ namespace PurityERP.Areas.Management.Controllers
                 foreach (var item in data.selsp)
                 {
                     var proqty = _context.Products.Where(x => x.Id == item.ProductID).FirstOrDefault();
-                    proqty.SalesRemainQty = proqty.SalesRemainQty - item.OrderQty;
+                    proqty.RemainingQty = proqty.RemainingQty - item.OrderQty;
                     _context.Update(proqty);
                     _context.SaveChanges();
 
@@ -134,6 +129,22 @@ namespace PurityERP.Areas.Management.Controllers
                     };
                     _context.Add(salep);
                     _context.SaveChanges();
+
+
+                    if (item.OrderQty > 0)
+                    {
+                        var pwr = new ProductWorkRegister
+                        {
+                            RegAsignDate = sales.Date,
+                            RegWorkID = salep.SalesProID,
+                            RegType = "Out",
+                            RegCategoryQty = item.OrderQty,
+                            MoveStatus = "Sell"
+                        };
+                        _context.Add(pwr);
+                        _context.SaveChanges();
+                    }
+
                 }
 
 

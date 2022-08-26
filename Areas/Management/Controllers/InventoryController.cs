@@ -280,7 +280,7 @@ namespace PurityERP.Areas.Management.Controllers
                 var salermnqty = new Product();
 
                 salermnqty.InitialProductStockQty = product.InitialProductStockQty;
-                salermnqty.SalesRemainQty = salermnqty.InitialProductStockQty;
+               
                 salermnqty.RemainingQty = salermnqty.InitialProductStockQty;
                 salermnqty.ProductCode = product.ProductCode;
                 salermnqty.ProductTittle = product.ProductTittle;
@@ -341,7 +341,7 @@ namespace PurityERP.Areas.Management.Controllers
                            InitialProductStockQty = product.InitialProductStockQty,
                            RemainingQty = product.RemainingQty,
                            pId = product.Id,
-                           SalesRemainQty= product.SalesRemainQty
+                           
                            
                        }).FirstOrDefault();
             return View(sql);

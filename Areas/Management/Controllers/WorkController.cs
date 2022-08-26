@@ -115,7 +115,7 @@ namespace PurityERP.Areas.Management.Controllers
         public IActionResult WorkCreate()
         {
             DefaultData();//loading default data
-             var DefWork = new NewWork();
+            var DefWork = new NewWork();
             DefWork.PaidAmount = 0;
             DefWork.WorkAsignDate = System.DateTime.Now;
             DefWork.EDD =  System.DateTime.Now.AddDays(10);
@@ -156,6 +156,14 @@ namespace PurityERP.Areas.Management.Controllers
                Quantity=newWork.Quantity,
                Payment=newWork.Quantity*newWork.PerUnitCost
             };
+
+
+            var rqty = _context.Products.Where(x => x.Id == st.Product).FirstOrDefault();
+            rqty.RemainingQty = rqty.RemainingQty - Convert.ToInt32(st.Quantity);
+            _context.Update(rqty);
+            _context.SaveChanges();
+
+
             _context.NewWorks.Add(st);
             _context.SaveChanges();
             var nw = _context.NewWorks.Where(x=>x.WorkId == st.WorkId).FirstOrDefault();
@@ -164,6 +172,7 @@ namespace PurityERP.Areas.Management.Controllers
                 RegAsignDate = nw.WorkAsignDate,
                 RegWorkID = nw.WorkId,
                 RegType = "Out",
+                MoveStatus="Work",
                 RegCategoryQty = nw.Quantity
             };
             _context.Add(pwr);
@@ -248,6 +257,7 @@ namespace PurityERP.Areas.Management.Controllers
             SelWork.NewWasterQty = 0;
             SelWork.NewPayment = 0;
             SelWork.TxnDate = System.DateTime.Now;
+            SelWork.Product = _context.Products.Where(x => x.Id == SelWork.Product).FirstOrDefault().Id;
             return View(SelWork);
         }
 
@@ -299,6 +309,9 @@ namespace PurityERP.Areas.Management.Controllers
                     RegCategoryQty = newWork.NewDeliveryQty,
                     MoveStatus = "Receipt"
                 };
+                var addqty = _context.Products.Where(x => x.Id == newWork.Product).FirstOrDefault();
+                addqty.RemainingQty = addqty.RemainingQty + newWork.NewDeliveryQty;
+                _context.Update(addqty);
                 _context.Add(pwr);
                 _context.SaveChanges();
 
@@ -322,6 +335,9 @@ namespace PurityERP.Areas.Management.Controllers
                 _context.Add(pwr);
                 _context.SaveChanges();
             }
+
+
+          
             //add row in product register-- New waste qty
 
             if (newWork.NewPayment > 0)
