@@ -563,7 +563,6 @@ D:\new\PurityERP\bin\Release\netcoreapp3.1\zh-CHT\Microsoft.ReportViewer.WebForm
 D:\new\PurityERP\bin\Release\netcoreapp3.1\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CreateCustomer.cshtml.g.cs
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\PreModule\CustomerIndex.cshtml.g.cs
-D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\QRCodes\GenerateQRCode.cshtml.g.cs
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Sales.cshtml.g.cs
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\bin\Release\netcoreapp3.1\appsettings.Development.json
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\bin\Release\netcoreapp3.1\appsettings.json
@@ -1135,3 +1134,8 @@ D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Release\netcore
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Release\netcoreapp3.1\PurityERP.pdb
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Release\netcoreapp3.1\PurityERP.genruntimeconfig.cache
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Release\netcoreapp3.1\PurityERP.csproj.AssemblyReference.cache
+D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Home\Index2.cshtml.g.cs
+D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\QrCodes\Index.cshtml.g.cs
+D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\QrCodes\PDQRcode.cshtml.g.cs
+D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Salesdetails.cshtml.g.cs
+D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Salesindex.cshtml.g.cs

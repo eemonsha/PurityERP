@@ -108,9 +108,9 @@
                 $('.crprint').click(function () {
 
                     var val = $(this).closest("tr").find("input[class='mainid']").val();
-                    //var host = window.origin;
-                    var host = "https://localhost:44326";
-                    window.open(host + '/Rep/QRPurity?ItemCode=' + val + '&St=Product', '_blank');
+                    var host = window.origin;
+                    //var host = "https://localhost:44326";
+                    window.open(host + '/Reports/Rep/QRPurity?ItemCode=' + val + '&St=Product', '_blank');
                 });
             });
         </script>
