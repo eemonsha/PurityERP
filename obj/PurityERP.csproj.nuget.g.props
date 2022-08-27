@@ -20,6 +20,7 @@
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.0\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.0\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">C:\Users\rashidul.kabir\.nuget\packages\jquery\1.7.0</PkgjQuery>
     <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\rashidul.kabir\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.4</PkgMicrosoft_CodeAnalysis_Analyzers>
     <PkgMicrosoft_SqlServer_Types Condition=" '$(PkgMicrosoft_SqlServer_Types)' == '' ">C:\Users\rashidul.kabir\.nuget\packages\microsoft.sqlserver.types\14.0.314.76</PkgMicrosoft_SqlServer_Types>
     <PkgMicrosoft_ReportingServices_ReportViewerControl_WebForms Condition=" '$(PkgMicrosoft_ReportingServices_ReportViewerControl_WebForms)' == '' ">C:\Users\rashidul.kabir\.nuget\packages\microsoft.reportingservices.reportviewercontrol.webforms\150.1484.0</PkgMicrosoft_ReportingServices_ReportViewerControl_WebForms>

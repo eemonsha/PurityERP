@@ -24,6 +24,9 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
+      "jQuery/1.7.0": {
+        "type": "package"
+      },
       "Microsoft.AspNet.Mvc/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -1959,6 +1962,12 @@
           }
         }
       },
+      "Select2.js/4.0.13": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.7.0"
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3561,6 +3570,24 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "jQuery/1.7.0": {
+      "sha512": "UEZuBreHZNLao3z9zNPeSadyoPwKDP/5kFh+Mn1Pm9ZS0czk7bv0O6RreloGSIMAfTLZCiigNkuPb2bXKtUM+g==",
+      "type": "package",
+      "path": "jquery/1.7.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery-1.7-vsdoc.js",
+        "Content/Scripts/jquery-1.7.js",
+        "Content/Scripts/jquery-1.7.min.js",
+        "Tools/install.ps1",
+        "Tools/jquery-1.7-vsdoc-para.js",
+        "Tools/uninstall.ps1",
+        "jquery.1.7.0.nupkg.sha512",
+        "jquery.nuspec"
       ]
     },
     "Microsoft.AspNet.Mvc/5.0.0": {
@@ -6022,6 +6049,80 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "Select2.js/4.0.13": {
+      "sha512": "YbsIWar+HV75AXNqejfpKyO6gR6jQ5UJKE+QA5dmXcY+neMiw3EVZCj8/Z3l5Jn/AXE82+Eftweq8K1KlObxsw==",
+      "type": "package",
+      "path": "select2.js/4.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Content/css/select2.css",
+        "content/Content/css/select2.min.css",
+        "content/Scripts/i18n/af.js",
+        "content/Scripts/i18n/ar.js",
+        "content/Scripts/i18n/az.js",
+        "content/Scripts/i18n/bg.js",
+        "content/Scripts/i18n/bn.js",
+        "content/Scripts/i18n/bs.js",
+        "content/Scripts/i18n/ca.js",
+        "content/Scripts/i18n/cs.js",
+        "content/Scripts/i18n/da.js",
+        "content/Scripts/i18n/de.js",
+        "content/Scripts/i18n/dsb.js",
+        "content/Scripts/i18n/el.js",
+        "content/Scripts/i18n/en.js",
+        "content/Scripts/i18n/es.js",
+        "content/Scripts/i18n/et.js",
+        "content/Scripts/i18n/eu.js",
+        "content/Scripts/i18n/fa.js",
+        "content/Scripts/i18n/fi.js",
+        "content/Scripts/i18n/fr.js",
+        "content/Scripts/i18n/gl.js",
+        "content/Scripts/i18n/he.js",
+        "content/Scripts/i18n/hi.js",
+        "content/Scripts/i18n/hr.js",
+        "content/Scripts/i18n/hsb.js",
+        "content/Scripts/i18n/hu.js",
+        "content/Scripts/i18n/hy.js",
+        "content/Scripts/i18n/id.js",
+        "content/Scripts/i18n/is.js",
+        "content/Scripts/i18n/it.js",
+        "content/Scripts/i18n/ja.js",
+        "content/Scripts/i18n/ka.js",
+        "content/Scripts/i18n/km.js",
+        "content/Scripts/i18n/ko.js",
+        "content/Scripts/i18n/lt.js",
+        "content/Scripts/i18n/lv.js",
+        "content/Scripts/i18n/mk.js",
+        "content/Scripts/i18n/ms.js",
+        "content/Scripts/i18n/nb.js",
+        "content/Scripts/i18n/ne.js",
+        "content/Scripts/i18n/nl.js",
+        "content/Scripts/i18n/pl.js",
+        "content/Scripts/i18n/ps.js",
+        "content/Scripts/i18n/pt-BR.js",
+        "content/Scripts/i18n/pt.js",
+        "content/Scripts/i18n/ro.js",
+        "content/Scripts/i18n/ru.js",
+        "content/Scripts/i18n/sk.js",
+        "content/Scripts/i18n/sl.js",
+        "content/Scripts/i18n/sq.js",
+        "content/Scripts/i18n/sr-Cyrl.js",
+        "content/Scripts/i18n/sr.js",
+        "content/Scripts/i18n/sv.js",
+        "content/Scripts/i18n/th.js",
+        "content/Scripts/i18n/tk.js",
+        "content/Scripts/i18n/tr.js",
+        "content/Scripts/i18n/uk.js",
+        "content/Scripts/i18n/vi.js",
+        "content/Scripts/i18n/zh-CN.js",
+        "content/Scripts/i18n/zh-TW.js",
+        "content/Scripts/select2.js",
+        "content/Scripts/select2.min.js",
+        "select2.js.4.0.13.nupkg.sha512",
+        "select2.js.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -10424,7 +10525,8 @@
       "Microsoft.ReportingServices.ReportViewerControl.WebForms >= 150.1484.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.5",
       "NToastNotify >= 7.0.0",
-      "QRCoder >= 1.4.3"
+      "QRCoder >= 1.4.3",
+      "Select2.js >= 4.0.13"
     ]
   },
   "packageFolders": {
@@ -10513,6 +10615,10 @@
           "QRCoder": {
             "target": "Package",
             "version": "[1.4.3, )"
+          },
+          "Select2.js": {
+            "target": "Package",
+            "version": "[4.0.13, )"
           }
         },
         "imports": [

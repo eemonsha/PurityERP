@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "HkCjssHu8YNMPnyNIPkmhgn7EJBLh856kH9AnUJippZzfpo6F1gS8RBihS+o5NOdZmFO8Y5s8whowudPVsqy5w==",
+  "dgSpecHash": "orFRM42tkG2xzDnpTHLWDQQA1AwalG3xOmlqUiw5kT90yaMlu4CUKyZc1fstAHO/30l/OWMpn+M7XBTAptHUdA==",
   "success": true,
   "projectFilePath": "D:\\RMD\\Softwares\\Solutions\\KS IT - by me\\PurityERP\\PurityERP\\PurityERP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\barcodelib\\2.4.0\\barcodelib.2.4.0.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\rashidul.kabir\\.nuget\\packages\\jquery\\1.7.0\\jquery.1.7.0.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\microsoft.aspnet.mvc\\5.0.0\\microsoft.aspnet.mvc.5.0.0.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\microsoft.aspnet.razor\\3.0.0\\microsoft.aspnet.razor.3.0.0.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.9\\microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
@@ -122,6 +123,7 @@
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\rashidul.kabir\\.nuget\\packages\\select2.js\\4.0.13\\select2.js.4.0.13.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\rashidul.kabir\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

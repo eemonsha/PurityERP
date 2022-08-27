@@ -87,6 +87,10 @@
             "QRCoder": {
               "target": "Package",
               "version": "[1.4.3, )"
+            },
+            "Select2.js": {
+              "target": "Package",
+              "version": "[4.0.13, )"
             }
           },
           "imports": [

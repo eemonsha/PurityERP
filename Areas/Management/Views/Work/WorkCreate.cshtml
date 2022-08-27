@@ -28,7 +28,7 @@
                     <div class="col-md-6">
                         <label asp-for="Product" class="control-label">Product</label>
                         <div class=" input-group">
-                            <select class="form-control select2" asp-for="Product" asp-items="@(new SelectList(ViewBag.product, "Id","ProductTittle"))">
+                            <select class="form-control select2" id="lstProduct" asp-for="Product" asp-items="@(new SelectList(ViewBag.product, "Id","ProductTittle"))">
                                 <option selected="selected">Select One</option>
                             </select>
                         </div>
@@ -112,6 +112,12 @@
     @section Scripts {
 
         <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#lstProduct').select2();
+            });
+        </script>
+
         <script>
             $(document).ready(function () {
                 $('#inventory').change(function () {

@@ -42,6 +42,7 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.5",
           "NToastNotify": "7.0.0",
           "QRCoder": "1.4.3",
+          "Select2.js": "4.0.13",
           "Microsoft.AspNetCore.Antiforgery.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -339,6 +340,7 @@
           }
         }
       },
+      "jQuery/1.7.0": {},
       "Microsoft.AspNet.Mvc/5.0.0": {
         "dependencies": {
           "Microsoft.AspNet.Razor": "3.0.0",
@@ -1937,6 +1939,11 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
+      "Select2.js/4.0.13": {
+        "dependencies": {
+          "jQuery": "1.7.0"
+        }
+      },
       "System.AppContext/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -4591,6 +4598,13 @@
       "path": "humanizer.core/2.8.26",
       "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
     },
+    "jQuery/1.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UEZuBreHZNLao3z9zNPeSadyoPwKDP/5kFh+Mn1Pm9ZS0czk7bv0O6RreloGSIMAfTLZCiigNkuPb2bXKtUM+g==",
+      "path": "jquery/1.7.0",
+      "hashPath": "jquery.1.7.0.nupkg.sha512"
+    },
     "Microsoft.AspNet.Mvc/5.0.0": {
       "type": "package",
       "serviceable": true,
@@ -5402,6 +5416,13 @@
       "sha512": "sha512-VB5cn/7OzUfzdnC8tqAIMQciVLiq2epm2NrAm1E9OjNRyG4lVhfR61SMcLizejzQP8R8Uf/0l5qOIbUEi+RdEg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
+    },
+    "Select2.js/4.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YbsIWar+HV75AXNqejfpKyO6gR6jQ5UJKE+QA5dmXcY+neMiw3EVZCj8/Z3l5Jn/AXE82+Eftweq8K1KlObxsw==",
+      "path": "select2.js/4.0.13",
+      "hashPath": "select2.js.4.0.13.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",
