@@ -25,7 +25,7 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult Salesindex()
         {
-            var salesin = (from sa in _context.Sales
+            var salesin = (from sa in _context.Sales 
                            select new CustomerVM
                            {
                                SaleID = sa.SaleID,
@@ -60,7 +60,7 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult Salesdetails(int id)
         {
-            var salesdetails = (from sal in _context.Sales.Where(x => x.SaleID == id)
+            var salesdetails = (from sal in _context.Sales.Where(x => x.SaleID == id).ToList()
                                 join prosel in _context.SalesProducts
                                 on sal.SaleID equals prosel.SaleID
                                 join product in _context.Products
@@ -72,9 +72,11 @@ namespace PurityERP.Areas.Management.Controllers
                                     Date = sal.Date,
                                     Amount = prosel.Amount,
                                     ProductTittle = product.ProductTittle,
-                                    OrderQty = prosel.OrderQty
+                                    OrderQty = prosel.OrderQty,
+                                    PDiscount = prosel.PDiscount,
+                                    Pvat = prosel.Pvat,
 
-                                }).FirstOrDefault();
+                                }).ToList();
             return View(salesdetails);
             
         }

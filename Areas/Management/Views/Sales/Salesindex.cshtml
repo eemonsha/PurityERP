@@ -20,7 +20,8 @@
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Sales ID</th>
+                       
+
                         <th>Amount</th>
                         <th>Action</th>
 
@@ -31,8 +32,9 @@
                     @foreach (var items in Model)
                     {
                         <tr>
-                            <td>@items.SaleID</td>
+                           
                             <td>@items.Date</td>
+                            
                             <td>@items.TotalAmount</td>
                             
                             <td class="float-right">
@@ -51,7 +53,7 @@
                     <tr>
 
                         <th>Date</th>
-                        <th>Sales ID</th>
+                        <th>Customer</th>
                         <th>Amount</th>
                         <th>Action</th>
                     </tr>

@@ -32,6 +32,8 @@ namespace PurityERP.Areas.Management.ViewModel
         public decimal Vat { get; set; }
         public string ProductCode { get; set; }
         public string ProductTittle { get; set; }
+        public decimal Pvat { get; set; }
+        public decimal PDiscount { get; set; }
 
         public List<SalesProduct> selsp { get; set; }
     }
