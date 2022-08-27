@@ -26,9 +26,6 @@ namespace PurityERP.Data
         public DbSet<CostMap> CostMaps { get; set; }
         public DbSet<ProductWorkRegister> ProductWorkRegisters { get; set; }
         public DbSet<Payment> Payments { get; set; }
-
-        public DbSet<QRCode> QRCodes { get; set; }
-
         public DbSet<CostRegister> CostRegisters { get; set; }
         public DbSet<QR> QRs { get; set; }
         public DbSet<Menu> Menus { get; set; }

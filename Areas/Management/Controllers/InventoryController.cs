@@ -7,8 +7,10 @@ using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PurityERP.Areas.Management.Controllers
@@ -347,6 +349,48 @@ namespace PurityERP.Areas.Management.Controllers
             return View(sql);
             
         }
+
+        public void CreateQr()
+        {
+            var qrcodestring = "Rajib";
+            int NoofQr = 2;
+            var qrCodeGenerator = new QRCodeGenerator();
+            QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
+            QRCode qRCode = new QRCode(qRCodeData);
+            Bitmap bitmap = qRCode.GetGraphic(3);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding.GetEncoding("windows-1252");
+            byte[] paramValue = null;
+            using (var b = new Bitmap(qRCode.GetGraphic(3)))
+            {
+                using (var ms = new MemoryStream())
+                {
+                    b.Save(ms, ImageFormat.Bmp);
+                    paramValue = ms.ToArray();
+                }
+            }
+
+            for(int LoopMoover = 1; LoopMoover < 2;LoopMoover++)
+            {
+                var NewQr = new QR()
+                {
+                    ID=0,
+                    ItemCode=0,
+                    QrImage= paramValue,
+                    ItemName="rajib",
+                    UserID=1,
+                    QrQty=0,
+                };
+                _context.Add(NewQr);
+                _context.SaveChanges();
+            }
+
+
+
+        }
+
+
 
         //public IActionResult ProductQrCode(int id)
         //{
