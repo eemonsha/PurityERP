@@ -1,320 +1,350 @@
 ﻿@model CustomerVM
 
-<h4>Sales</h4>
-<hr />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="~/assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/assets/dist/css/adminlte.min.css">
 
 
+    <link href="~/assets/mystyle.css" rel="stylesheet" />
 
-<div class="row">
-    <div class="col-6">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label class="control-label">Product</label>
-                    <select class="form-control" id="inv" asp-items="@ViewBag.pr" name="id">
-                        <option selected>Select One </option>
-                    </select>
-                    <span class="text-danger"></span>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+
+    <h4>Sales</h4>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">Product</label>
+                        <select class="form-control select2 " id="inv" asp-items="@ViewBag.pr" name="id">
+                            <option selected>Select One </option>
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
 
+            <hr />
+            <div class="row mt-2">
+                <div class="col-3">
+                    <b>Product Code</b>
+                </div>
+                <div class="col-3">
+                    <b>Product Name</b>
+                </div>
+                <div class="col-3">
+                    <b>Unit Price</b>
+                </div>
+                <div class="col-3">
+                    <b>Remain Qty</b>
+                </div>
 
-        <hr />
-        <div class="row mt-2">
-            <div class="col-3">
-                <b>Product Code</b>
             </div>
-            <div class="col-3">
-                <b>Product Name</b>
-            </div>
-            <div class="col-3">
-                <b>Unit Price</b>
-            </div>
-            <div class="col-3">
-                <b>Remain Qty</b>
-            </div>
-
-        </div>
-        <div class="row mb-2">
-            <div class="col-3">
-                <input type="text" class="form-control" id="product" readonly />
-            </div>
-            <div class="col-3">
-                <input type="text" class="form-control" id="name" readonly />
-            </div>
-            <div class="col-3">
-                <input type="text" class="form-control" id="sellprice" readonly />
-            </div>
-            <div class="col-3">
-                <input type="text" class="form-control" id="rmn" readonly />
-            </div>
-
-        </div>
-
-        <hr />
-
-        <div class="row">
-
-            <div class="col-md-6">
-                <label>Order Qty :</label>
-                <input type="number" id="qty" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-
-                <label>Amount :</label>
-                <input readonly type="text" id="amount" class="form-control" />
+            <div class="row mb-2">
+                <div class="col-3">
+                    <input type="text" class="form-control" id="product" readonly />
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="name" readonly />
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="sellprice" readonly />
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" id="rmn" readonly />
+                </div>
 
             </div>
 
+            <hr />
 
-        </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <label>Order Qty :</label>
+                    <input type="number" id="qty" class="form-control" />
+                </div>
+
+                <div class="col-md-6">
+
+                    <label>Amount :</label>
+                    <input readonly type="text" id="amount" class="form-control" />
+
+                </div>
 
 
-        <div class="row">
+            </div>
 
-            <div class="col-md-6">
-                <label> Discount Percentage :</label>
-                <input type="text" id="per" class="form-control" value="0" />
-            </div>
-            <div class="col-md-6">
-                <label> Amount :</label>
-                <input readonly type="text" id="amnt" class="form-control" value="0" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label> vat :</label>
-                <input type="text" id="vap" class="form-control" value="0" />
-            </div>
-            <div class="col-md-6">
-                <label> vat :</label>
-                <input type="text" id="vaa" class="form-control" value="0" />
-            </div>
-        </div>
-        <div class="row">
 
-            <div class="col-md-12">
-                <label> Total :</label>
-                <input readonly type="text" id="totaltt" class="form-control" />
-            </div>
-        </div>
-        <hr />
-        <div class="row mt-2">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="btn-group">
-                    <button id="additem" class="btn btn-success">Add</button>
-                    <a asp-action="Index" class="btn btn-warning">Back to List</a>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <label> Discount Percentage :</label>
+                    <input type="text" id="per" class="form-control" value="0" />
+                </div>
+                <div class="col-md-6">
+                    <label> Amount :</label>
+                    <input readonly type="text" id="amnt" class="form-control" value="0" />
                 </div>
             </div>
-        </div>
-        <input type="hidden" id="productname" value="" />
-    </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label> vat :</label>
+                    <input type="text" id="vap" class="form-control" value="0" />
+                </div>
+                <div class="col-md-6">
+                    <label> vat :</label>
+                    <input type="text" id="vaa" class="form-control" value="0" />
+                </div>
+            </div>
+            <div class="row">
 
-    <div class="col-6">
-        <div class="row">
-            <div class="col-12">
-
-                <label asp-for="CustID" class="control-label">Customer</label>
-                <div class=" input-group">
-                    <select class="form-control select2" data-native-menu="false" id="supplier" asp-for="CustID" asp-items="@ViewBag.cs">
-                        <option disabled selected="selected">Select One</option>
-                    </select>
-                    @**@
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            <a href="#" data-toggle="modal"
-                               data-target="#suppliercreate">  <i class="fas fa-plus-circle"></i></a>
-                        </span>
+                <div class="col-md-12">
+                    <label> Total :</label>
+                    <input readonly type="text" id="totaltt" class="form-control" />
+                </div>
+            </div>
+            <hr />
+            <div class="row mt-2">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="btn-group">
+                        <button id="additem" class="btn btn-success">Add</button>
+                        <a asp-action="Index" class="btn btn-warning">Back to List</a>
                     </div>
                 </div>
-                <span asp-validation-for="CustID" class="text-danger"></span>
-
             </div>
-        </div>
-        <hr />
-
-        <div class="row mt-5">
-
-            <div class="col-6">
-                <b>Total Amount</b>
-            </div>
-            <div class="col-6">
-                <input type="text" readonly id="totalall" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="col-6">
-                <b>Total Vat</b>
-            </div>
-            <div class="col-6">
-                <input type="text" readonly id="totalvat" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="col-6">
-                <b>Total Discount</b>
-            </div>
-            <div class="col-6">
-                <input type="text" readonly id="totaldis" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="col-6">
-                <b>Payable Amount</b>
-            </div>
-            <div class="col-6">
-                <input type="text" readonly id="payable" class="form-control" />
-            </div>
+            <input type="hidden" id="productname" value="" />
         </div>
 
-        <hr />
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
 
-        <h4>Payment</h4>
-        <div class="row mt-3">
+                    <label asp-for="CustID" class="control-label">Customer</label>
+                    <div class=" input-group">
+                        <select class="form-control select2" data-native-menu="false" id="supplier" asp-for="CustID" asp-items="@ViewBag.cs">
+                            <option disabled selected="selected">Select One</option>
+                        </select>
+                        @**@
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <a href="#" data-toggle="modal"
+                                   data-target="#suppliercreate">  <i class="fas fa-plus-circle"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                    <span asp-validation-for="CustID" class="text-danger"></span>
 
-            <div class="col-6">
-                <b>Cash</b>
+                </div>
             </div>
-            <div class="col-6">
-                <input type="text"  id="cashpay" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
+            <hr />
 
-            <div class="col-6">
-                <b>Card</b>
-            </div>
-            <div class="col-6">
-                <input type="text"  id="cardpay" class="form-control" />
-            </div>
-        </div>
-        <div class="row mb-2">
+            <div class="row mt-5">
 
-            <div class="col-6">
-                <b>Mobile Banking</b>
+                <div class="col-6">
+                    <b>Total Amount</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" readonly id="totalall" class="form-control" />
+                </div>
             </div>
-            <div class="col-6">
-                <input type="text"  id="mfspay" class="form-control" />
+            <div class="row">
+
+                <div class="col-6">
+                    <b>Total Vat</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" readonly id="totalvat" class="form-control" />
+                </div>
             </div>
-        </div>
-        <hr />
-        <div class="row mt-2">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="btn-group">
-                    <button id="btnsubmit" class="btn btn-success">Submit</button>
-                    <button id="btncancel" class="btn btn-warning">Cancel</button>
-                    
+            <div class="row">
+
+                <div class="col-6">
+                    <b>Total Discount</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" readonly id="totaldis" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-6">
+                    <b>Payable Amount</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" readonly id="payable" class="form-control" />
                 </div>
             </div>
 
+            <hr />
+
+            <h4>Payment</h4>
+            <div class="row mt-3">
+
+                <div class="col-6">
+                    <b>Cash</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" id="cashpay" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-6">
+                    <b>Card</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" id="cardpay" class="form-control" />
+                </div>
+            </div>
+            <div class="row mb-2">
+
+                <div class="col-6">
+                    <b>Mobile Banking</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" id="mfspay" class="form-control" />
+                </div>
+            </div>
+            <hr />
+            <div class="row mt-2">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="btn-group">
+                        <button id="btnsubmit" class="btn btn-success">Submit</button>
+                        <button id="btncancel" class="btn btn-warning">Cancel</button>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
         </div>
-        
+
+
+
 
 
     </div>
 
-    
-        
-    
 
-</div>
-
-
-<h2>Item Details</h2>
-<div>
-    <table class="table table-light table-hover">
-        <thead>
-            <tr>
-
-                
-                <th>Product Name</th>
-                <th>Qty</th>
-                <th>Unit Price</th>
-                <th>Discount</th>
-                <th>Vat</th>
-                <th>Total</th>
-                <th>Action</th>
-
-            </tr>
-        </thead>
-        <tbody id="partTable">
-        </tbody>
-        @*<tr> <td class="text-right"> Total<td id="total"></td> </tr>*@
-
-    </table>
-</div>
+    <h2>Item Details</h2>
+    <div>
+        <table class="table table-light table-hover">
+            <thead>
+                <tr>
 
 
-@*Customer*@
+                    <th>Product Name</th>
+                    <th>Qty</th>
+                    <th>Unit Price</th>
+                    <th>Discount</th>
+                    <th>Vat</th>
+                    <th>Total</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody id="partTable">
+            </tbody>
+            @*<tr> <td class="text-right"> Total<td id="total"></td> </tr>*@
+
+        </table>
+    </div>
 
 
-<div class="modal fade" id="suppliercreate" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Customer Create</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    @*Customer*@
+
+
+    <div class="modal fade" id="suppliercreate" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Customer Create</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">CustomarName</label>
+                        <input type="text" class="form-control" id="supname" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Customar Phone Number</label>
+                        <input type="text" class="form-control" id="supphone" placeholder="Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Area</label>
+                        <input type="text" class="form-control" id="suparea" placeholder="Area">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Customer Address</label>
+                        <input type="text" class="form-control" id="subadd" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Email</label>
+                        <input type="email" class="form-control" id="supemail" placeholder="Email">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="customermodaloff">Close</button>
+                    <input id="customercreate" type="submit" class="btn btn-primary" value="Save Changes" />
+
+
+                    @*<input id="btnSaveCountry" type="submit" class="btn btn-primary" value="Create" />*@
+                </div>
+
             </div>
-
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="exampleInputPassword1">CustomarName</label>
-                    <input type="text" class="form-control" id="supname" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Customar Phone Number</label>
-                    <input type="text" class="form-control" id="supphone" placeholder="Number">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Area</label>
-                    <input type="text" class="form-control" id="suparea" placeholder="Area">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Customer Address</label>
-                    <input type="text" class="form-control" id="subadd" placeholder="Address">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Email</label>
-                    <input type="email" class="form-control" id="supemail" placeholder="Email">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="customermodaloff">Close</button>
-                <input id="customercreate" type="submit" class="btn btn-primary" value="Save Changes" />
-
-
-                @*<input id="btnSaveCountry" type="submit" class="btn btn-primary" value="Create" />*@
-            </div>
-
         </div>
     </div>
-</div>
 
 
 
 
+    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/assets/dist/js/adminlte.min.js"></script>
 
 
+    <script src="~/assets/plugins/select2/js/select2.full.min.js"></script>
 
-<script src="https://cdn.snpsujon.me/snpcookie.js"></script>
+
+    <script src="~/assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <script src="https://cdn.snpsujon.me/snpcookie.js"></script>
 
 
-@section Scripts {
+    @section Scripts {
 
-    <script>
+        <script>
+
+            $(function () {
+                $('.select2').select2()
+            });
+
+
         $('#customercreate').click(function () {
             var cusname = $('#supname').val();
             var cusphone = $('#supphone').val();
@@ -348,12 +378,12 @@
                         //$('#customermodaloff').click();
                     };
                 },
-                
+
             });
 
         });
         $('#btnsubmit').click(function () {
-            
+
 
             var mydata = {};
 
@@ -372,7 +402,7 @@
             $("#partTable TR").each(function () {
                 var row = $(this);
                 var selsp = {};
-                
+
                 selsp.ProductID = row.find("TD").eq(0).html();
                 selsp.OrderQty = row.find("TD").eq(2).html();
                 selsp.UnitPrice = row.find("TD").eq(3).html();
@@ -381,7 +411,7 @@
                 selsp.PDiscount = row.find("TD").eq(4).html();
                 //selsp.Returnable = row.find("TD").eq(6).html();
                 SalesProduct.push(selsp);
-                
+
 
 
 
@@ -403,7 +433,7 @@
                         alert("Data has been  not saved");
                     }
                 },
-                
+
             });
 
         });
@@ -422,7 +452,7 @@
                     $('#product').val(mainhead.productCode);
                     $('#name').val(mainhead.productTittle);
                     $('#sellprice').val(mainhead.salesPrice);
-                    $('#rmn').val(mainhead.salesRemainQty);
+                    $('#rmn').val(mainhead.remainingQty);
                     $('#productname').val(mainhead.productTittle);
                     $("#qty,#amount,#vap,#vaa,#per,#amnt").val("0");
 
@@ -516,9 +546,9 @@
         }
         window.onload = Onload();
 
-    </script>
+        </script>
 
-    <script>
+        <script>
         //change quantity to change ammount
         $("#qty").change(function () {
             var name = $("#inv").val();
@@ -550,7 +580,7 @@
 
         });
 
-        //for change vat 
+        //for change vat
         $('#vap').keyup(function () {
             var vamount = $('#amount').val();
             var discount = $('#amnt').val();
@@ -572,7 +602,18 @@
 
 
 
-    </script>
+
+        </script>
 
 
-}
+    }
+
+
+
+
+
+
+
+
+</body>
+</html>

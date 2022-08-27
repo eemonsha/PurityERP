@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PurityERP.Data;
 
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220826114112_hg")]
+    partial class hg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -365,20 +367,8 @@ namespace PurityERP.Migrations
                     b.Property<int>("ItemCode")
                         .HasColumnType("int");
 
-                    b.Property<string>("ItemName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PriceAmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<byte[]>("QrImage")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("QrQty")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -409,22 +399,9 @@ namespace PurityERP.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("QRCodes");
-                });
-
-            modelBuilder.Entity("PurityERP.Areas.Management.Models.QrCategory", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CategoryTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("QrCategories");
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.RolebasedMenu", b =>
@@ -730,6 +707,17 @@ namespace PurityERP.Migrations
                     b.HasKey("WorkerId");
 
                     b.ToTable("Workers");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.QRCode", b =>
+                {
+                    b.HasOne("PurityERP.Areas.Management.Models.Product", "Inventorys")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Inventorys");
                 });
 #pragma warning restore 612, 618
         }
