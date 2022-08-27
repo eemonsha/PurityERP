@@ -368,8 +368,20 @@ namespace PurityERP.Migrations
                     b.Property<int>("ItemCode")
                         .HasColumnType("int");
 
+                    b.Property<string>("ItemName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PriceAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<byte[]>("QrImage")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("QrQty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -400,9 +412,22 @@ namespace PurityERP.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("QRCodes");
+                });
+
+            modelBuilder.Entity("PurityERP.Areas.Management.Models.QrCategory", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CategoryTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("QrCategories");
                 });
 
             modelBuilder.Entity("PurityERP.Areas.Management.Models.RolebasedMenu", b =>
@@ -708,17 +733,6 @@ namespace PurityERP.Migrations
                     b.HasKey("WorkerId");
 
                     b.ToTable("Workers");
-                });
-
-            modelBuilder.Entity("PurityERP.Areas.Management.Models.QRCode", b =>
-                {
-                    b.HasOne("PurityERP.Areas.Management.Models.Product", "Inventorys")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inventorys");
                 });
 #pragma warning restore 612, 618
         }

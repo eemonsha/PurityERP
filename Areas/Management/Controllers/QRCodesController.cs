@@ -22,6 +22,17 @@ namespace PurityERP.Areas.Management.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult QryCodeGenerate()
+        {
+            var SelQrCats = _context.QrCategories.ToList();
+            ViewBag.QrCats = SelQrCats;
+            return View();
+            
+        }
+
+
+
         public IActionResult GenerateQRCode()
         {
             //if (HttpContext.Session.GetString("Email") == null)

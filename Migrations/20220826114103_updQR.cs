@@ -2,20 +2,19 @@
 
 namespace PurityERP.Migrations
 {
-    public partial class init21213 : Migration
+    public partial class updQR : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<decimal>(
-                name: "PDiscount",
-                table: "SalesProducts",
-                type: "decimal(18,2)",
-                nullable: false,
-                defaultValue: 0m);
+            migrationBuilder.AddColumn<string>(
+                name: "ItemName",
+                table: "QRs",
+                type: "nvarchar(max)",
+                nullable: true);
 
             migrationBuilder.AddColumn<decimal>(
-                name: "Pvat",
-                table: "SalesProducts",
+                name: "PriceAmount",
+                table: "QRs",
                 type: "decimal(18,2)",
                 nullable: false,
                 defaultValue: 0m);
@@ -24,12 +23,12 @@ namespace PurityERP.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "PDiscount",
-                table: "SalesProducts");
+                name: "ItemName",
+                table: "QRs");
 
             migrationBuilder.DropColumn(
-                name: "Pvat",
-                table: "SalesProducts");
+                name: "PriceAmount",
+                table: "QRs");
         }
     }
 }

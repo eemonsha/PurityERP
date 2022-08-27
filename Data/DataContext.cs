@@ -38,6 +38,7 @@ namespace PurityERP.Data
         public DbSet<CustomerInfo> CustomerInfos { get; set; }
         public DbSet<Sales> Sales{ get; set; }
         public DbSet<SalesProduct> SalesProducts{ get; set; }
+        public DbSet<QrCategory> QrCategories{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

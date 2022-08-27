@@ -10,8 +10,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220825072818_init21213")]
-    partial class init21213
+    [Migration("20220826114103_updQR")]
+    partial class updQR
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -325,6 +325,9 @@ namespace PurityERP.Migrations
                     b.Property<decimal>("SalesPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("SalesRemainQty")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Products");
@@ -366,6 +369,12 @@ namespace PurityERP.Migrations
 
                     b.Property<int>("ItemCode")
                         .HasColumnType("int");
+
+                    b.Property<string>("ItemName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PriceAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<byte[]>("QrImage")
                         .HasColumnType("varbinary(max)");

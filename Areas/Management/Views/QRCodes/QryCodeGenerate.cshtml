@@ -1,0 +1,44 @@
+﻿@model PurityERP.Areas.Management.Models.QR
+
+@{
+    ViewData["Title"] = "QryCodeGenerate";
+}
+
+<h1>QrCode</h1>
+
+<h4>Generator</h4>
+<hr />
+<div class="row">
+    <form asp-action="QryCodeGenerate">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="ID" class="control-label">Select category</label>
+            <select class="Clientjs form-control" data-native-menu="false" id="lstQryCats" style="width:100%"
+                    asp-for="QrCategory" asp-items="ViewBag.QrCats">
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="ID" class="control-label">Select item</label>
+            <select class="Clientjs form-control" data-native-menu="false" id="lstQryCats" style="width:100%"
+                    asp-for="QrCategory" asp-items="ViewBag.QrCats">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ID" class="control-label">No. of Qr Request</label>
+            <input type="number" asp-for="QrQty" id="txtqrQty" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

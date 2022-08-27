@@ -2,13 +2,13 @@
 
 namespace PurityERP.Migrations
 {
-    public partial class init212135 : Migration
+    public partial class updQRss : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "SalesRemainQty",
-                table: "Products",
+                name: "QrQty",
+                table: "QRs",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
@@ -17,8 +17,8 @@ namespace PurityERP.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "SalesRemainQty",
-                table: "Products");
+                name: "QrQty",
+                table: "QRs");
         }
     }
 }

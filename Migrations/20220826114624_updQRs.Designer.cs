@@ -10,8 +10,8 @@ using PurityERP.Data;
 namespace PurityERP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220825092315_init212135")]
-    partial class init212135
+    [Migration("20220826114624_updQRs")]
+    partial class updQRs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -370,8 +370,17 @@ namespace PurityERP.Migrations
                     b.Property<int>("ItemCode")
                         .HasColumnType("int");
 
+                    b.Property<string>("ItemName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PriceAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<byte[]>("QrImage")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -401,8 +410,6 @@ namespace PurityERP.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("QRCodes");
                 });
@@ -710,17 +717,6 @@ namespace PurityERP.Migrations
                     b.HasKey("WorkerId");
 
                     b.ToTable("Workers");
-                });
-
-            modelBuilder.Entity("PurityERP.Areas.Management.Models.QRCode", b =>
-                {
-                    b.HasOne("PurityERP.Areas.Management.Models.Product", "Inventorys")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inventorys");
                 });
 #pragma warning restore 612, 618
         }

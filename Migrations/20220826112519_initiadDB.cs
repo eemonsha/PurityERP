@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PurityERP.Migrations
 {
-    public partial class init : Migration
+    public partial class initiadDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -175,7 +175,8 @@ namespace PurityERP.Migrations
                     DiscountRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     InitialProductStockQty = table.Column<int>(type: "int", nullable: false),
                     RemainingQty = table.Column<int>(type: "int", nullable: false),
-                    QRId = table.Column<int>(type: "int", nullable: false)
+                    QRId = table.Column<int>(type: "int", nullable: false),
+                    SalesRemainQty = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -261,6 +262,8 @@ namespace PurityERP.Migrations
                     OrderQty = table.Column<int>(type: "int", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Pvat = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PDiscount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Returnable = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

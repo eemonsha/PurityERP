@@ -9,7 +9,6 @@ namespace PurityERP.Areas.Management.Models
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
-        public Product Inventorys { get; set; }
         public decimal Quantity { get; set; }
         public string QcStatus { get; set; }
         public string QrStatus { get; set; }
