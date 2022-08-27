@@ -1,10 +1,4 @@
-﻿@*@model*@  
-@using Microsoft.AspNetCore.Http
-@{
-
-    IEnumerable<PurityERP.Areas.Management.Models.Product> products = ViewData["products"] as IEnumerable<PurityERP.Areas.Management.Models.Product>;
-
-}
+﻿@model IEnumerable<ProductVM>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,11 +19,12 @@
         @*<a asp-action="ProductQrCode" class=" btn btn-primary float-right">QRCode</a>*@
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example1" style="font-size:small" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Product Code</th>
                         <th>Product Tittle</th>
+                        <th>Quanity</th>
                         <th>Sales price</th>
                         <th>Action</th>
 
@@ -37,23 +32,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var items in products)
+                    @foreach (var items in Model)
                     {
-                    <tr>
-                        <td>@items.ProductCode</td>
-                        <td>@items.ProductTittle</td>
-                        <td>@items.SalesPrice</td>
-                        <td class="float-right">
-                            <div class="btn-group" role="group" aria-label="Basic example">
+                        <tr>
+                            <td>@items.ProductCode</td>
+                            <td>@items.ProductTittle</td>
+                            <td>@items.RemainingQty</td>
+                            <td>@items.SalesPrice</td>
+                            <td>
                                 <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
                                 <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
                                 <a asp-action="ProductManage" asp-route-id="@items.Id" type="button" class="btn btn-dark">Manage</a>
-                                <a asp-action="ProductQrCode" asp-route-id="@items.Id" type="button" class="btn btn-info">Genarete QR</a>
-
-                            </div>
-
-                        </td>
-                    </tr>
+                                @if (items.QrExists == "No")
+                                {
+                                    <a asp-action="CreateQr" asp-route-ProdID="@items.Id" type="button" class="btn btn-info">QR</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="DeleteQr" asp-route-ProdID="@items.Id" type="button" class="btn btn-info">Delete QR</a>
+                                }
+                                
+                            </td>
+                        </tr>
                     }
 
                 </tbody>
@@ -69,7 +69,7 @@
             </table>
         </div>
         <!-- /.card-body -->
-        @if (Context.Session.GetString("image") != null)
+        @*@if (Context.Session.GetString("image") != null)
         {
 
             <div class="row mt-3">
@@ -77,24 +77,24 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-9">
                         <a href="@Context.Session.GetString("image")" download="img.jpg"><img src="@Context.Session.GetString("image")" height="300" width="300" /></a>
-                        
+
                     </div>
                 </div>
             </div>
-        }
+        }*@
     </div>
 
-    @section Scripts{ 
-    <script>
-        $(document).ready(function () {
-            $('#showbtn').click(function () {
-                $('#example1').show();
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $('#showbtn').click(function () {
+                    $('#example1').show();
+                });
+                $('#hidebtn').click(function () {
+                    $('#example1').hide();
+                });
             });
-            $('#hidebtn').click(function () {
-                $('#example1').hide();
-            });
-        });
-    </script>
+        </script>
     }
 </body>
 </html>

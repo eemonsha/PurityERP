@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\PurityERP\\PurityERP.csproj": {}
+    "D:\\RMD\\Softwares\\Solutions\\KS IT - by me\\PurityERP\\PurityERP\\PurityERP.csproj": {}
   },
   "projects": {
-    "D:\\Project\\PurityERP\\PurityERP.csproj": {
+    "D:\\RMD\\Softwares\\Solutions\\KS IT - by me\\PurityERP\\PurityERP\\PurityERP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\PurityERP\\PurityERP.csproj",
+        "projectUniqueName": "D:\\RMD\\Softwares\\Solutions\\KS IT - by me\\PurityERP\\PurityERP\\PurityERP.csproj",
         "projectName": "PurityERP",
-        "projectPath": "D:\\Project\\PurityERP\\PurityERP.csproj",
-        "packagesPath": "C:\\Users\\emons\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\PurityERP\\obj\\",
+        "projectPath": "D:\\RMD\\Softwares\\Solutions\\KS IT - by me\\PurityERP\\PurityERP\\PurityERP.csproj",
+        "packagesPath": "C:\\Users\\rashidul.kabir\\.nuget\\packages\\",
+        "outputPath": "D:\\RMD\\Softwares\\Solutions\\KS IT - by me\\PurityERP\\PurityERP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\emons\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rashidul.kabir\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,6 +87,10 @@
             "QRCoder": {
               "target": "Package",
               "version": "[1.4.3, )"
+            },
+            "Select2.js": {
+              "target": "Package",
+              "version": "[4.0.13, )"
             }
           },
           "imports": [
@@ -107,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.108\\RuntimeIdentifierGraph.json"
         }
       }
     }

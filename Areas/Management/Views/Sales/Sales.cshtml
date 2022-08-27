@@ -3,19 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <link rel="stylesheet" href="~/assets/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="~/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/assets/dist/css/adminlte.min.css">
 
 
-    <link href="~/assets/mystyle.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 
@@ -322,21 +313,15 @@
 
 
 
-    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
-
-    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script src="~/assets/dist/js/adminlte.min.js"></script>
-
-
-    <script src="~/assets/plugins/select2/js/select2.full.min.js"></script>
-
-
-    <script src="~/assets/plugins/inputmask/jquery.inputmask.min.js"></script>
-    <script src="https://cdn.snpsujon.me/snpcookie.js"></script>
-
 
     @section Scripts {
+
+        <script>
+            $(document).ready(function () {
+                $('#inv').select2();
+            });
+        </script>
+
 
         <script>
 
@@ -607,13 +592,6 @@
 
 
     }
-
-
-
-
-
-
-
 
 </body>
 </html>

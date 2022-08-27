@@ -7,8 +7,10 @@ using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PurityERP.Areas.Management.Controllers
@@ -254,9 +256,33 @@ namespace PurityERP.Areas.Management.Controllers
 
     public IActionResult ProductIndex()
     {
-            var pro = _context.Products.ToList();
-            ViewData["products"] = pro;
-            return View();
+            var ProList = _context.Products.Where(x=>x.RemainingQty>0).ToList();
+            var viewmodel = new List<ProductVM>();
+            var model = new ProductVM();
+
+            foreach (var item in ProList)
+            {
+                var SelQr = _context.QRs.Where(x => x.QrCategory == "Product" && x.ItemCode == item.Id).FirstOrDefault();
+                var QrStatus = "No";
+                if (SelQr != null)
+                {
+                    QrStatus = "Yes";
+                }
+
+                model = new ProductVM
+                {
+                    Id=item.Id,
+                    ProductTittle=item.ProductTittle,
+                    ProductCode=item.ProductCode,
+                    SalesPrice=item.SalesPrice,
+                    RemainingQty=item.RemainingQty,
+                    QrExists=QrStatus
+                };
+                viewmodel.Add(model);
+            }
+
+            ViewData["products"] = viewmodel;
+            return View(viewmodel);
      }
 
 
@@ -348,36 +374,61 @@ namespace PurityERP.Areas.Management.Controllers
             
         }
 
-        //public IActionResult ProductQrCode(int id)
-        //{
-        //    var product = _context.Products.Find(id);
-        //    var data = "Product Name - "+product.ProductTittle+"-"+product.ProductCode+"-"+product.SalesPrice;
-        //    QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
-        //    QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
-        //    QRCode qRCode = new QRCode(qRCodeData);
-        //    Bitmap bitmap = qRCode.GetGraphic(15);
+        public ActionResult CreateQr(int ProdID)
+        {
 
-        //    var bitmapBytes = ConvertBitmapToBytes(bitmap);
+            var SelProduct = _context.Products.Where(x => x.Id == ProdID).FirstOrDefault();
 
-        //    var img = "data:image/png;base64," + Convert.ToBase64String(bitmapBytes);
-        //    HttpContext.Session.SetString("image", img);
-        //    var file = File(bitmapBytes, "image/jpeg");
-        //    //TempData["qr"] = bitmapBytes;
-        //    return RedirectToAction("ProductIndex");
-            
-            
-        //}
-        //[HttpPost]
-        ////QR
-        //public IActionResult ProductQrCode(string Code)
-        //{
-        //    QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
-        //    QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
-        //    QRCode qRCode = new QRCode(qRCodeData);
-        //    Bitmap bitmap = qRCode.GetGraphic(15);
-        //    var bitmapBytes = ConvertBitmapToBytes(bitmap);
-        //    return File(bitmapBytes,"image/jpeg"); 
-        //}
+            var qrcodestring = Convert.ToString(ProdID);
+            int NoofQr =SelProduct.RemainingQty;
+
+            var qrCodeGenerator = new QRCodeGenerator();
+            QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
+            QRCode qRCode = new QRCode(qRCodeData);
+            Bitmap bitmap = qRCode.GetGraphic(3);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding.GetEncoding("windows-1252");
+            byte[] paramValue = null;
+            using (var b = new Bitmap(qRCode.GetGraphic(3)))
+            {
+                using (var ms = new MemoryStream())
+                {
+                    b.Save(ms, ImageFormat.Bmp);
+                    paramValue = ms.ToArray();
+                }
+            }
+
+            for(int LoopMoover = 0; LoopMoover < SelProduct.RemainingQty;LoopMoover++)
+            {
+                var NewQr = new QR()
+                {
+                    ID=0,
+                    ItemCode= ProdID,
+                    QrImage= paramValue,
+                    ItemName=SelProduct.ProductTittle,
+                    PriceAmount=SelProduct.SalesPrice,
+                    UserID=1,
+                    QrQty=0,
+                    QrCategory="Product"
+                };
+                _context.Add(NewQr);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("ProductIndex");
+        }
+
+
+        public ActionResult DeleteQr(int ProdID)
+        {
+            var SelQr = _context.QRs.Where(x => x.QrCategory == "Product" && x.ItemCode == ProdID).FirstOrDefault();
+            _context.Remove(SelQr);
+            _context.SaveChanges();
+
+            return RedirectToAction("ProductIndex");
+        }
+
 
         private byte[] ConvertBitmapToBytes(Bitmap bitmap)
         {

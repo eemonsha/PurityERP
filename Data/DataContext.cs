@@ -26,9 +26,6 @@ namespace PurityERP.Data
         public DbSet<CostMap> CostMaps { get; set; }
         public DbSet<ProductWorkRegister> ProductWorkRegisters { get; set; }
         public DbSet<Payment> Payments { get; set; }
-
-        public DbSet<QRCode> QRCodes { get; set; }
-
         public DbSet<CostRegister> CostRegisters { get; set; }
         public DbSet<QR> QRs { get; set; }
         public DbSet<Menu> Menus { get; set; }
@@ -38,6 +35,7 @@ namespace PurityERP.Data
         public DbSet<CustomerInfo> CustomerInfos { get; set; }
         public DbSet<Sales> Sales{ get; set; }
         public DbSet<SalesProduct> SalesProducts{ get; set; }
+        public DbSet<QrCategory> QrCategories{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
