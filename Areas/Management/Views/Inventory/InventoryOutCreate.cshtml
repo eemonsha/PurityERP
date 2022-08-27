@@ -19,7 +19,7 @@
                     <div class="col-md-6">
                         <label asp-for="InventoryItem" class="control-label">Inventory item</label>
                         <div class=" input-group">
-                            <select class="form-control select2" data-native-menu="false" id="inventory" asp-for="InventoryItem" asp-items="@(new SelectList(ViewBag.inventories, "Id","Tittle"))">
+                            <select class="form-control select2" data-native-menu="false" id="inventory" asp-for="InventoryItem" asp-items="@ViewBag.Inven">
                                 <option disabled selected="selected">Select One</option>
                             </select>
                             @**@
@@ -32,7 +32,7 @@
                     <div class="col-md-6">
                         <label asp-for="ProductTittle" class="control-label">Product Tittle</label>
                         <div class=" input-group">
-                            <select class="form-control select2" data-native-menu="false" id="units" asp-for="ProductTittle" asp-items="@(new SelectList(ViewBag.product, "Id","ProductTittle"))">
+                            <select class="form-control select2" data-native-menu="false" id="units" asp-for="ProductTittle" asp-items="@ViewBag.pro">
                                 <option disabled selected="selected">Select One</option>
                             </select>
                             @**@

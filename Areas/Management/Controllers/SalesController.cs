@@ -25,14 +25,40 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult Salesindex()
         {
-            var salesin = (from sa in _context.Sales 
-                           select new CustomerVM
-                           {
-                               SaleID = sa.SaleID,
-                               Date = sa.Date,
-                               TotalAmount = sa.TotalAmount,
-                           });
-            return View(salesin);
+
+            var salesin = _context.Sales.ToList();
+            var viewmodel = new List<PurityERP.Areas.Management.ViewModel.CustomerVM>();
+            var model = new PurityERP.Areas.Management.ViewModel.CustomerVM();
+            
+            for (int i= 0;i<salesin.Count(); i++)
+            {
+                if(salesin[i].CustID == 0)
+                {
+                    var item = new CustomerVM
+                    {
+                        SaleID = salesin[i].SaleID,
+                        Date = salesin[i].Date,
+                        TotalAmount = salesin[i].TotalAmount,
+                        CustomerName = "None"
+                    };
+                    viewmodel.Add(item);
+                }
+                else
+                {
+                    var customer = _context.CustomerInfos.Where(x => x.CustomerID == salesin[i].CustID).FirstOrDefault();
+                    var item = new CustomerVM
+                    {
+                        SaleID = salesin[i].SaleID,
+                        Date = salesin[i].Date,
+                        TotalAmount = salesin[i].TotalAmount,
+                        CustomerName = customer.CustomerName + " - " + customer.CustomarPhn
+                    };
+                    viewmodel.Add(item);
+                }
+
+                
+            }
+            return View(viewmodel);
         }
 
        
@@ -60,6 +86,7 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult Salesdetails(int id)
         {
+            
             var salesdetails = (from sal in _context.Sales.Where(x => x.SaleID == id).ToList()
                                 join prosel in _context.SalesProducts
                                 on sal.SaleID equals prosel.SaleID

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using PurityERP.Areas.Management.Models;
 using PurityERP.Areas.Management.ViewModel;
@@ -127,6 +128,14 @@ namespace PurityERP.Areas.Management.Controllers
             ViewBag.worker = _context.Workers.ToList();
             ViewBag.worketype = _context.Costtypes.ToList();
             ViewBag.product = _context.Products.ToList();
+
+            IEnumerable<SelectListItem> pro = from Product in _context.Products.ToList()
+                                              select new SelectListItem
+                                              {
+                                                  Value = Product.Id.ToString(),
+                                                  Text = Product.ProductCode + "_" + Product.ProductTittle
+                                              };
+            ViewBag.pro = pro;
         }
 
 

@@ -13,5 +13,10 @@ namespace PurityERP.Areas.Management.Controllers
         {
             return View();
         }
+
+        public IActionResult PDQRcode()
+        {
+            return View();
+        }
     }
 }

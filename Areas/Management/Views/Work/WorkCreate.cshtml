@@ -28,7 +28,7 @@
                     <div class="col-md-6">
                         <label asp-for="Product" class="control-label">Product</label>
                         <div class=" input-group">
-                            <select class="form-control select2" id="lstProduct" asp-for="Product" asp-items="@(new SelectList(ViewBag.product, "Id","ProductTittle"))">
+                            <select class="form-control select2" id="lstProduct" asp-for="Product" asp-items="@ViewBag.pro">
                                 <option selected="selected">Select One</option>
                             </select>
                         </div>

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="~/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -40,18 +41,26 @@
                             <td>@items.RemainingQty</td>
                             <td>@items.SalesPrice</td>
                             <td>
-                                <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>
-                                <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info">Details</a>
-                                <a asp-action="ProductManage" asp-route-id="@items.Id" type="button" class="btn btn-dark">Manage</a>
-                                @if (items.QrExists == "No")
-                                {
-                                    <a asp-action="CreateQr" asp-route-ProdID="@items.Id" type="button" class="btn btn-info">QR</a>
-                                }
-                                else
-                                {
-                                    <a asp-action="DeleteQr" asp-route-ProdID="@items.Id" type="button" class="btn btn-info">Delete QR</a>
-                                }
-                                
+
+                                <div class="btn-group">
+
+                                    <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info"><i class="fa-solid fa-info"></i></a>
+                                    <a asp-action="ProductManage" asp-route-id="@items.Id" type="button" class="btn btn-dark"><i class="fa-solid fa-list-check"></i>Manage</a>
+                                    @if (items.QrExists == "No")
+                                    {
+                                        <a asp-action="CreateQr" asp-route-ProdID="@items.Id" type="button" class="btn btn-info"><i class="fa-solid fa-qrcode"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="DeleteQr" asp-route-ProdID="@items.Id" type="button" class="btn btn-info"><i class="fa-solid fa-trash-can"></i></a>
+                                        <input type="hidden" class="mainid" value="@items.Id" />
+                                        <button class="btn btn-warning crprint"><i class="fa-solid fa-print"></i></button>
+                                    }
+
+
+
+                                </div>
                             </td>
                         </tr>
                     }
@@ -59,7 +68,6 @@
                 </tbody>
                 <tfoot>
                     <tr>
-
                         <th>Product Code</th>
                         <th>Product Tittle</th>
                         <th>Sales price</th>
@@ -70,18 +78,18 @@
         </div>
         <!-- /.card-body -->
         @*@if (Context.Session.GetString("image") != null)
-        {
+            {
 
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-9">
-                        <a href="@Context.Session.GetString("image")" download="img.jpg"><img src="@Context.Session.GetString("image")" height="300" width="300" /></a>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            <a href="@Context.Session.GetString("image")" download="img.jpg"><img src="@Context.Session.GetString("image")" height="300" width="300" /></a>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        }*@
+            }*@
     </div>
 
     @section Scripts{
@@ -92,6 +100,17 @@
                 });
                 $('#hidebtn').click(function () {
                     $('#example1').hide();
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('.crprint').click(function () {
+
+                    var val = $(this).closest("tr").find("input[class='mainid']").val();
+                    //var host = window.origin;
+                    var host = "https://localhost:44326";
+                    window.open(host + '/Rep/QRPurity?ItemCode=' + val + '&St=Product', '_blank');
                 });
             });
         </script>

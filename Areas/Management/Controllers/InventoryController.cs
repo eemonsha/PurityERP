@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PurityERP.Areas.Management.Models;
 using PurityERP.Areas.Management.ViewModel;
 using PurityERP.Data;
@@ -12,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using System.Web.Mvc;
 
 namespace PurityERP.Areas.Management.Controllers
 {
@@ -27,8 +29,43 @@ namespace PurityERP.Areas.Management.Controllers
         }
         public IActionResult InventoryIndex()
         {
-            var inv = _context.Inventories.ToList();
-            return View(inv);
+            //var inv = _context.Inventories.ToList();
+            //return View(inv);
+
+            var InvList = _context.Inventories.Where(x => x.PurchaseQuantity > 0).ToList();
+            var viewmodal = new List<InventoryVM>();
+            var model = new InventoryVM();
+
+            foreach(var item in InvList)
+            {
+                var InQr = _context.QRs.Where(x => x.QrCategory == "Inventory" && x.ItemCode == item.Id).FirstOrDefault();
+                var QrStatus = "No";
+
+                if (InQr != null)
+                  {
+                      QrStatus = "Yes";
+                  }
+
+                model = new InventoryVM
+                {
+                    Id = item.Id,
+                    Code = item.Code,
+                    Tittle = item.Tittle,
+                    PurchaseDate = item.PurchaseDate,
+                    UnidId = item.UnidId,
+                    PurchaseQuantity = item.PurchaseQuantity,
+                    UnitPrice = item.UnitPrice,
+                    SupplierId = item.SupplierId,
+                    RemainingQty = item.RemainingQty,
+                    QrExistsInv = QrStatus
+
+                };
+                viewmodal.Add(model);
+            }
+            ViewData["inventory"] = viewmodal;
+            return View (viewmodal);
+
+            
         }
 
         public IActionResult InventoryCreate()
@@ -116,6 +153,70 @@ namespace PurityERP.Areas.Management.Controllers
             return View(inven);
         }
 
+        //inventory QR
+
+        public ActionResult InvenCreateQr(int invenID)
+        {
+
+            var inven = _context.Inventories.Where(x => x.Id == invenID).FirstOrDefault();
+            
+
+            var qrcodestring = Convert.ToString(invenID);
+            int NoofQr = 1; /*Convert.ToInt32(inven.RemainingQty);*/
+
+            var qrCodeGenerator = new QRCodeGenerator();
+            QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
+            QRCode qRCode = new QRCode(qRCodeData);
+            Bitmap bitmap = qRCode.GetGraphic(3);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding.GetEncoding("windows-1252");
+            byte[] paramValue = null;
+            using (var b = new Bitmap(qRCode.GetGraphic(3)))
+            {
+                using (var ms = new MemoryStream())
+                {
+                    b.Save(ms, ImageFormat.Bmp);
+                    paramValue = ms.ToArray();
+                }
+            }
+
+            //for (int LoopMoover = 0; LoopMoover < inven.RemainingQty; LoopMoover++)
+            //{
+                var NewQr = new QR()
+                {
+                    ID = 0,
+                    ItemCode = invenID,
+                    QrImage = paramValue,
+                    ItemName = inven.Code,
+                    PriceAmount = inven.UnitPrice,
+                    UserID = 1,
+                    QrQty = Convert.ToInt32(inven.PurchaseQuantity),
+                    QrCategory = "Inventory"
+
+
+                    
+                };
+                _context.Add(NewQr);
+            //}
+            _context.SaveChanges();
+
+            return RedirectToAction("InventoryIndex");
+        }
+
+
+        public ActionResult InvDeleteQr(int invenID)
+        {
+            
+            var InQr = _context.QRs.Where(x => x.QrCategory == "Inventory" && x.ItemCode == invenID).FirstOrDefault();
+            _context.Remove(InQr);
+            _context.SaveChanges();
+
+            return RedirectToAction("InventoryIndex");
+        }
+
+
+
         public JsonResult UnitCreate(string Unitname)
         {
             var inventory = new Units
@@ -154,6 +255,9 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult InventoryOutCreate()
         {
+
+
+
             DefaultData();
 
             return View();
@@ -164,6 +268,21 @@ namespace PurityERP.Areas.Management.Controllers
             ViewBag.inventories = _context.Inventories.ToList();
             ViewBag.product = _context.Products.ToList();
             ViewBag.worker = _context.Workers.ToList();
+
+            IEnumerable<SelectListItem> pro = from Product in _context.Products.ToList()
+                                              select new SelectListItem
+                                              {
+                                                  Value = Product.Id.ToString(),
+                                                  Text = Product.ProductCode + "_" + Product.ProductTittle
+                                              };
+            IEnumerable<SelectListItem> Inven = from Inventory in _context.Inventories.ToList()
+                                              select new SelectListItem
+                                              {
+                                                  Value = Inventory.Id.ToString(),
+                                                  Text = Inventory.Code + "_" + Inventory.Tittle
+                                              };
+            ViewBag.pro = pro;
+            ViewBag.Inven = Inven;
         }
 
         [HttpPost]
@@ -422,9 +541,13 @@ namespace PurityERP.Areas.Management.Controllers
 
         public ActionResult DeleteQr(int ProdID)
         {
-            var SelQr = _context.QRs.Where(x => x.QrCategory == "Product" && x.ItemCode == ProdID).FirstOrDefault();
-            _context.Remove(SelQr);
-            _context.SaveChanges();
+            var SelQr = _context.QRs.Where(x => x.QrCategory == "Product" && x.ItemCode == ProdID).ToList();
+            foreach(var items in SelQr)
+            {
+                _context.Remove(items);
+                _context.SaveChanges();
+            }
+            
 
             return RedirectToAction("ProductIndex");
         }
@@ -441,6 +564,9 @@ namespace PurityERP.Areas.Management.Controllers
             }
         }
 
+
+
+        
 
 
         public JsonResult inventoryqty(int invenid)

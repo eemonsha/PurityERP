@@ -27,6 +27,13 @@ namespace PurityERP.Areas.Management.Controllers
         {
             return View();
         }
+        public IActionResult Index2( )
+        {
+            var total = _context.Sales.Where(x => x.Date.Date == DateTime.UtcNow.AddHours(6).Date).Sum(x => x.TotalAmount);
+            ViewBag.sum = total;
+            return View();
+        }
+
         public IActionResult Login()
         {
             TempData["msg"] = "null";
