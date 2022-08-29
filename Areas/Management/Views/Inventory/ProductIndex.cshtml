@@ -13,14 +13,13 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Exitst Product</h3> <br />
-            <button id="showbtn" class="btn btn-primary">Show Product List</button>
-            <button id="hidebtn" class="btn btn-success">Hide Product List</button>
         </div>
         <a asp-action="Productcreate" class=" btn btn-primary float-right">Create New</a>
         @*<a asp-action="ProductQrCode" class=" btn btn-primary float-right">QRCode</a>*@
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" style="font-size:small" class="table table-bordered table-striped">
+            @*<table id="example1" style="font-size:small" class="table table-bordered table-striped">*@
+            <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Product Code</th>
@@ -28,8 +27,6 @@
                         <th>Quanity</th>
                         <th>Sales price</th>
                         <th>Action</th>
-
-
                     </tr>
                 </thead>
                 <tbody>
@@ -40,10 +37,8 @@
                             <td>@items.ProductTittle</td>
                             <td>@items.RemainingQty</td>
                             <td>@items.SalesPrice</td>
-                            <td>
-
+                            <td class="float-right">
                                 <div class="btn-group">
-
                                     <a asp-action="EditProduct" asp-route-id="@items.Id" type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                                     <a asp-action="ProductDetails" asp-route-id="@items.Id" type="button" class="btn btn-info"><i class="fa-solid fa-info"></i></a>
                                     <a asp-action="ProductManage" asp-route-id="@items.Id" type="button" class="btn btn-dark"><i class="fa-solid fa-list-check"></i>Manage</a>
@@ -57,9 +52,6 @@
                                         <input type="hidden" class="mainid" value="@items.Id" />
                                         <button class="btn btn-warning crprint"><i class="fa-solid fa-print"></i></button>
                                     }
-
-
-
                                 </div>
                             </td>
                         </tr>
@@ -77,43 +69,49 @@
                 </tfoot>
             </table>
         </div>
-        <!-- /.card-body -->
-        @*@if (Context.Session.GetString("image") != null)
-            {
 
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-9">
-                            <a href="@Context.Session.GetString("image")" download="img.jpg"><img src="@Context.Session.GetString("image")" height="300" width="300" /></a>
-
-                        </div>
-                    </div>
-                </div>
-            }*@
     </div>
 
     @section Scripts{
+        <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- DataTables  & Plugins -->
+        <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="~/assets/plugins/jszip/jszip.min.js"></script>
+        <script src="~/assets/plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="~/assets/plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="~/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/assets/dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <!-- Page specific script -->
         <script>
-            $(document).ready(function () {
-                $('#showbtn').click(function () {
-                    $('#example1').show();
-                });
-                $('#hidebtn').click(function () {
-                    $('#example1').hide();
-                });
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             });
         </script>
-        <script>
-                $('.crprint').click(function () {
 
-                    var val = $(this).closest("tr").find("input[class='mainid']").val();
-                    var host = window.origin;//publish
-                    //var host = "https://localhost:44326";
-                    window.open(host + '/Reports/Rep/QRPurity?ItemCode=' + val + '&St=Product', '_blank');//publish
-                    //window.open(host + '/Rep/QRPurity?ItemCode=' + val + '&St=Product', '_blank');
-                });
-            
+        <script>
+            $('.crprint').click(function () {
+
+                var val = $(this).closest("tr").find("input[class='mainid']").val();
+                var host = window.origin;//publish
+                //var host = "https://localhost:44326";
+                window.open(host + '/Reports/Rep/QRPurity?ItemCode=' + val + '&St=Product', '_blank');//publish
+                //window.open(host + '/Rep/QRPurity?ItemCode=' + val + '&St=Product', '_blank');
+            });
+
         </script>
     }
 </body>
