@@ -193,7 +193,7 @@
                     <b>Cash</b>
                 </div>
                 <div class="col-6">
-                    <input type="text" id="cashpay" class="form-control" />
+                    <input type="text" id="cashpay" class="form-control" value="0"/>
                 </div>
             </div>
             <div class="row">
@@ -202,7 +202,7 @@
                     <b>Card</b>
                 </div>
                 <div class="col-6">
-                    <input type="text" id="cardpay" class="form-control" />
+                    <input type="text" id="cardpay" class="form-control" value="0"/>
                 </div>
             </div>
             <div class="row mb-2">
@@ -211,7 +211,7 @@
                     <b>Mobile Banking</b>
                 </div>
                 <div class="col-6">
-                    <input type="text" id="mfspay" class="form-control" />
+                    <input type="text" id="mfspay" class="form-control" value="0"/>
                 </div>
             </div>
             <hr />
@@ -219,7 +219,7 @@
                 <div class="col-4"></div>
                 <div class="col-4">
                     <div class="btn-group">
-                        <button id="btnsubmit" class="btn btn-success">Submit</button>
+                        <button id="btnsubmit" class="btn btn-success" disabled>Submit</button>
                         <button id="btncancel" class="btn btn-warning">Cancel</button>
 
                     </div>
@@ -330,6 +330,32 @@
             });
 
 
+
+            $('#cashpay, #cardpay, #mfspay').keyup(function () {
+                
+                var cash = $('#cashpay').val();
+                
+                var card = $('#cardpay').val();
+               
+                var mfs = $('#mfspay').val();
+                
+                var pay = $('#payable').val();
+             
+                
+                var tot = parseFloat(cash) + parseFloat(card) + parseFloat(mfs);
+
+                if (tot >= parseFloat(pay)) {
+                    $("#btnsubmit").attr("disabled", false);
+                }
+                else {
+                    $("#btnsubmit").attr("disabled", true);
+                }
+
+
+
+            })
+
+
         $('#customercreate').click(function () {
             var cusname = $('#supname').val();
             var cusphone = $('#supphone').val();
@@ -410,9 +436,20 @@
                 type: "POST",
                 data: { data: mydata },
                 success: function (mydata) {
-                    if (mydata == 1) {
-                        alert("Data has been saved");
-                        window.location.href = "/Management/Sales/Salesindex";
+                    if (mydata != 0) {
+                        if (confirm("Your Data Has Been Saved.Are You Want to print Sales Report?")) {
+                            var host = window.origin;//publish
+                           // var host = "https://localhost:44326";
+                            window.open(host + '/Reports/Rep/SellsRep?SaleID=' + val, '_blank');//publish
+                            //window.open(host + '/Rep/SellsRep?SaleID=' + mydata, '_blank');
+                            window.location.href = "/Management/Sales/Salesindex";
+                        }
+                        else {
+                            window.location.href = "/Management/Sales/Salesindex";
+                        }
+                        /*alert("Sell is done");*/
+
+                        
                     }
                     else {
                         alert("Data has been  not saved");

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="~/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -21,8 +22,6 @@
                     <tr>
                         <th>Date</th>
                         <th>Customer</th>
-                       
-
                         <th>Amount</th>
                         <th>Action</th>
 
@@ -33,16 +32,18 @@
                     @foreach (var items in Model)
                     {
                         <tr>
-                           
+
                             <td>@items.Date</td>
                             <td>@items.CustomerName</td>
-                            
+
                             <td>@items.TotalAmount</td>
-                            
+
                             <td class="float-right">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     @*<a asp-action="" asp-route-id="@items.Id" type="button" class="btn btn-warning">Edit</a>*@
                                     <a asp-action="Salesdetails" asp-route-id="@items.SaleID" type="button" class="btn btn-info">Details</a>
+                                    <input type="hidden" class="mainid" value="@items.SaleID" />
+                                    <button class="btn btn-warning crprint"><i class="fa-solid fa-print"></i></button>
                                 </div>
                             </td>
 
@@ -96,6 +97,29 @@
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             });
+        </script>
+
+
+        <script>
+                $('.crprint').click(function () {
+                    console.log("noclick ");
+                    var val = $(this).closest("tr").find("input[class='mainid']").val();
+                    console.log("click ", val);
+                    //var host = window.origin;
+                    var host = "https://localhost:44326";
+                    //window.open(host + '/Reports/Rep/SellsRep?SaleID=' + val, '_blank');
+                    window.open(host + '/Rep/SellsRep?SaleID=' + val);
+                });
+            
+            //function print() {
+            //    console.log("noclick ");
+            //    var val = $(this).closest("tr").find("input[class='mainid']").val();
+            //    console.log("click ", val);
+            //    //var host = window.origin;
+            //    var host = "https://localhost:44326";
+            //    //window.open(host + '/Reports/Rep/SellsRep?SaleID=' + val, '_blank');
+            //    window.open(host + '/Rep/SellsRep?SaleID=' + val);
+            //}
         </script>
     }
 
