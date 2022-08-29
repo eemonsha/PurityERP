@@ -81,7 +81,7 @@ namespace PurityERP.Areas.Management.Controllers
                                               };
             ViewBag.cs = cus;
             ViewBag.pr = pro;
-            return View();
+            return View(); 
         }
 
         public IActionResult Salesdetails(int id)
@@ -188,7 +188,7 @@ namespace PurityERP.Areas.Management.Controllers
                 }
 
 
-                return Json(1);
+                return Json(sales.SaleID);
             }
             catch
             {

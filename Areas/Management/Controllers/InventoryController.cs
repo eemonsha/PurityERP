@@ -159,9 +159,8 @@ namespace PurityERP.Areas.Management.Controllers
         {
 
             var inven = _context.Inventories.Where(x => x.Id == invenID).FirstOrDefault();
-            
 
-            var qrcodestring = Convert.ToString(invenID);
+            var qrcodestring = Convert.ToString(invenID) + "/" + inven.Code + "/" + inven.Tittle + "/" + inven.UnitPrice;
             int NoofQr = 1; /*Convert.ToInt32(inven.RemainingQty);*/
 
             var qrCodeGenerator = new QRCodeGenerator();
@@ -498,10 +497,11 @@ namespace PurityERP.Areas.Management.Controllers
 
             var SelProduct = _context.Products.Where(x => x.Id == ProdID).FirstOrDefault();
 
-            var qrcodestring = Convert.ToString(ProdID);
+            var qrcodestring = Convert.ToString(ProdID) + "/" + SelProduct.ProductCode + "/" + SelProduct.ProductTittle + "/" + SelProduct.SalesPrice;
             int NoofQr =SelProduct.RemainingQty;
 
             var qrCodeGenerator = new QRCodeGenerator();
+            //QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
             QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
             QRCode qRCode = new QRCode(qRCodeData);
             Bitmap bitmap = qRCode.GetGraphic(3);
