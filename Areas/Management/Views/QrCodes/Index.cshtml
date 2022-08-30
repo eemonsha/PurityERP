@@ -26,7 +26,7 @@
 
 
 
-@*<table class="table">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -41,9 +41,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PriceAmount)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.QrImage)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.QrCategory)
             </th>
@@ -72,9 +72,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PriceAmount)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.QrImage)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.QrCategory)
                 </td>
@@ -84,15 +84,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.UserID)
                 </td>
-                <td>
+                @*<td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
+                </td>*@
             </tr>
         }
     </tbody>
-</table>*@
+</table>
 @*<p>
     <a asp-action="Create">Create New</a>
 </p>*@
@@ -106,18 +106,18 @@
         $('#proqr').click(function () {
 
             
-            //var host = window.origin;//publish
-            var host = "https://localhost:44326";
-            //window.open(host + '/Reports/Rep/QRPurity?&St=Product', '_blank');//publish
-            window.open(host + '/Rep/QRPurity?&St=Product', '_blank');
+            var host = window.origin;//publish
+            //var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/QRPurity?&St=Product', '_blank');//publish
+            //window.open(host + '/Rep/QRPurity?&St=Product', '_blank');
         });
         $('#invqr').click(function () {
 
             
-            //var host = window.origin;//publish
-            var host = "https://localhost:44326";
-            //window.open(host + '/Reports/Rep/QRPurity?&St=Product', '_blank');//publish
-            window.open(host + '/Rep/QRPurity?&St=Inventory', '_blank');
+            var host = window.origin;//publish
+            //var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/QRPurity?&St=Product', '_blank');//publish
+            //window.open(host + '/Rep/QRPurity?&St=Inventory', '_blank');
         });
 
     </script>

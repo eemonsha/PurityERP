@@ -152,18 +152,19 @@ namespace PurityERP.Areas.Management.Controllers
 
             var st = new NewWork
             {
-                WorkId=0,
+                WorkId = 0,
                 WorkStatus = "Pending",
 
-                EDD=newWork.EDD,
-                PaidAmount=newWork.PaidAmount,
-                PerUnitCost=newWork.PerUnitCost,
-                WorkType=newWork.WorkType,
-               WorkAsignDate=newWork.WorkAsignDate,
-               Product=newWork.Product,
-               Wroker=newWork.Wroker,
-               Quantity=newWork.Quantity,
-               Payment=newWork.Quantity*newWork.PerUnitCost
+                EDD = newWork.EDD,
+                PaidAmount = newWork.PaidAmount,
+                PerUnitCost = newWork.PerUnitCost,
+                WorkType = newWork.WorkType,
+                WorkAsignDate = newWork.WorkAsignDate,
+                Product = newWork.Product,
+                Wroker = newWork.Wroker,
+                Quantity = newWork.Quantity,
+                Payment = newWork.Quantity * newWork.PerUnitCost,
+                SystemDate = DateTime.Now
             };
 
 

@@ -20,7 +20,11 @@ namespace PurityERP.Areas.Management.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            
+
+            var qr = _context.QRs.ToList();
+
+            return View(qr);
         }
         public IActionResult PDeleteQr(int data)
         {
