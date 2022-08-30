@@ -41,7 +41,7 @@ namespace PurityERP.Areas.Management.Controllers
         }
         public IActionResult UnitIndex()
         {
-            var units = _context.units.ToList();
+            var units = _context.units.FirstOrDefault();
             return View(units);
         }
 
