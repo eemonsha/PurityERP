@@ -10,11 +10,17 @@
 </head>
 <body>
 
-    <div class="card">
+    <div class="card row">
         <div class="card-header">
             <h3 class="card-title">Exitst Product</h3> <br />
         </div>
-        <a asp-action="Productcreate" class=" btn btn-primary float-right">Create New</a>
+
+        <a asp-action="Productcreate" class=" btn btn-primary mb-3 float-right">Create New</a>
+
+        <div class="col-md-4 btn-group m-auto ">
+            <button type="button" class="btn btn-danger" id="proqr">Pro Print</button>
+            <a asp-action="PDeleteQr" class="btn btn-secondary">Delete</a>
+        </div>
         @*<a asp-action="ProductQrCode" class=" btn btn-primary float-right">QRCode</a>*@
         <!-- /.card-header -->
         <div class="card-body">
@@ -49,8 +55,8 @@
                                     else
                                     {
                                         @*<a asp-action="DeleteQr" asp-route-ProdID="@items.Id" type="button" class="btn btn-info"><i class="fa-solid fa-trash-can"></i></a>
-                                        <input type="hidden" class="mainid" value="@items.Id" />
-                                        <button class="btn btn-warning crprint"><i class="fa-solid fa-print"></i></button>*@
+                                            <input type="hidden" class="mainid" value="@items.Id" />
+                                            <button class="btn btn-warning crprint"><i class="fa-solid fa-print"></i></button>*@
                                     }
                                 </div>
                             </td>
@@ -89,10 +95,17 @@
         <script src="~/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
         <script src="~/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
         <script src="~/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+        @*<script src="~/assets/plugins/jquery/jquery.min.js"></script>
+        Bootstrap 4
+        <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+
         <!-- AdminLTE App -->
         <script src="~/assets/dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <!-- Page specific script -->
+
+
         <script>
             $(function () {
                 $("#example1").DataTable({
@@ -112,8 +125,21 @@
                 //window.open(host + '/Rep/QRPurity?ItemCode=' + val + '&St=Product', '_blank');
             });
 
+            $('#proqr').click(function () {
+
+
+                // var host = window.origin;//publish
+                var host = "https://localhost:44326";
+                //window.open(host + '/Reports/Rep/QRPurity?&St=Product', '_blank');//publish
+                window.open(host + '/Rep/QRPurity?&St=Product', '_blank');
+            });
+
         </script>
+
+
     }
+
+
 </body>
 </html>
 

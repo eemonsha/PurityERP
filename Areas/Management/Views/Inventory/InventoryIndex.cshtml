@@ -10,11 +10,17 @@
 </head>
 <body>
 
-    <div class="card">
+    <div class="card row">
         <div class="card-header">
             <h3 class="card-title">Exitst Inventory</h3>
         </div>
-        <a asp-action="InventoryCreate" class=" btn btn-primary float-right">Create New</a>
+        <a asp-action="InventoryCreate" class=" btn btn-primary mb-3 float-right">Create New</a>
+
+        <div class="col-md-4 btn-group m-auto">
+
+            <button type="button" class="btn btn-danger" id="invqr">Inv Print</button>
+            <a asp-action="INDeleteQr" class="btn btn-secondary">Delete</a>
+        </div>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -130,6 +136,14 @@
                     window.open(host + '/Reports/Rep/QRPurity?ItemCode=' + val + '&St=Inventory', '_blank');//publish
                     //window.open(host + '/Rep/QRPurity?ItemCode=' + val + '&St=Inventory', '_blank');
                 });
+
+            $('#invqr').click(function () {
+
+                         var host = window.origin;//publish
+                         //var host = "https://localhost:44326";
+                         window.open(host + '/Reports/Rep/QRPurity?&St=Inentory', '_blank');//publish
+                         //window.open(host + '/Rep/QRPurity?&St=Inventory', '_blank');
+                         });
            
         </script>
     }

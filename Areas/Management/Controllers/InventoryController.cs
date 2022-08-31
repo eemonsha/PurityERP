@@ -68,6 +68,14 @@ namespace PurityERP.Areas.Management.Controllers
             
         }
 
+        public IActionResult INDeleteQr(int data)
+        {
+            var Qrs = _context.QRs.Where(x => x.QrCategory == "Inventory").ToList();
+            _context.RemoveRange(Qrs);
+            _context.SaveChanges();
+            return RedirectToAction("InventoryIndex");
+        }
+
         public IActionResult InventoryCreate()
         {
             var inven = _context.Inventories.ToList();
@@ -402,6 +410,18 @@ namespace PurityERP.Areas.Management.Controllers
             ViewData["products"] = viewmodel;
             return View(viewmodel);
      }
+
+
+
+        public IActionResult PDeleteQr(int data)
+        {
+            var Qrs = _context.QRs.Where(x => x.QrCategory == "Product").ToList();
+            _context.RemoveRange(Qrs);
+            _context.SaveChanges();
+            return RedirectToAction("ProductIndex");
+        }
+
+      
 
 
 
