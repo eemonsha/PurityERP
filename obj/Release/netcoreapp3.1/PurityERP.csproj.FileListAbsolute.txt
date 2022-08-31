@@ -1136,7 +1136,7 @@ D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Release\netcore
 D:\RMD\Softwares\Solutions\KS IT - by me\PurityERP\PurityERP\obj\Release\netcoreapp3.1\PurityERP.csproj.AssemblyReference.cache
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Home\Index2.cshtml.g.cs
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\QrCodes\Index.cshtml.g.cs
-D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\QrCodes\PDQRcode.cshtml.g.cs
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Salesdetails.cshtml.g.cs
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Salesindex.cshtml.g.cs
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Reports\Index.cshtml.g.cs
+D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Reports\RepportsIndex.cshtml.g.cs
