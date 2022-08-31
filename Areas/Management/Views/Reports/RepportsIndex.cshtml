@@ -1,0 +1,49 @@
+﻿<h3 class="text-center m-4">All Report</h3>
+
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>Report Title</th>
+            <th>Perameter</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center">
+            <td>
+                Datewise Work Out details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="workoutrep">Report</button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+    Bootstrap 4
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('#workoutrep').click(function () {
+
+
+       // var host = window.origin;//publish
+        var host = "https://localhost:44326";
+        //window.open(host + '/Reports/Rep/QRPurity?&St=Product', '_blank');//publish
+        window.open(host + '/Rep/Workoutdatewise?& ','_blank');
+    });
+    //$('#invqr').click(function () {
+
+
+    //    var host = window.origin;//publish
+    //    //var host = "https://localhost:44326";
+    //    window.open(host + '/Reports/Rep/QRPurity?&St=Product', '_blank');//publish
+    //    //window.open(host + '/Rep/QRPurity?&St=Inventory', '_blank');
+    //});
+
+    </script>
+    }
