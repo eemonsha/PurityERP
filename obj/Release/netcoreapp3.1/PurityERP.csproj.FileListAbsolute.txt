@@ -1139,3 +1139,4 @@ D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\QrCodes\
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\QrCodes\PDQRcode.cshtml.g.cs
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Salesdetails.cshtml.g.cs
 D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Sales\Salesindex.cshtml.g.cs
+D:\new\PurityERP\obj\Release\netcoreapp3.1\Razor\Areas\Management\Views\Reports\Index.cshtml.g.cs
