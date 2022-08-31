@@ -164,7 +164,7 @@ namespace PurityERP.Areas.Management.Controllers
                 Wroker = newWork.Wroker,
                 Quantity = newWork.Quantity,
                 Payment = newWork.Quantity * newWork.PerUnitCost,
-                SystemDate = DateTime.Now
+                
             };
 
 
