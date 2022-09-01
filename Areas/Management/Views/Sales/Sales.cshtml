@@ -438,10 +438,11 @@
                 success: function (mydata) {
                     if (mydata != 0) {
                         if (confirm("Your Data Has Been Saved.Are You Want to print Sales Report?")) {
+                            console.log("data",mydata);
                             var host = window.origin;//publish
                             //var host = "https://localhost:44326";
-                            window.open(host + '/Reports/Rep/SellsRep?SaleID=' + val, '_blank');//publish
-                            //window.open(host + '/Rep/SellsRep?SaleID=' + mydata, '_blank');
+                            window.open(host + '/Reports/Rep/SellsRep?SaleID=' + mydata, '_blank');//publish
+                           // window.open(host + '/Rep/SellsRep?SaleID=' + mydata, '_blank');
                             window.location.href = "/Management/Sales/Salesindex";
                         }
                         else {
@@ -613,14 +614,15 @@
         });
 
         //for total after calculation
-        $("#qty,#amount,#vap,#vaa,#per,#amnt").on('keyup change', function () {
-            var vamount = $('#amount').val();
-            var discount = $('#amnt').val();
-            var vat = $('#vaa').val();
-            var total = (parseFloat(vamount - discount) + parseFloat(vat));
-            $('#totaltt').val(total);
-        })
+            $("#qty,#amount,#vap,#vaa,#per,#amnt").on('keyup change', function () {
+                var vamount = $('#amount').val();
+                var discount = $('#amnt').val();
+                var vat = $('#vaa').val();
+                var total = (parseFloat(vamount - discount) + parseFloat(vat));
+                $('#totaltt').val(total);
+            });
 
+            //for remove button
 
 
 
