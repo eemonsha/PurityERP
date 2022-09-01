@@ -2692,3 +2692,4 @@ D:\new\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.pdb
 D:\new\PurityERP\obj\Debug\netcoreapp3.1\PurityERP.genruntimeconfig.cache
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Reports\Index.cshtml.g.cs
 D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\Reports\RepportsIndex.cshtml.g.cs
+D:\Project\PurityERP\obj\Debug\netcoreapp3.1\Razor\Areas\Management\Views\QrCodes\Index.cshtml.g.cs

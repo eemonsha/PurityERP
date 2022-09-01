@@ -156,6 +156,8 @@ namespace PurityERP.Areas.Management.Controllers
                               ProdQty= TxnInv.ProductQuantity
                           });
 
+           
+
             ViewData["InvTxnInfo"] = InvTxn;
 
             return View(inven);

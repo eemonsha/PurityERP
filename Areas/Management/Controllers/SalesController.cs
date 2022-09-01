@@ -148,44 +148,44 @@ namespace PurityERP.Areas.Management.Controllers
                 _context.Add(sales);
                 _context.SaveChanges();
 
-                //foreach (var item in data.selsp)
-                //{
-                //    var proqty = _context.Products.Where(x => x.Id == item.ProductID).FirstOrDefault();
-                //    proqty.RemainingQty = proqty.RemainingQty - item.OrderQty;
-                //    _context.Update(proqty);
-                //    _context.SaveChanges();
+                foreach (var item in data.selsp)
+                {
+                    var proqty = _context.Products.Where(x => x.Id == item.ProductID).FirstOrDefault();
+                    proqty.RemainingQty = proqty.RemainingQty - item.OrderQty;
+                    _context.Update(proqty);
+                    _context.SaveChanges();
 
 
-                //    var salep = new SalesProduct()
-                //    {
-                //        SaleID = sales.SaleID,
-                //        ProductID = item.ProductID,
-                //        OrderQty = item.OrderQty,
-                //        UnitPrice = item.UnitPrice,
-                //        Amount = item.Amount,
-                //        Pvat = item.Pvat,
-                //        PDiscount = item.PDiscount,
-                //        Returnable = false,
-                //    };
-                //    _context.Add(salep);
-                //    _context.SaveChanges();
+                    var salep = new SalesProduct()
+                    {
+                        SaleID = sales.SaleID,
+                        ProductID = item.ProductID,
+                        OrderQty = item.OrderQty,
+                        UnitPrice = item.UnitPrice,
+                        Amount = item.Amount,
+                        Pvat = item.Pvat,
+                        PDiscount = item.PDiscount,
+                        Returnable = false,
+                    };
+                    _context.Add(salep);
+                    _context.SaveChanges();
 
 
-                //    if (item.OrderQty > 0)
-                //    {
-                //        var pwr = new ProductWorkRegister
-                //        {
-                //            RegAsignDate = sales.Date,
-                //            RegWorkID = salep.SalesProID,
-                //            RegType = "Out",
-                //            RegCategoryQty = item.OrderQty,
-                //            MoveStatus = "Sell"
-                //        };
-                //        _context.Add(pwr);
-                //        _context.SaveChanges();
-                //    }
+                    if (item.OrderQty > 0)
+                    {
+                        var pwr = new ProductWorkRegister
+                        {
+                            RegAsignDate = sales.Date,
+                            RegWorkID = salep.SalesProID,
+                            RegType = "Out",
+                            RegCategoryQty = item.OrderQty,
+                            MoveStatus = "Sell"
+                        };
+                        _context.Add(pwr);
+                        _context.SaveChanges();
+                    }
 
-                //}
+                }
 
 
                 return Json(sales.SaleID);

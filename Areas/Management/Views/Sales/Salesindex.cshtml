@@ -103,13 +103,13 @@
 
         <script>
                 $('.crprint').click(function () {
-                    console.log("noclick ");
+                    
                     var val = $(this).closest("tr").find("input[class='mainid']").val();
-                    console.log("click ", val);
-                    var host = window.origin;
-                   // var host = "https://localhost:44326";
-                    window.open(host + '/Reports/Rep/SellsRep?SaleID=' + val, '_blank');
-                   // window.open(host + '/Reports/Rep/SellsRep?SaleID=' + val);
+                    
+                    var host = window.origin; //Publish
+                    //var host = "https://localhost:44326";
+                    window.open(host + '/Reports/Rep/SellsRep?SaleID=' + val, '_blank'); //Publish
+                    //window.open(host + '/Rep/SellsRep?SaleID=' + val);
                 });
             
             //function print() {
