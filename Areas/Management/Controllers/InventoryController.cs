@@ -195,7 +195,7 @@ namespace PurityERP.Areas.Management.Controllers
                     ID = 0,
                     ItemCode = invenID,
                     QrImage = paramValue,
-                    ItemName = inven.Code,
+                    ItemName = inven.Tittle,
                     PriceAmount = inven.UnitPrice,
                     UserID = 1,
                     QrQty = Convert.ToInt32(inven.PurchaseQuantity),
