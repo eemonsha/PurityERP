@@ -131,7 +131,7 @@
                     <label asp-for="CustID" class="control-label">Customer</label>
                     <div class=" input-group">
                         <select class="form-control select2" data-native-menu="false" id="supplier" asp-for="CustID" asp-items="@ViewBag.cs">
-                            <option disabled selected="selected">Select One</option>
+                            <option selected="selected" value="32">Select One</option>
                         </select>
                         @**@
                         <div class="input-group-append">
@@ -395,6 +395,10 @@
         });
         $('#btnsubmit').click(function () {
 
+            //var customer = $('#supplier').val();
+            //if (customer == "Select One") {
+            //    customer = 32;
+            //};
 
             var mydata = {};
 
