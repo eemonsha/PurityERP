@@ -34,6 +34,14 @@
                 <button type="button" class="btn btn-primary" id="InvInrep">Report</button>
             </td>
         </tr>
+        <tr class="text-center">
+            <td>
+                Datewise sales details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="Dailysalesrep">Report</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -75,9 +83,25 @@
             var host = window.origin;//publish
             // var host = "https://localhost:44326";
             window.open(host + '/Reports/Rep/InventoryIndatewise?& ', '_blank');//publish
-            // window.open(host + '/Rep/WorkIndatewise?& ', '_blank');
+            // window.open(host + '/Rep/InventoryIndatewise?& ', '_blank');
         });
 
 
     </script>
+
+    <script>
+        $('#Dailysalesrep').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/SalesIndatewise?& ', '_blank');//publish
+            // window.open(host + '/Rep/SalesIndatewise?& ', '_blank');
+        });
+
+
+    </script>
+
+
+
     }
