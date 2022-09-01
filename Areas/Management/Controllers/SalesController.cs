@@ -134,6 +134,7 @@ namespace PurityERP.Areas.Management.Controllers
             {
                 var sales = new Sales()
                 {
+                    
                     CustID = data.CustID,
                     Date = DateTime.UtcNow.AddHours(6),
                     SubTotalAmount = data.SubTotalAmount,
