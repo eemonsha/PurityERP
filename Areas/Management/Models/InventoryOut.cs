@@ -16,6 +16,6 @@ namespace PurityERP.Areas.Management.Models
         public decimal ProductQuantity { get; set; }
         public decimal InventoryQuantity { get; set; }
         public decimal PerProductInventoryQuantity { get; set; }
-        public string Worker { get; set; }
+        public int Worker { get; set; }
     }
 }
