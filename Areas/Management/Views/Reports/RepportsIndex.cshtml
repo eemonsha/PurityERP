@@ -42,6 +42,14 @@
                 <button type="button" class="btn btn-primary" id="Dailysalesrep">Report</button>
             </td>
         </tr>
+        <tr class="text-center">
+            <td>
+                Inventory Details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="invendetails">Report</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -97,6 +105,19 @@
             // var host = "https://localhost:44326";
             window.open(host + '/Reports/Rep/SalesIndatewise?& ', '_blank');//publish
             // window.open(host + '/Rep/SalesIndatewise?& ', '_blank');
+        });
+
+
+    </script>
+
+    <script>
+        $('#invendetails').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/InventoryDetails?& ', '_blank');//publish
+            // window.open(host + '/Rep/InventoryDetails?& ', '_blank');
         });
 
 
