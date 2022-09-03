@@ -50,6 +50,14 @@
                 <button type="button" class="btn btn-primary" id="invendetails">Report</button>
             </td>
         </tr>
+        <tr class="text-center">
+            <td>
+                Sales Statement
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="salesst">Report</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -118,6 +126,20 @@
             // var host = "https://localhost:44326";
             window.open(host + '/Reports/Rep/InventoryDetails?& ', '_blank');//publish
             // window.open(host + '/Rep/InventoryDetails?& ', '_blank');
+        });
+
+
+    </script>
+
+
+    <script>
+        $('#salesst').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/Salesstate?& ', '_blank');//publish
+            // window.open(host + '/Rep/Salesstate?& ', '_blank');
         });
 
 

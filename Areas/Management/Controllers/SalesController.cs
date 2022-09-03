@@ -143,6 +143,7 @@ namespace PurityERP.Areas.Management.Controllers
                     CashAmount = data.CashAmount,
                     CardAmount = data.CardAmount,
                     MobilebankingAmount = data.MobilebankingAmount,
+                    GiftAmount = data.GiftAmount,
                     Vat = data.Vat,
 
                 };

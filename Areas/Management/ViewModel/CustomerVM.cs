@@ -29,6 +29,8 @@ namespace PurityERP.Areas.Management.ViewModel
         public decimal CashAmount { get; set; }
         public decimal CardAmount { get; set; }
         public decimal MobilebankingAmount { get; set; }
+
+        public decimal GiftAmount { get; set; }
         public decimal Vat { get; set; }
         public string ProductCode { get; set; }
         public string ProductTittle { get; set; }
