@@ -214,6 +214,15 @@
                     <input type="text" id="mfspay" class="form-control" value="0"/>
                 </div>
             </div>
+            <div class="row mb-2">
+
+                <div class="col-6">
+                    <b>Gift</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" id="Gift" class="form-control" value="0"/>
+                </div>
+            </div>
             <hr />
             <div class="row mt-2">
                 <div class="col-4"></div>
@@ -331,18 +340,20 @@
 
 
 
-            $('#cashpay, #cardpay, #mfspay').keyup(function () {
+            $('#cashpay, #cardpay, #mfspay, #Gift').keyup(function () {
                 
                 var cash = $('#cashpay').val();
                 
                 var card = $('#cardpay').val();
                
                 var mfs = $('#mfspay').val();
+
+                var gift = $('#Gift').val();
                 
                 var pay = $('#payable').val();
              
                 
-                var tot = parseFloat(cash) + parseFloat(card) + parseFloat(mfs);
+                var tot = parseFloat(cash) + parseFloat(card) + parseFloat(mfs) + parseFloat(gift);
 
                 if (tot >= parseFloat(pay)) {
                     $("#btnsubmit").attr("disabled", false);
@@ -410,6 +421,7 @@
             mydata.CashAmount = $('#cashpay').val();
             mydata.CardAmount = $('#cardpay').val();
             mydata.MobilebankingAmount = $('#mfspay').val();
+            mydata.GiftAmount = $('#Gift').val();
 
             console.log("sales TBL - ",mydata);
 
