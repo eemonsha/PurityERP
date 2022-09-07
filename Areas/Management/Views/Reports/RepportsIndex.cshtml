@@ -58,6 +58,24 @@
                 <button type="button" class="btn btn-primary" id="salesst">Report</button>
             </td>
         </tr>
+
+        <tr class="text-center">
+            <td>
+                Product Stock Details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="prostk">Report</button>
+            </td>
+        </tr>
+
+        <tr class="text-center">
+            <td>
+                Work In Live
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="wrklive">Report</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -140,6 +158,33 @@
             // var host = "https://localhost:44326";
             window.open(host + '/Reports/Rep/Salesstate?& ', '_blank');//publish
             // window.open(host + '/Rep/Salesstate?& ', '_blank');
+        });
+
+
+    </script>
+
+
+    <script>
+        $('#prostk').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/ProductStockDetails?& ', '_blank');//publish
+            // window.open(host + '/Rep/ProductStockDetails?& ', '_blank');
+        });
+
+
+    </script>
+
+    <script>
+        $('#wrklive').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/WorkLive?& ', '_blank');//publish
+            // window.open(host + '/Rep/WorkLive?& ', '_blank');
         });
 
 
