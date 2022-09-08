@@ -697,6 +697,7 @@
                 if (parseInt(Quantity) > parseInt(remain)) {
                     alert("Over Stock");
                     $("#additem").attr("disabled", true);
+                    $("#qty").css('border', '1px solid red');
                 }
                 else {
 
@@ -710,6 +711,7 @@
 
                         });
                         $("#additem").attr("disabled", false);
+                        $("#qty").css('border', '1px solid #CED4DA');
 
                     }
                 }
