@@ -69,7 +69,7 @@
 
                 <div class="col-md-6">
                     <label>Order Qty :</label>
-                    <input type="number" id="qty" class="form-control" />
+                    <input type="number" id="qty" class="form-control" readonly/>
                 </div>
 
                 <div class="col-md-6">
@@ -116,7 +116,7 @@
                 <div class="col-4"></div>
                 <div class="col-4">
                     <div class="btn-group">
-                        <button id="additem" class="btn btn-success">Add</button>
+                        <button id="additem" class="btn btn-success" disabled>Add</button>
                         <a asp-action="Index" class="btn btn-warning">Back to List</a>
                     </div>
                 </div>
@@ -508,6 +508,7 @@
 
 
                 });
+                $("#qty").attr("readonly", false);
             }
         });
         //add multi item to table
@@ -522,53 +523,79 @@
             var total = $('#totaltt').val();
             var unitprice = (amount / quan);
 
-            var _tr = '<tr><td hidden>' + productid + '</td><td>' + product + '</td><td>' + quan + '</td><td>' + unitprice + '</td><td id="sum1">' + discount + '</td> <td>' + vat + '</td><td>' + total + '</td><td><button class="btn btn-success removeitem">Remove</button></td></tr>';
-            $('#partTable').append(_tr);
+            var remm = $('#rmn').val();
+            var cp = quan;
+            $("#partTable TR").each(function () {
+                var row = $(this);
+
+                var value = row.find("TD").eq(0).html();
+                var OrderQty = row.find("TD").eq(2).html();
+                console.log(value);
+                if (value == productid) {
+
+                    console.log(value);
+                    cp = parseInt(cp) + parseInt(OrderQty);
+                }
+
+            });
+
+            if (parseInt(cp) > parseInt(remm)) {
+                alert("Over Stock");
+            }
+            else {
+                var _tr = '<tr><td hidden class="prodiddd">' + productid + '</td><td>' + product + '</td><td>' + quan + '</td><td>' + unitprice + '</td><td id="sum1">' + discount + '</td> <td>' + vat + '</td><td>' + total + '</td><td><button class="btn btn-success removeitem">Remove</button></td></tr>';
+                $('#partTable').append(_tr);
 
 
-            //for final calculation using cookie
-            var totalamm = getCookie("totalamm");
-            var totalvat = getCookie("totalvat");
-            var totaldis = getCookie("totaldis");
-            var payable = getCookie("payable");
-            if (totalamm == null) {
-                setCookie("totalamm", amount, 365);
-                $('#totalall').val(amount);
+                //for final calculation using cookie
+                var totalamm = getCookie("totalamm");
+                var totalvat = getCookie("totalvat");
+                var totaldis = getCookie("totaldis");
+                var payable = getCookie("payable");
+                if (totalamm == null) {
+                    setCookie("totalamm", amount, 365);
+                    $('#totalall').val(amount);
+                }
+                else {
+                    totalamm = parseFloat(totalamm) + parseFloat(amount);
+                    setCookie("totalamm", totalamm, 365);
+                    $('#totalall').val(totalamm);
+                }
+                if (totalvat == null) {
+                    setCookie("totalvat", vat, 365);
+                    $('#totalvat').val(vat);
+                }
+                else {
+                    totalvat = parseFloat(totalvat) + parseFloat(vat);
+                    setCookie("totalvat", totalvat, 365);
+                    $('#totalvat').val(totalvat);
+                }
+                if (totaldis == null) {
+                    setCookie("totaldis", discount, 365);
+                    $('#totaldis').val(discount);
+                }
+                else {
+                    totaldis = parseFloat(totaldis) + parseFloat(discount);
+                    setCookie("totaldis", totaldis, 365);
+                    $('#totaldis').val(totaldis);
+                }
+                if (payable == null) {
+                    setCookie("payable", total, 365);
+                    $('#payable').val(total);
+                    $('#himrpdis').val(total);
+                }
+                else {
+                    payable = parseFloat(payable) + parseFloat(total);
+                    setCookie("payable", payable, 365);
+                    $('#payable').val(payable);
+                    $('#himrpdis').val(payable);
+                }
             }
-            else {
-                totalamm = parseFloat(totalamm) + parseFloat(amount);
-                setCookie("totalamm", totalamm, 365);
-                $('#totalall').val(totalamm);
-            }
-            if (totalvat == null) {
-                setCookie("totalvat", vat, 365);
-                $('#totalvat').val(vat);
-            }
-            else {
-                totalvat = parseFloat(totalvat) + parseFloat(vat);
-                setCookie("totalvat", totalvat, 365);
-                $('#totalvat').val(totalvat);
-            }
-            if (totaldis == null) {
-                setCookie("totaldis", discount, 365);
-                $('#totaldis').val(discount);
-            }
-            else {
-                totaldis = parseFloat(totaldis) + parseFloat(discount);
-                setCookie("totaldis", totaldis, 365);
-                $('#totaldis').val(totaldis);
-            }
-            if (payable == null) {
-                setCookie("payable", total, 365);
-                $('#payable').val(total);
-                $('#himrpdis').val(total);
-            }
-            else {
-                payable = parseFloat(payable) + parseFloat(total);
-                setCookie("payable", payable, 365);
-                $('#payable').val(payable);
-                $('#himrpdis').val(payable);
-            }
+
+            
+
+
+            
 
 
 
@@ -581,6 +608,60 @@
             var product = $('#productname').val();
             if (confirm("Do you want to delete: " + product)) {
                 $(this).closest('tr').remove();
+                var row = $(this).closest('tr');
+                
+                var OrderQty = row.find("TD").eq(2).html();
+                var UnitPrice = row.find("TD").eq(3).html();
+                var Amount = row.find("TD").eq(6).html();
+                var Pvat = row.find("TD").eq(5).html();
+                var PDiscount = row.find("TD").eq(4).html();
+                var totalammm = parseInt(OrderQty) * parseInt(UnitPrice);
+
+                console.log(OrderQty + "--" + UnitPrice + "--" + Amount + "--" + Pvat + "--" + PDiscount);
+
+                var totalamm = getCookie("totalamm");
+                var totalvat = getCookie("totalvat");
+                var totaldis = getCookie("totaldis");
+                var payable = getCookie("payable");
+                if (totalamm == null) {
+                    setCookie("totalamm", 0, 365);
+                    $('#totalall').val(amount);
+                }
+                else {
+                    totalamm = parseFloat(totalamm) - parseFloat(totalammm);
+                    setCookie("totalamm", totalamm, 365);
+                    $('#totalall').val(totalamm);
+                }
+                if (totalvat == null) {
+                    setCookie("totalvat", 0, 365);
+                    $('#totalvat').val(vat);
+                }
+                else {
+                    totalvat = parseFloat(totalvat) - parseFloat(Pvat);
+                    setCookie("totalvat", totalvat, 365);
+                    $('#totalvat').val(totalvat);
+                }
+                if (totaldis == null) {
+                    setCookie("totaldis", 0, 365);
+                    $('#totaldis').val(discount);
+                }
+                else {
+                    totaldis = parseFloat(totaldis) - parseFloat(PDiscount);
+                    setCookie("totaldis", totaldis, 365);
+                    $('#totaldis').val(totaldis);
+                }
+                if (payable == null) {
+                    setCookie("payable", 0, 365);
+                    $('#payable').val(total);
+                    $('#himrpdis').val(total);
+                }
+                else {
+                    payable = parseFloat(payable) - parseFloat(Amount);
+                    setCookie("payable", payable, 365);
+                    $('#payable').val(payable);
+                    $('#himrpdis').val(payable);
+                }
+
 
             }
 
@@ -605,19 +686,42 @@
         $("#qty").change(function () {
             var name = $("#inv").val();
             var Quantity = $("#qty").val();
+            var ss = parseInt(Quantity);
+            var remain = $("#rmn").val();
+            if (isNaN(ss)) {
+                $("#additem").attr("disabled", true);
+                $("#qty").css('border', '1px solid red');
+            }
+            else {
+
+                if (parseInt(Quantity) > parseInt(remain)) {
+                    alert("Over Stock");
+                    $("#additem").attr("disabled", true);
+                    $("#qty").css('border', '1px solid red');
+                }
+                else {
+
+                    if (Quantity != 0 && name != null && name != '' && Quantity != '')
+                    {
+                        $.getJSON('@Url.Action("GetAmount")', { name: name, Quantity: Quantity}, function (mainhead) {
+                            console.log(mainhead);
+                            $('#amount').val(mainhead);
+                            $('#vap').keyup();
+                            $('#per').keyup();
+
+                        });
+                        $("#additem").attr("disabled", false);
+                        $("#qty").css('border', '1px solid #CED4DA');
+
+                    }
+                }
+            }
+
+
+
 
         /*    alert(Quantity);*/
-            if (Quantity != 0 && name != null && name != '')
-            {
-                $.getJSON('@Url.Action("GetAmount")', { name: name, Quantity: Quantity}, function (mainhead) {
-                    console.log(mainhead);
-                    $('#amount').val(mainhead);
-                    $('#vap').keyup();
-                    $('#per').keyup();
 
-                });
-
-            }
 
         });
 
@@ -631,7 +735,7 @@
             $('#vap').keyup();
 
         });
-        
+
             $('#mrpdis').keyup(function () {
                 var payable = $('#himrpdis').val();
                 var dis = $('#mrpdis').val();
@@ -643,8 +747,8 @@
                 else {
                     $('#payable').val(pay);
                 }
-                
-                
+
+
 
         });
 
