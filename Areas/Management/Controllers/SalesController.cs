@@ -85,6 +85,25 @@ namespace PurityERP.Areas.Management.Controllers
             return View(); 
         }
 
+
+        //public IActionResult hisabkoro()
+        //{
+        //    var products = _context.Products.ToList();
+        //    foreach (var item in products)
+        //    {
+        //        var pid = item.Id;
+        //        var wp = _context.NewWorks.Where(x => x.Product == pid).ToList();
+        //        var wps = wp.Sum(c => c.Quantity) - wp.Sum(x => x.DeliveryQty);
+        //        var sp = _context.SalesProducts.Where(x => x.ProductID == pid).Sum(x => x.OrderQty);
+        //        var remain = item.InitialProductStockQty - (sp + wps);
+        //        item.RemainingQty = Convert.ToInt32(remain);
+        //        _context.Update(item);
+        //        _context.SaveChanges();
+
+        //    }
+        //    return RedirectToAction("ProductIndex", "Inventory");
+        //}
+
         public IActionResult Salesdetails(int id)
         {
             
