@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-md-6">
                     <label> vat :</label>
-                    <input type="text" id="vaa" class="form-control" value="0" />
+                    <input type="text" readonly id="vaa" class="form-control" value="0" />
                 </div>
             </div>
             <div class="row">
@@ -168,7 +168,7 @@
             <div class="row">
 
                 <div class="col-6">
-                    <b>Total Discount</b>
+                    <b>Product Discount</b>
                 </div>
                 <div class="col-6">
                     <input type="text" readonly id="totaldis" class="form-control" />
@@ -181,6 +181,17 @@
                 </div>
                 <div class="col-6">
                     <input type="text" readonly id="payable" class="form-control" />
+                    <input type="hidden" id="himrpdis" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-6">
+                    <b>MRP Discount</b>
+                </div>
+                <div class="col-6">
+                    <input type="text" id="mrpdis" class="form-control" value="0"/>
+                    
                 </div>
             </div>
 
@@ -408,13 +419,15 @@
             //if (customer == "Select One") {
             //    customer = 32;
             //};
+            var prodis = $('#totaldis').val();
+            var mrpdis = $('#mrpdis').val();
 
             var mydata = {};
 
             mydata.CustID = $('#supplier').val();
             mydata.SubTotalAmount = $('#totalall').val();
             mydata.TotalAmount = $('#payable').val();
-            mydata.Discount = $('#totaldis').val();
+            mydata.Discount = parseFloat(prodis) + parseFloat(mrpdis);
             mydata.Vat = $('#totalvat').val();
             mydata.CashAmount = $('#cashpay').val();
             mydata.CardAmount = $('#cardpay').val();
@@ -443,7 +456,7 @@
             });
             mydata.selsp = SalesProduct;
 
-            console.log("salesProduct TBL - ", SalesProduct);
+            console.log("salesProduct TBL - ", mydata);
 
             $.ajax({
                 url: "/Management/Sales/SalesCreate",
@@ -548,11 +561,13 @@
             if (payable == null) {
                 setCookie("payable", total, 365);
                 $('#payable').val(total);
+                $('#himrpdis').val(total);
             }
             else {
                 payable = parseFloat(payable) + parseFloat(total);
                 setCookie("payable", payable, 365);
                 $('#payable').val(payable);
+                $('#himrpdis').val(payable);
             }
 
 
@@ -616,6 +631,23 @@
             $('#vap').keyup();
 
         });
+        
+            $('#mrpdis').keyup(function () {
+                var payable = $('#himrpdis').val();
+                var dis = $('#mrpdis').val();
+                var pay = parseFloat(payable) - parseFloat(dis);
+                console.log(pay);
+                if (isNaN(pay)) {
+                    $('#payable').val(payable);
+                }
+                else {
+                    $('#payable').val(pay);
+                }
+                
+                
+
+        });
+
 
         //for change vat
         $('#vap').keyup(function () {
