@@ -384,7 +384,7 @@ namespace PurityERP.Areas.Management.Controllers
 
     public IActionResult ProductIndex()
     {
-            var ProList = _context.Products.Where(x=>x.RemainingQty>0).ToList();
+            var ProList = _context.Products.ToList();
             var viewmodel = new List<ProductVM>();
             var model = new ProductVM();
 
