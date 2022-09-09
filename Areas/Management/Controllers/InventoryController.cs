@@ -32,7 +32,8 @@ namespace PurityERP.Areas.Management.Controllers
             //var inv = _context.Inventories.ToList();
             //return View(inv);
 
-            var InvList = _context.Inventories.Where(x => x.PurchaseQuantity > 0).ToList();
+            //var InvList = _context.Inventories.Where(x => x.PurchaseQuantity > 0).ToList();
+            var InvList = _context.Inventories.ToList();
             var viewmodal = new List<InventoryVM>();
             var model = new InventoryVM();
 
@@ -278,13 +279,13 @@ namespace PurityERP.Areas.Management.Controllers
             ViewBag.product = _context.Products.ToList();
             ViewBag.worker = _context.Workers.ToList();
 
-            IEnumerable<SelectListItem> pro = from Product in _context.Products.ToList()
+            IEnumerable<SelectListItem> pro = from Product in _context.Products.Where(x => x.RemainingQty > 0).ToList()
                                               select new SelectListItem
                                               {
                                                   Value = Product.Id.ToString(),
                                                   Text = Product.ProductCode + "_" + Product.ProductTittle
                                               };
-            IEnumerable<SelectListItem> Inven = from Inventory in _context.Inventories.ToList()
+            IEnumerable<SelectListItem> Inven = from Inventory in _context.Inventories.Where(x=> x.RemainingQty > 0).ToList()
                                               select new SelectListItem
                                               {
                                                   Value = Inventory.Id.ToString(),
