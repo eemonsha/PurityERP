@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PurityERP.Areas.Management.Models;
@@ -21,11 +22,12 @@ namespace PurityERP.Areas.Management.Controllers
     public class InventoryController : Controller
     {
         private readonly DataContext _context;
-        private string code;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public InventoryController(DataContext context)
+        public InventoryController(DataContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            webHostEnvironment = hostEnvironment;
         }
         public IActionResult InventoryIndex()
         {
@@ -405,7 +407,9 @@ namespace PurityERP.Areas.Management.Controllers
                     ProductCode=item.ProductCode,
                     SalesPrice=item.SalesPrice,
                     RemainingQty=item.RemainingQty,
-                    QrExists=QrStatus
+                    QrExists=QrStatus,
+                    ProductPicture =item.PPicture
+                    
                 };
                 viewmodel.Add(model);
             }
@@ -430,7 +434,7 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult Productcreate()
         {
-            var NewProduct = new Product();
+            var NewProduct = new ProductVM();
             
             NewProduct.CostingPrice = 0;
             NewProduct.SalesPrice = 0;
@@ -439,11 +443,12 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult Productcreate(Product product)
+        public IActionResult Productcreate(ProductVM product)
         {
             var procoe = _context.Products.Where(x => x.ProductCode == product.ProductCode).FirstOrDefault();
             if (procoe == null)
             {
+                string uniqueFileName = UploadedFile(product);
                 var salermnqty = new Product();
 
                 salermnqty.InitialProductStockQty = product.InitialProductStockQty;
@@ -455,9 +460,10 @@ namespace PurityERP.Areas.Management.Controllers
                 salermnqty.SalesPrice = product.SalesPrice;
                 salermnqty.DiscountRate = product.DiscountRate;
                 salermnqty.QRId = product.QRId;
+                salermnqty.PPicture = uniqueFileName;
 
-                    
-                
+
+
                 _context.Products.Add(salermnqty);
 
                 _context.SaveChanges();
@@ -508,8 +514,9 @@ namespace PurityERP.Areas.Management.Controllers
                            InitialProductStockQty = product.InitialProductStockQty,
                            RemainingQty = product.RemainingQty,
                            pId = product.Id,
-                           
-                           
+                           ProductPicture = product.PPicture
+
+
                        }).FirstOrDefault();
             return View(sql);
             
@@ -613,6 +620,25 @@ namespace PurityERP.Areas.Management.Controllers
             _context.SaveChanges();
             var supplier = _context.Suppliers.OrderByDescending(x => x.SupplierId).ToList();
             return Json(supplier);
+        }
+
+
+
+        private string UploadedFile(ProductVM model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ProductImage != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images/Product");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProductImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ProductImage.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
     }
 }
