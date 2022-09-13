@@ -44,6 +44,6 @@ namespace PurityERP.Areas.Management.Controllers
             return RedirectToAction("UserIndex");
         }
 
-        //tt
+        
     }
 }

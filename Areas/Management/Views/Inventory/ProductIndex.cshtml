@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="~/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /*.propic{
+            height:50px;
+        }*/
+            .propic img {
+                height: 50px;
+                width:50px;
+                border: 1px solid black;
+                border-radius: 50%!important;
+            }
+
+    </style>
 </head>
 <body>
 
@@ -28,6 +40,7 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        <th>Product Image</th>
                         <th>Product Code</th>
                         <th>Product Tittle</th>
                         <th>Quanity</th>
@@ -39,6 +52,19 @@
                     @foreach (var items in Model)
                     {
                         <tr>
+                            <td>
+                                @if (items.ProductPicture == null)
+                                {
+                                    <div class="propic">
+                                        <img src="https://www.carlscards.com/wp-content/uploads/2020/05/No-Image.jpg" class="rounded" alt="@items.ProductTittle' Picture">
+                                    </div>
+                                    
+                                }
+                                else
+                                {
+                                    <img src="~/images/Product/@items.ProductPicture" class="rounded" alt="@items.ProductTittle' Picture">
+                                }
+                            </td>
                             <td>@items.ProductCode</td>
                             <td>@items.ProductTittle</td>
                             <td>@items.RemainingQty</td>
@@ -66,6 +92,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <th>Product Image</th>
                         <th>Product Code</th>
                         <th>Product Tittle</th>
                         <th>Quanity</th>

@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Management\Data\" />
+    <Folder Include="wwwroot\images\Product\" />
   </ItemGroup>
 
   <ItemGroup>

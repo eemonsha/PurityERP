@@ -1,4 +1,4 @@
-﻿@model PurityERP.Areas.Management.Models.Product
+﻿@model PurityERP.Areas.Management.ViewModel.ProductVM
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
@@ -10,7 +10,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form asp-action="Productcreate">
+        <form enctype="multipart/form-data" asp-action="Productcreate">
             
 
             <div class="card-body">
@@ -56,6 +56,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Image</label>
+                    <input class="form-control" id="initqty" asp-for="ProductImage" accept="image/*" >
+                </div>
+               </div>
 
             </div>
             <!-- /.card-body -->
@@ -70,6 +76,13 @@
             var qty = document.getElementById('initqty').value;
             document.getElementById('remainqty').value = qty;
         }
+
+
+
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
 
     </script>
 </body>
