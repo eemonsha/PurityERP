@@ -58,13 +58,15 @@
                                     <div class="propic">
                                         <img src="https://www.carlscards.com/wp-content/uploads/2020/05/No-Image.jpg" class="rounded" alt="@items.ProductTittle' Picture">
                                     </div>
-                                    
+
                                 }
                                 else
                                 {
-                                    <img src="~/images/Product/@items.ProductPicture" class="rounded" alt="@items.ProductTittle' Picture">
-                                }
-                            </td>
+                                    <div class="propic">
+                                        <img src="~/images/Product/@items.ProductPicture" class="rounded" alt="@items.ProductTittle' Picture">
+                                    </div>
+                                 }
+                                </td>
                             <td>@items.ProductCode</td>
                             <td>@items.ProductTittle</td>
                             <td>@items.RemainingQty</td>
