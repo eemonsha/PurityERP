@@ -20,5 +20,9 @@ namespace PurityERP.Areas.Management.ViewModel
         public IFormFile ProductImage { get; set; }
         public string ProductPicture{ get; set; }
         public int QRId { get; internal set; }
+
+        public bool Deletepro { get; set; }
+
+
     }
 }

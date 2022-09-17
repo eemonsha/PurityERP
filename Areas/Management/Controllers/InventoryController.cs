@@ -385,7 +385,7 @@ namespace PurityERP.Areas.Management.Controllers
 
 
 
-    public IActionResult ProductIndex()
+        public IActionResult ProductIndex()
     {
             var ProList = _context.Products.ToList();
             var viewmodel = new List<ProductVM>();
@@ -489,14 +489,52 @@ namespace PurityERP.Areas.Management.Controllers
         {
 
             var edit = _context.Products.Where(x => x.Id == id).FirstOrDefault();
-            return View(edit);
+
+            ProductVM pv = new ProductVM
+            {
+                Id = edit.Id,
+                InitialProductStockQty = edit.InitialProductStockQty,
+                RemainingQty = edit.RemainingQty,
+                ProductCode = edit.ProductCode,
+                ProductTittle = edit.ProductTittle,
+                CostingPrice = edit.CostingPrice,
+                SalesPrice  = edit.SalesPrice,
+                DiscountRate = edit.DiscountRate,
+                QRId = edit.QRId,
+                ProductPicture = edit.PPicture
+                
+                
+
+            };
+
+
+            return View(pv);
+
         }
 
         [HttpPost]
-        public IActionResult EditProduct(Product product)
+        public IActionResult EditProduct(ProductVM product)
         {
+            var expro = _context.Products.Where(x => x.Id == product.Id).FirstOrDefault();
+            string uniqueFileName = UploadedFile(product);
 
-            _context.Update(product);
+            expro.InitialProductStockQty = product.InitialProductStockQty;
+            expro.RemainingQty = product.RemainingQty;
+            expro.ProductCode = product.ProductCode;
+            expro.ProductTittle = product.ProductTittle;
+            expro.CostingPrice = product.CostingPrice;
+            expro.SalesPrice = product.SalesPrice;
+            expro.DiscountRate = product.DiscountRate;
+            expro.QRId = product.QRId;
+            if(uniqueFileName != null)
+            {
+                expro.PPicture = uniqueFileName;
+            }
+                
+
+
+
+            _context.Update(expro);
             _context.SaveChanges();
             return RedirectToAction("ProductIndex");
         }
