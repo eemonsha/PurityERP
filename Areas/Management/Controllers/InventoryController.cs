@@ -569,6 +569,56 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
 
+        public ActionResult CreateQrBulk()
+        {
+            var ProdID = 1;
+            var SelProduct = _context.Products.Where(x => x.Id == ProdID).FirstOrDefault();
+
+            var SelPall = _context.Products.Where(xx => xx.RemainingQty > 0).ToList();
+
+            var qrcodestring = Convert.ToString(SelProduct.Id) + "/" + SelProduct.ProductCode + "/" + SelProduct.ProductTittle + "/" + SelProduct.SalesPrice;
+            int NoofQr = SelProduct.RemainingQty;
+
+            var qrCodeGenerator = new QRCodeGenerator();
+            //QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
+            QRCode qRCode = new QRCode(qRCodeData);
+            Bitmap bitmap = qRCode.GetGraphic(3);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding.GetEncoding("windows-1252");
+            byte[] paramValue = null;
+            using (var b = new Bitmap(qRCode.GetGraphic(3)))
+            {
+                using (var ms = new MemoryStream())
+                {
+                    b.Save(ms, ImageFormat.Bmp);
+                    paramValue = ms.ToArray();
+                }
+            }
+
+            for (int LoopMoover = 0; LoopMoover < SelProduct.RemainingQty; LoopMoover++)
+            {
+                var NewQr = new QR()
+                {
+                    ID = 0,
+                    ItemCode = ProdID,
+                    QrImage = paramValue,
+                    ItemName = SelProduct.ProductTittle,
+                    PriceAmount = SelProduct.SalesPrice,
+                    UserID = 1,
+                    QrQty = 0,
+                    QrCategory = "Product"
+                };
+                _context.Add(NewQr);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("ProductIndex");
+        }
+
+
+
         public ActionResult DeleteQr(int ProdID)
         {
             var SelQr = _context.QRs.Where(x => x.QrCategory == "Product" && x.ItemCode == ProdID).ToList();
