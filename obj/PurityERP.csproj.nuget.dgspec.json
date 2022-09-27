@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Project\\PurityERP\\PurityERP.csproj": {}
+    "D:\\Project\\PurityERP\\PurityERP.csproj": {}
   },
   "projects": {
-    "C:\\Project\\PurityERP\\PurityERP.csproj": {
+    "D:\\Project\\PurityERP\\PurityERP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Project\\PurityERP\\PurityERP.csproj",
+        "projectUniqueName": "D:\\Project\\PurityERP\\PurityERP.csproj",
         "projectName": "PurityERP",
-        "projectPath": "C:\\Project\\PurityERP\\PurityERP.csproj",
-        "packagesPath": "C:\\Users\\codes\\.nuget\\packages\\",
-        "outputPath": "C:\\Project\\PurityERP\\obj\\",
+        "projectPath": "D:\\Project\\PurityERP\\PurityERP.csproj",
+        "packagesPath": "C:\\Users\\emons\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\PurityERP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\codes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\emons\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -111,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
         }
       }
     }

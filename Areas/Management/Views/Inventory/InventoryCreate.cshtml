@@ -186,7 +186,7 @@
         $("#unitsubmit").click(function () {
             var Unitname = $("#unitname").val();
             if (Unitname != null && Unitname != '') {
-                    $.getJSON('@Url.Action("UnitCreate", "Inventory")', { Unitname: Unitname }, function (subheads) {
+                    $.getJSON('@Url.Action("UnitCreate", "Inventory")', { Unitname: Unitname }, function (subheads)  {
                         $('#units').find("option:not(:first)").remove();
                         console.log(subheads);
                             $.each(subheads, function (index, subhead) {
