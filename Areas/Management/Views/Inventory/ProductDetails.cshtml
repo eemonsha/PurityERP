@@ -1,60 +1,65 @@
 ﻿@model PurityERP.Areas.Management.ViewModel.ManagementVm
 
 
-<h1>Details</h1>
+
+
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="card text-black">
+                    <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                    @if (Model.ProductPicture == null)
+                    {
+                <div class="propic">
+                    <img src="https://www.carlscards.com/wp-content/uploads/2020/05/No-Image.jpg"
+                         class="card-img-top" alt="@Model.ProductTittle Picture" />
+                </div>
+
+                    }
+                    else
+                    {
+                        <img src="~/images/Product/@Model.ProductPicture" class="rounded" alt="@Model.ProductTittle Picture">
+                    }
+                    
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title">@Model.ProductTittle</h5>
+                            <p class="text-muted mb-4">@Model.ProductCode</p>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between">
+                                <span>Costing Price</span><span>৳@Model.CostingPrice</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Sales Price</span><span>৳@Model.SalesPrice</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>DisCount</span><span>@Model.DiscountRate%</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Init Stock Qty</span><span>@Model.InitialProductStockQty</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Remaining Qty</span><span>@Model.RemainingQty</span>
+                            </div>
+
+                        </div>
+                        <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                            @*<span>Total</span><span>$7,197.00</span>*@
+                            <a asp-action="EditProduct" class="btn btn-outline-secondary" asp-route-id="@Model.pId">Edit</a>
+                            <a asp-action="ProductIndex" class="btn btn-outline-danger">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductTittle)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductTittle)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductCode)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductCode)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CostingPrice)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CostingPrice)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SalesPrice)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SalesPrice)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DiscountRate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DiscountRate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.InitialProductStockQty)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.InitialProductStockQty)
-        </dd>
-        <dt class="col-sm-2">
-            Remaing Quantity
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.RemainingQty)
-        </dd>
-
-    </dl>
-</div>
-<div>
-    <a asp-action="EditProduct" asp-route-id="@Model.pId">Edit</a> |
-    <a asp-action="ProductIndex">Back to List</a>
+    
 </div>
 
 

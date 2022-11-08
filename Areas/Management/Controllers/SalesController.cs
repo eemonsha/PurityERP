@@ -65,8 +65,9 @@ namespace PurityERP.Areas.Management.Controllers
         public IActionResult Sales()
         {
 
-            //IEnumerable<SelectListItem> pro = from Product in _context.Products.Where(x=>x.RemainingQty>0).ToList()
-            IEnumerable<SelectListItem> pro = from Product in _context.Products.ToList()
+            //IEnumerable<SelectListItem> pro = from Product in _context.Products.ToList()
+
+            IEnumerable<SelectListItem> pro = from Product in _context.Products.Where(x => x.RemainingQty > 0).ToList()      
                                               select new SelectListItem
                                               {
                                                   Value = Product.Id.ToString(),

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -60,6 +61,9 @@ namespace PurityERP.Areas.Management.ViewModel
         public int WasteQty { get; set; }
         public decimal PaidAmount { get; set; }
         public string WorkStatus { get; set; }
+
+        public IFormFile ProductImage { get; set; }
+        public string ProductPicture { get; set; }
 
 
 

@@ -41,7 +41,7 @@ namespace PurityERP.Areas.Management.Controllers
         }
         public IActionResult UnitIndex()
         {
-            var units = _context.units.FirstOrDefault();
+            var units = _context.units.ToList();
             return View(units);
         }
 
@@ -100,7 +100,7 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult SupplierCreate(Suppliers suppliers)
+        public IActionResult SupplierCreate( Suppliers suppliers)
         {
             var SelSup = _context.Suppliers.Where(x => x.SupplierName == suppliers.SupplierName).FirstOrDefault();
             if (SelSup != null)

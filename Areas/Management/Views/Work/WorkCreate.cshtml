@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-
+    
 </head>
 <body>
     <div class="card card-primary mt-5">
@@ -19,7 +19,7 @@
                     <div class="col-md-6">
                         <label asp-for="Wroker" class="control-label">Wroker</label>
                         <div class=" input-group">
-                            <select class="form-control select2" asp-for="Wroker" asp-items="@(new SelectList(ViewBag.worker, "WorkerId","WorkerName"))">
+                            <select class="form-control select2"  id="lstwrk" asp-for="Wroker" asp-items="@(new SelectList(ViewBag.worker, "WorkerId","WorkerName"))">
                                 <option selected="selected">Select One</option>
                             </select>
                         </div>
@@ -46,7 +46,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="WorkType">Worke Type</label>
-                            <select class="form-control select2" style="width: 100%;" data-native-menu="false" id="WorkType" asp-for="WorkType"
+                            <select class="form-control select2" id="cst" style="width: 100%;" data-native-menu="false" id="WorkType" asp-for="WorkType"
                                     asp-items="@(new SelectList(ViewBag.worketype, "CostMapId","Costtittle"))">
                                 <option selected="selected">Select One</option>
                             </select>
@@ -115,6 +115,16 @@
         <script>
             $(document).ready(function () {
                 $('#lstProduct').select2();
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#lstwrk').select2();
+            });
+        </script>
+    <script>
+            $(document).ready(function () {
+                $('#cst').select2();
             });
         </script>
 

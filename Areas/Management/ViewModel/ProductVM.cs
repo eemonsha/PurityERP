@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,5 +17,12 @@ namespace PurityERP.Areas.Management.ViewModel
         public int InitialProductStockQty { get; set; }
         public int RemainingQty { get; set; }
         public string QrExists { get; set; }//this field will be used to check if QR already created in the QR table or not, if yes this field will carry Yes and vice verse
+        public IFormFile ProductImage { get; set; }
+        public string ProductPicture{ get; set; }
+        public int QRId { get; internal set; }
+
+        public bool Deletepro { get; set; }
+
+
     }
 }

@@ -1,7 +1,11 @@
-﻿@model PurityERP.Areas.Management.Models.Product
+﻿
+
+
+@model PurityERP.Areas.Management.ViewModel.ProductVM
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <link href="~/css/editpage.css" rel="stylesheet" />
 </head>
 <body>
     <div class="card card-primary mt-5">
@@ -10,37 +14,81 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form asp-action="EditProduct">
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Product Tittle</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Product Tittle" asp-for="ProductTittle">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Product Code</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Product Code" asp-for="ProductCode">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Costing price</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Costing price" asp-for="CostingPrice">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Sales price</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Sales price" asp-for="SalesPrice">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Discount Rate</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Discount Rate" asp-for="DiscountRate">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Initial Product Stock Quantity</label>
-                    <input type="text" class="form-control" id="initqty" onkeyup="initqtyf()" placeholder="Stock Quantity" asp-for="InitialProductStockQty">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Remain Quantity</label>
-                    <input type="text" class="form-control" id="remainqty" readonly placeholder="Remain Quantity" asp-for="RemainingQty">
-                </div>
+        <form enctype="multipart/form-data" asp-action="EditProduct">
+            <div id="image-viewer">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="full-image">
             </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Product Code</label>
+                            <input type="text" required class="form-control" id="exampleInputPassword1" placeholder="Product Code" asp-for="ProductCode">
+                            <p class="text-danger">    @TempData["msg"]</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Product Tittle</label>
+                            <input type="text" required class="form-control" id="exampleInputPassword1" placeholder="Product Tittle" asp-for="ProductTittle">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Costing price</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Costing price" asp-for="CostingPrice">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Sales price</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Sales price" asp-for="SalesPrice">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Discount (%)</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Discount Rate" asp-for="DiscountRate">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Initial Product Stock Quantity</label>
+                            <input type="text" class="form-control" id="initqty" onkeyup="initqtyf()" placeholder="Stock Quantity" asp-for="InitialProductStockQty">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="exampleInputPassword1">Remain Quantity</label>
+                        <input type="text" class="form-control" id="remainqty" readonly placeholder="Remain Quantity" asp-for="RemainingQty">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Image</label>
+                            <input class="form-control" id="ProImg" asp-for="ProductImage" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleInputPassword1">New Image</label>
+                        <div class="images" style="align-content: center">
+                            <img id="proupdateimg" src="~/images/Product/@Model.ProductPicture" alt="" class="rounded" width="150">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                         <label for="exampleInputPassword1">Old Image</label>
+                         <img src="~/images/Product/@Model.ProductPicture" class="rounded" alt="@Model.ProductTittle Picture">
+                     </div>
+                    </div>
+
+
+
+                </div>
             <!-- /.card-body -->
 
             <div class="card-footer">
@@ -48,12 +96,44 @@
             </div>
         </form>
     </div>
-    <script>
-        function initqtyf() {
-            var qty = document.getElementById('initqty').value;
-            document.getElementById('remainqty').value = qty;
-        }
+    @section scripts{
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"></script>
+        <script>
+            
+            $(".images img").click(function () {
+                $("#full-image").attr("src", $(this).attr("src"));
+                $('#image-viewer').show();
+            });
 
-    </script>
-</body>
+            $("#image-viewer .close").click(function () {
+                $('#image-viewer').hide();
+            });
+            $("#ProImg").change(function (e) {
+
+                for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+
+                    var file = e.originalEvent.srcElement.files[i];
+
+                    //var img = document.createElement("img");
+                    var img = document.getElementById("proupdateimg");
+                    var reader = new FileReader();
+                    reader.onloadend = function () {
+                        img.src = reader.result;
+                    }
+                    reader.readAsDataURL(file);
+                    //$("#NIDFront").after(img);
+                }
+            });
+
+
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
+        </script>
+    }
+    </body>
 </html>

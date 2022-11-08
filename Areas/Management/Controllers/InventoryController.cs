@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PurityERP.Areas.Management.Models;
@@ -21,18 +22,20 @@ namespace PurityERP.Areas.Management.Controllers
     public class InventoryController : Controller
     {
         private readonly DataContext _context;
-        private string code;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public InventoryController(DataContext context)
+        public InventoryController(DataContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            webHostEnvironment = hostEnvironment;
         }
         public IActionResult InventoryIndex()
         {
             //var inv = _context.Inventories.ToList();
             //return View(inv);
 
-            var InvList = _context.Inventories.Where(x => x.PurchaseQuantity > 0).ToList();
+            //var InvList = _context.Inventories.Where(x => x.PurchaseQuantity > 0).ToList();
+            var InvList = _context.Inventories.ToList();
             var viewmodal = new List<InventoryVM>();
             var model = new InventoryVM();
 
@@ -278,13 +281,13 @@ namespace PurityERP.Areas.Management.Controllers
             ViewBag.product = _context.Products.ToList();
             ViewBag.worker = _context.Workers.ToList();
 
-            IEnumerable<SelectListItem> pro = from Product in _context.Products.ToList()
+            IEnumerable<SelectListItem> pro = from Product in _context.Products.Where(x => x.RemainingQty > 0).ToList()
                                               select new SelectListItem
                                               {
                                                   Value = Product.Id.ToString(),
                                                   Text = Product.ProductCode + "_" + Product.ProductTittle
                                               };
-            IEnumerable<SelectListItem> Inven = from Inventory in _context.Inventories.ToList()
+            IEnumerable<SelectListItem> Inven = from Inventory in _context.Inventories.Where(x=> x.RemainingQty > 0).ToList()
                                               select new SelectListItem
                                               {
                                                   Value = Inventory.Id.ToString(),
@@ -382,7 +385,7 @@ namespace PurityERP.Areas.Management.Controllers
 
 
 
-    public IActionResult ProductIndex()
+        public IActionResult ProductIndex()
     {
             var ProList = _context.Products.ToList();
             var viewmodel = new List<ProductVM>();
@@ -404,7 +407,9 @@ namespace PurityERP.Areas.Management.Controllers
                     ProductCode=item.ProductCode,
                     SalesPrice=item.SalesPrice,
                     RemainingQty=item.RemainingQty,
-                    QrExists=QrStatus
+                    QrExists=QrStatus,
+                    ProductPicture =item.PPicture
+                    
                 };
                 viewmodel.Add(model);
             }
@@ -429,7 +434,7 @@ namespace PurityERP.Areas.Management.Controllers
 
         public IActionResult Productcreate()
         {
-            var NewProduct = new Product();
+            var NewProduct = new ProductVM();
             
             NewProduct.CostingPrice = 0;
             NewProduct.SalesPrice = 0;
@@ -438,11 +443,12 @@ namespace PurityERP.Areas.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult Productcreate(Product product)
+        public IActionResult Productcreate(ProductVM product)
         {
             var procoe = _context.Products.Where(x => x.ProductCode == product.ProductCode).FirstOrDefault();
             if (procoe == null)
             {
+                string uniqueFileName = UploadedFile(product);
                 var salermnqty = new Product();
 
                 salermnqty.InitialProductStockQty = product.InitialProductStockQty;
@@ -454,9 +460,10 @@ namespace PurityERP.Areas.Management.Controllers
                 salermnqty.SalesPrice = product.SalesPrice;
                 salermnqty.DiscountRate = product.DiscountRate;
                 salermnqty.QRId = product.QRId;
+                salermnqty.PPicture = uniqueFileName;
 
-                    
-                
+
+
                 _context.Products.Add(salermnqty);
 
                 _context.SaveChanges();
@@ -482,14 +489,52 @@ namespace PurityERP.Areas.Management.Controllers
         {
 
             var edit = _context.Products.Where(x => x.Id == id).FirstOrDefault();
-            return View(edit);
+
+            ProductVM pv = new ProductVM
+            {
+                Id = edit.Id,
+                InitialProductStockQty = edit.InitialProductStockQty,
+                RemainingQty = edit.RemainingQty,
+                ProductCode = edit.ProductCode,
+                ProductTittle = edit.ProductTittle,
+                CostingPrice = edit.CostingPrice,
+                SalesPrice  = edit.SalesPrice,
+                DiscountRate = edit.DiscountRate,
+                QRId = edit.QRId,
+                ProductPicture = edit.PPicture
+                
+                
+
+            };
+
+
+            return View(pv);
+
         }
 
         [HttpPost]
-        public IActionResult EditProduct(Product product)
+        public IActionResult EditProduct(ProductVM product)
         {
+            var expro = _context.Products.Where(x => x.Id == product.Id).FirstOrDefault();
+            string uniqueFileName = UploadedFile(product);
 
-            _context.Update(product);
+            expro.InitialProductStockQty = product.InitialProductStockQty;
+            expro.RemainingQty = product.RemainingQty;
+            expro.ProductCode = product.ProductCode;
+            expro.ProductTittle = product.ProductTittle;
+            expro.CostingPrice = product.CostingPrice;
+            expro.SalesPrice = product.SalesPrice;
+            expro.DiscountRate = product.DiscountRate;
+            expro.QRId = product.QRId;
+            if(uniqueFileName != null)
+            {
+                expro.PPicture = uniqueFileName;
+            }
+                
+
+
+
+            _context.Update(expro);
             _context.SaveChanges();
             return RedirectToAction("ProductIndex");
         }
@@ -507,8 +552,9 @@ namespace PurityERP.Areas.Management.Controllers
                            InitialProductStockQty = product.InitialProductStockQty,
                            RemainingQty = product.RemainingQty,
                            pId = product.Id,
-                           
-                           
+                           ProductPicture = product.PPicture
+
+
                        }).FirstOrDefault();
             return View(sql);
             
@@ -559,6 +605,56 @@ namespace PurityERP.Areas.Management.Controllers
 
             return RedirectToAction("ProductIndex");
         }
+
+
+        //public ActionResult CreateQrBulk()
+        //{
+        //    var ProdID = 1;
+        //    var SelProduct = _context.Products.Where(x => x.Id == ProdID).FirstOrDefault();
+
+        //    var SelPall = _context.Products.Where(xx => xx.RemainingQty > 0).ToList();
+
+        //    var qrcodestring = Convert.ToString(SelProduct.Id) + "/" + SelProduct.ProductCode + "/" + SelProduct.ProductTittle + "/" + SelProduct.SalesPrice;
+        //    int NoofQr = SelProduct.RemainingQty;
+
+        //    var qrCodeGenerator = new QRCodeGenerator();
+        //    //QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
+        //    QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(qrcodestring, QRCodeGenerator.ECCLevel.Q);
+        //    QRCode qRCode = new QRCode(qRCodeData);
+        //    Bitmap bitmap = qRCode.GetGraphic(3);
+        //    Dictionary<string, string> parameters = new Dictionary<string, string>();
+        //    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        //    Encoding.GetEncoding("windows-1252");
+        //    byte[] paramValue = null;
+        //    using (var b = new Bitmap(qRCode.GetGraphic(3)))
+        //    {
+        //        using (var ms = new MemoryStream())
+        //        {
+        //            b.Save(ms, ImageFormat.Bmp);
+        //            paramValue = ms.ToArray();
+        //        }
+        //    }
+
+        //    for (int LoopMoover = 0; LoopMoover < SelProduct.RemainingQty; LoopMoover++)
+        //    {
+        //        var NewQr = new QR()
+        //        {
+        //            ID = 0,
+        //            ItemCode = ProdID,
+        //            QrImage = paramValue,
+        //            ItemName = SelProduct.ProductTittle,
+        //            PriceAmount = SelProduct.SalesPrice,
+        //            UserID = 1,
+        //            QrQty = 0,
+        //            QrCategory = "Product"
+        //        };
+        //        _context.Add(NewQr);
+        //    }
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("ProductIndex");
+        //}
+
 
 
         public ActionResult DeleteQr(int ProdID)
@@ -612,6 +708,25 @@ namespace PurityERP.Areas.Management.Controllers
             _context.SaveChanges();
             var supplier = _context.Suppliers.OrderByDescending(x => x.SupplierId).ToList();
             return Json(supplier);
+        }
+
+
+
+        private string UploadedFile(ProductVM model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ProductImage != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images/Product");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProductImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ProductImage.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
     }
 }

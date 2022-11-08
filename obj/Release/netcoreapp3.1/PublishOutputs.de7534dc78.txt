@@ -2499,9 +2499,17 @@ D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\assets\preSetUpMod
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\assets\preSetUpModule\vendor\typed.js\typed.min.js.map
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\assets\preSetUpModule\vendor\waypoints\noframework.waypoints.js
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\assets\TabStyle.css
+D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\css\editpage.css
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\css\site.css
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\css\Style.css
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\favicon.ico
+D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\Product\0d2ea150-3d5a-4421-9c51-020b1839ac5a_Lgo.jpg
+D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\Product\3be2fef3-f578-46fa-a14f-3c65350dae65_GGG.jpg
+D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\Product\64cc983c-a1d9-4243-96ae-68d0ae35c0cf_IMG_1432.jpeg
+D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\Product\691d1ed0-fc2c-434c-8a2d-c3abe0d81f07_Lgo.jpg
+D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\Product\83bfaa1d-b2ba-4694-a26e-d9b7e9ffff9b_GGG.jpg
+D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\Product\cd3ad8da-4898-4506-b682-595e9c920330_Lgo.jpg
+D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\images\Product\d07997f4-716a-4396-8f49-815c5b0a97b3_Emon.jpeg
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\js\site.js
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 D:\new\PurityERP\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
