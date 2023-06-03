@@ -11072,19 +11072,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nahid\\.nuget\\packages\\": {}
+    "C:\\Users\\HOPE\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\EP\\PurityERP\\PurityERP.csproj",
+      "projectUniqueName": "E:\\PurityERP\\PurityERP.csproj",
       "projectName": "PurityERP",
-      "projectPath": "E:\\EP\\PurityERP\\PurityERP.csproj",
-      "packagesPath": "C:\\Users\\Nahid\\.nuget\\packages\\",
-      "outputPath": "E:\\EP\\PurityERP\\obj\\",
+      "projectPath": "E:\\PurityERP\\PurityERP.csproj",
+      "packagesPath": "C:\\Users\\HOPE\\.nuget\\packages\\",
+      "outputPath": "E:\\PurityERP\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Nahid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HOPE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

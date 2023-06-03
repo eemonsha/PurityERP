@@ -83,7 +83,7 @@ namespace PurityERP.Areas.Management.Controllers
         {
             var inven = _context.Inventories.ToList();
             var max = "";
-            if (inven.Count == 0)
+            if (inven.Count == 0) 
             {
                 max = "1";
             }
